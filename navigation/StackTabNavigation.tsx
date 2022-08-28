@@ -1,19 +1,18 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { TopTabHomeNavigator } from "./TopTabNavigation";
+import { useTheme } from "styled-components";
 
 import { Header } from "../components/AppComponents/Header";
 import { ChatScreen } from "../screens/Chat";
 import { ProfileScreen } from "../screens/Profile";
 import { PublicationScreen } from "../screens/Publication";
 import { SettingsScreen } from "../screens/Settings";
-import { EditProfileScreen } from "../screens/Profile/Edit";
-import { AcessibilityProfileScreen } from "../screens/Profile/Accessibility";
-import { SecurityProfileScreen } from "../screens/Profile/Security";
-import { LogoutProfileScreen } from "../screens/Profile/Logout";
-import { SupportProfileScreen } from "../screens/Profile/Support";
-import { AboutProfileScreen } from "../screens/Profile/About";
-import { useTheme } from "styled-components";
+import { EditProfileScreen } from "../screens/Profile/screens/Edit";
+import { SecurityProfileScreen } from "../screens/Profile/screens/Security";
+import { LogoutProfileScreen } from "../screens/Profile/screens/Logout";
+import { SupportProfileScreen } from "../screens/Profile/screens/Support";
+import { AboutProfileScreen } from "../screens/Profile/screens/About";
 import { IInterest } from "../interfaces/Job/IInterested";
 import { ChatingScreen } from "../screens/Chat/Chating";
 
@@ -109,7 +108,7 @@ export const StackProfileNavigator = () => {
       />
       <Tab.Group>
         <Tab.Screen name="editProfile" component={EditProfileScreen} />
-        
+
         <Tab.Screen name="securityProfile" component={SecurityProfileScreen} />
         <Tab.Screen name="logoutProfile" component={LogoutProfileScreen} />
         <Tab.Screen name="supportProfile" component={SupportProfileScreen} />

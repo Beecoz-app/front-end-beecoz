@@ -10,7 +10,7 @@ export default function App() {
     <NavigationContainer>
       <ThemeProvider theme={theme}>
         <BottomTabNavigator/>
-        <StatusBar style="auto" />
+        <StatusBar style="inverted" />
       </ThemeProvider>
     </NavigationContainer>
   );
