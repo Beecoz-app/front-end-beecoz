@@ -1,10 +1,10 @@
 import { Text, View } from "react-native"
 
-export const HomeScreen = () => {
+export const ProgressPublication = () => {
     return (
         <View>
             <Text>
-                Hello
+                Heelo
             </Text>
         </View>
     )
