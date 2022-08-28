@@ -31,7 +31,6 @@ export type StackParamsList = {
   profile: undefined;
 
   editProfile: undefined;
-  accessibilityProfile: undefined;
   securityProfile: undefined;
   logoutProfile: undefined;
   supportProfile: undefined;
@@ -110,10 +109,7 @@ export const StackProfileNavigator = () => {
       />
       <Tab.Group>
         <Tab.Screen name="editProfile" component={EditProfileScreen} />
-        <Tab.Screen
-          name="accessibilityProfile"
-          component={AcessibilityProfileScreen}
-        />
+        
         <Tab.Screen name="securityProfile" component={SecurityProfileScreen} />
         <Tab.Screen name="logoutProfile" component={LogoutProfileScreen} />
         <Tab.Screen name="supportProfile" component={SupportProfileScreen} />
