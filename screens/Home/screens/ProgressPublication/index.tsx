@@ -1,9 +1,9 @@
 import React from "react";
 import { ListRenderItem } from "react-native";
 import { Container, Content, Flat } from "./styles";
-import { PostCard } from "../components/PostCard";
+import { PostCard } from "../../components/PostCard";
 
-import { IPost } from "../../../interfaces/Post/IPost";
+import { IPost } from "../../../../interfaces/Post/IPost";
 
 export const ProgressPosts = () => {
   const DATA: IPost[] = [

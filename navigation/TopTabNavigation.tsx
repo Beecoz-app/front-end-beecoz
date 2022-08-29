@@ -1,9 +1,9 @@
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { Text, View } from "react-native";
 import { useTheme } from "styled-components";
-import { ConcludedPublication } from "../screens/Home/ConcludedPublication";
-import { OpenedPublication } from "../screens/Home/OpenedPublication";
-import { ProgressPublication } from "../screens/Home/ProgressPublication";
+import { ConcludedPublication } from "../screens/Home/screens/ConcludedPublication";
+import { OpenedPublication } from "../screens/Home/screens/OpenedPublication";
+import { ProgressPosts } from "../screens/Home/screens/ProgressPublication";
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -39,7 +39,7 @@ export const TopTabHomeNavigator = () => {
     >
       <Tab.Screen
         name="progress posts"
-        component={ProgressPublication}
+        component={ProgressPosts}
         options={{
           tabBarIcon: ({ focused }) => (
             <View style={{alignSelf: 'center', width: 100,height: 30 , justifyContent: 'center', alignItems: 'center'}}>

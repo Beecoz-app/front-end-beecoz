@@ -1,5 +1,5 @@
 import { FlatList } from "react-native";
-import styled from "../../../styles/styledComponents";
+import styled from "../../../../styles/styledComponents";
 
 export const Container = styled.View`
     flex: 1;
