@@ -16,7 +16,7 @@ import IconAwesome from "react-native-vector-icons/FontAwesome";
 
 
 
-type BottomParamsList = {
+export type BottomParamsList = {
   homeBottom: undefined;
   chatBottom: undefined;
   publicationBottom: undefined;
