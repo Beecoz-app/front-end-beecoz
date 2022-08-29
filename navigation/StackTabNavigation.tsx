@@ -15,13 +15,14 @@ import { SupportProfileScreen } from "../screens/Profile/screens/Support";
 import { AboutProfileScreen } from "../screens/Profile/screens/About";
 import { IInterest } from "../interfaces/Job/IInterested";
 import { ChatingScreen } from "../screens/Chat/Chating";
+import { IAutonomous } from "../interfaces/User/Autonomous/IAutonomous";
 
 export type StackParamsList = {
   home: undefined;
 
   chat: undefined;
   chating: {
-    interested: IInterest
+    interested: IAutonomous
   }
 
   order: undefined;
