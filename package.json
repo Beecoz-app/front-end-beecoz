@@ -12,6 +12,7 @@
     "@react-navigation/bottom-tabs": "^6.3.3",
     "@react-navigation/material-top-tabs": "^6.2.3",
     "@react-navigation/native-stack": "^6.8.0",
+    "@reduxjs/toolkit": "^1.8.5",
     "expo": "~46.0.9",
     "expo-splash-screen": "~0.16.2",
     "expo-status-bar": "~1.4.0",
@@ -26,6 +27,7 @@
     "react-native-tab-view": "^3.1.1",
     "react-native-vector-icons": "^9.2.0",
     "react-native-web": "~0.18.7",
+    "redux": "^4.2.0",
     "styled-components": "^5.3.5"
   },
   "devDependencies": {
