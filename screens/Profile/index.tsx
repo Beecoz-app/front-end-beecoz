@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { View, Text, Image } from "react-native";
 import { useTheme } from "styled-components";
 import { IClient } from "../../interfaces/User/CLient/IClient";
@@ -9,23 +9,12 @@ import { OptionsCard } from "./components/OptionsCard";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { StackParamsList } from "../../navigation/StackTabNavigation";
 import { Container, Profile, ProfileContent, OptionsContainer,OptionsContent } from "./styles";
+import { AuthContext, IAuthContext } from "../../contexts/MainContext";
 
 export type ProfileType = NativeStackScreenProps<StackParamsList, "profile">;
 
 export const ProfileScreen = ({ navigation }: ProfileType) => {
-  const user: IClient = {
-    id: 1,
-    name: "Thiago",
-    lastName: "Silva",
-    birthDate: "04-17-2005",
-    sex: "Male",
-    CPF: "000000",
-    loginId: 1,
-    profileId: 1,
-    typeId: 1,
-    profileImage:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNb1jnC52Zm-Z92rKJuIXRc7ahmsH1mpTUow&usqp=CAU",
-  };
+  const {user} = useContext(AuthContext) as IAuthContext
   const theme = useTheme();
 
   return (
@@ -34,7 +23,7 @@ export const ProfileScreen = ({ navigation }: ProfileType) => {
         <Image
           style={{ width: 60, height: 60, borderRadius: 50 }}
           resizeMode="contain"
-          source={{ uri: user.profileImage }}
+          source={{ uri: user?.profileImage }}
         />
         <ProfileContent>
           <Text
@@ -44,11 +33,12 @@ export const ProfileScreen = ({ navigation }: ProfileType) => {
               fontSize: 20,
             }}
           >
-            {user.name} {user.lastName}
+            {user?.name} 
+            {/* {user?.lastName}  por algum motivo nao veio*/}
           </Text>
           <View style={{ flexDirection: "row", alignItems: "center" }}>
             <View>
-              {user.typeId === 3 ? (
+              {user?.typeId === 3 ? (
                 <IconMaterial
                   style={{ fontSize: 30, color: "#FF81D0" }}
                   name="crown-circle"
