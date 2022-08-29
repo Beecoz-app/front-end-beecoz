@@ -13,7 +13,6 @@ import { SecurityProfileScreen } from "../screens/Profile/screens/Security";
 import { LogoutProfileScreen } from "../screens/Profile/screens/Logout";
 import { SupportProfileScreen } from "../screens/Profile/screens/Support";
 import { AboutProfileScreen } from "../screens/Profile/screens/About";
-import { IInterest } from "../interfaces/Job/IInterested";
 import { ChatingScreen } from "../screens/Chat/Chating";
 import { IAutonomous } from "../interfaces/User/Autonomous/IAutonomous";
 
@@ -76,7 +75,7 @@ export const StackChatNavigator = () => {
   );
 };
 
-export const StackOrderNavigator = () => {
+export const StackPublicationNavigator = () => {
   const theme = useTheme();
   return (
     <Tab.Navigator

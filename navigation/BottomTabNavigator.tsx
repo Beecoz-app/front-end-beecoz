@@ -5,7 +5,7 @@ import { useTheme } from "styled-components";
 import {
   StackChatNavigator,
   StackHomeNavigator,
-  StackOrderNavigator,
+  StackPublicationNavigator,
   StackProfileNavigator,
   StackSettingsNavigator,
 } from "./StackTabNavigation";
@@ -19,7 +19,7 @@ import IconAwesome from "react-native-vector-icons/FontAwesome";
 type BottomParamsList = {
   homeBottom: undefined;
   chatBottom: undefined;
-  orderBottom: undefined;
+  publicationBottom: undefined;
   profileBottom: undefined;
   settingsBottom: undefined;
 };
@@ -84,8 +84,8 @@ export const BottomTabNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="orderBottom"
-        component={StackOrderNavigator}
+        name="publicationBottom"
+        component={StackPublicationNavigator}
         options={{
           tabBarIcon: ({ focused }) => (
             <View style={{ justifyContent: "center", alignItems: "center" }}>
