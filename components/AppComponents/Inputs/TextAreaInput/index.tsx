@@ -1,17 +1,19 @@
 import React, { useState } from "react";
-import { TextInput } from "react-native";
 import { Container } from "./styles";
 
 interface InputProps {
   placeholder: string;
+  onChange: (text: string) => void
 }
 
-export const AppTextArea = ({ placeholder, ...rest }: InputProps) => { useState(false);
+export const AppTextArea = ({ placeholder, onChange ,...rest }: InputProps) => {
+  useState(false);
   return (
     <Container
       multiline={true}
       numberOfLines={4}
       placeholder={placeholder}
+      onChangeText={onChange}
       {...rest}
     />
   );
