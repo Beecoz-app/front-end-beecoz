@@ -1,5 +1,6 @@
 import { createContext, useState } from "react";
 import { IPost } from "../interfaces/Post/IPost";
+import { IServiceType } from "../interfaces/Service/IServiceType";
 import { IAutonomous } from "../interfaces/User/Autonomous/IAutonomous";
 import { IClient } from "../interfaces/User/CLient/IClient";
 
@@ -16,8 +17,15 @@ export interface IPublicationContext {
   setPublications: React.Dispatch<React.SetStateAction<IPost[]>> | null;
 }
 
+export interface IServiceTypeContext {
+  servicesTypes: IServiceType[];
+}
+
 export const AuthContext = createContext<IAuthContext | null>(null);
 export const PublicationContext = createContext<IPublicationContext | null>(
+  null
+);
+export const ServiceTypeContext = createContext<IServiceTypeContext | null>(
   null
 );
 
@@ -49,11 +57,18 @@ export const MainContextProvider = ({ children }: any) => {
       tags: [1, 2],
     },
   ]);
+  const [servicesTypes, setServicesTypes] = useState<IServiceType[]>([
+    { id: 1, service: "Marcenaria" },
+    { id: 2, service: "Cozinha" },
+    { id: 3, service: "Construção" },
+  ]);
 
   return (
     <AuthContext.Provider value={{ user: client, setUser: setClient }}>
       <PublicationContext.Provider value={{ publications, setPublications }}>
-        {children}
+        <ServiceTypeContext.Provider value={{ servicesTypes }}>
+          {children}
+        </ServiceTypeContext.Provider>
       </PublicationContext.Provider>
     </AuthContext.Provider>
   );
