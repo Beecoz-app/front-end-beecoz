@@ -7,14 +7,14 @@ import { IPost } from "../../../../interfaces/Post/IPost";
 import { IInterest } from "../../../../interfaces/Job/IInterested";
 import { IAutonomous } from "../../../../interfaces/User/Autonomous/IAutonomous";
 import {
-  IServiceTypeContext,
-  ServiceTypeContext,
+  IPublicationContext,
+  PublicationContext,
 } from "../../../../contexts/MainContext";
 
 export const PostCard = ({ data }: { data: IPost }) => {
-  const { servicesTypes } = useContext(
-    ServiceTypeContext
-  ) as IServiceTypeContext;
+  const { servicesTypes, interest } = useContext(
+    PublicationContext
+  ) as IPublicationContext;
   const [seeInterested, setSeeInterested] = useState(false);
 
   const DATA: IInterest = {
@@ -36,10 +36,6 @@ export const PostCard = ({ data }: { data: IPost }) => {
     ],
     post: data.id,
   };
-
-  const renderItem: ListRenderItem<IAutonomous> = ({ item }) => (
-    <InterestedCard data={item} />
-  );
 
   return (
     <Container seeInterested={seeInterested}>
@@ -71,7 +67,7 @@ export const PostCard = ({ data }: { data: IPost }) => {
                           style={{ fontSize: 14, color: "#9FE4F4" }}
                           key={service.id}
                         >
-                          {service.service}, {''}
+                          {service.service}, {""}
                         </Text>
                       )
                   );
@@ -80,11 +76,17 @@ export const PostCard = ({ data }: { data: IPost }) => {
             </View>
           </ResumeView>
           <InteresedView onPress={() => setSeeInterested(true)}>
-            <Text>
-              <Text style={{ fontWeight: "bold", color: "#9FE4F4" }}>
-                numero de interessados (fazer)
-              </Text>{" "}
-            </Text>
+          {interest.map((interestId, index) => {
+              return (
+                interestId.post === data.id && (
+                  <Text style={{ fontWeight: "bold", color: "#9FE4F4" }}>
+                    {interestId.interest.length}
+                    {' '}
+                    <Text>{interestId.interest.length < 2 ? 'interessado' : 'interessados'}</Text>
+                  </Text>
+                )
+              );
+            })}
           </InteresedView>
         </>
       ) : (
@@ -107,28 +109,48 @@ export const PostCard = ({ data }: { data: IPost }) => {
                 {data.title}
               </Text>
               <View style={{ flexDirection: "row" }}>
-                {data.tags.map((tag, index) => (
-                  <Text style={{ fontSize: 14, color: "#9FE4F4" }} key={index}>
-                    {tag},{" "}
-                  </Text>
-                ))}
+                {data.tags.map((tag, index) => {
+                  return servicesTypes.map(
+                    (service, index) =>
+                      service.id === tag && (
+                        <Text
+                          style={{ fontSize: 14, color: "#9FE4F4" }}
+                          key={service.id}
+                        >
+                          {service.service}, {""}
+                        </Text>
+                      )
+                  );
+                })}
               </View>
             </View>
           </ResumeView>
           <InteresedView onPress={() => setSeeInterested(false)}>
-            <Text style={{ fontSize: 12, color: "#fff" }}>
-              <Text style={{ fontWeight: "bold", color: "#9FE4F4" }}>
-                numero de interessados (fazer)
-              </Text>{" "}
-            </Text>
+            {interest.map((interestId, index) => {
+              return (
+                interestId.post === data.id && (
+                  <Text style={{ fontWeight: "bold", color: "#9FE4F4" }}>
+                    {interestId.interest.length}
+                    {' '}
+                    <Text>{interestId.interest.length < 2 ? 'interessado' : 'interessados'}</Text>
+                  </Text>
+                )
+              );
+            })}
           </InteresedView>
           <ListInterested>
-            <FlatList<IAutonomous>
-              data={DATA.interest}
-              renderItem={({ item }) => (
-                <InterestedCard key={item.id} data={item} />
-              )}
-            />
+            {interest.map((interestId, index) => {
+              return (
+                interestId.post === data.id && (
+                  <FlatList<IAutonomous>
+                    data={interestId.interest}
+                    renderItem={({ item }) => (
+                      <InterestedCard key={item.id} data={item} />
+                    )}
+                  />
+                )
+              );
+            })}
           </ListInterested>
         </>
       )}
