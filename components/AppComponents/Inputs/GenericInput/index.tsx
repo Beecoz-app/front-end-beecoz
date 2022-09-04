@@ -27,7 +27,7 @@ export const AppGeneticInput = ({ type, placeholder, onChange , ...rest }: Input
 
 const styles = StyleSheet.create({
   inputStyle: {
-    width: "90%",
+    width: "100%",
     height: 60,
     borderBottomWidth: 2,
     borderColor: "#aaa",

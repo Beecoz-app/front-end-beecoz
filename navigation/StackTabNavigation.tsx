@@ -15,6 +15,7 @@ import { SupportProfileScreen } from "../screens/Profile/screens/Support";
 import { AboutProfileScreen } from "../screens/Profile/screens/About";
 import { ChatingScreen } from "../screens/Chat/Chating";
 import { IAutonomous } from "../interfaces/User/Autonomous/IAutonomous";
+import { LoginScreen } from "../screens/Auth/Login";
 
 export type StackParamsList = {
   home: undefined;
@@ -34,6 +35,8 @@ export type StackParamsList = {
   logoutProfile: undefined;
   supportProfile: undefined;
   aboutProfile: undefined;
+
+  login: undefined;
 };
 
 const Tab = createNativeStackNavigator<StackParamsList>();
@@ -134,3 +137,11 @@ export const StackSettingsNavigator = () => {
     </Tab.Navigator>
   );
 };
+
+export const StackLoginNavigator = () => {
+  return (
+    <Tab.Navigator screenOptions={{headerTransparent: true}}>
+      <Tab.Screen name="login" component={LoginScreen} options={{headerShown: false}}/>
+    </Tab.Navigator>
+  )
+}

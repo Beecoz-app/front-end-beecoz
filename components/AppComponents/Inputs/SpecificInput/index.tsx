@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useState } from "react";
 import { StyleSheet, TextInput, View } from "react-native";
 import { setKeyboardType } from "../../../../utils/setKeyboardType";
-import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 interface InputProps {
   type: "email" | "phone" | "password" | "CPF" | "CNPJ";
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "center",
-    width: "90%",
+    width: "100%",
     height: 80,
     backgroundColor: "#444",
     color: "#aaa",
