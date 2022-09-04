@@ -26,8 +26,8 @@ import {
 } from "./styles";
 
 export type PublicationType = NativeStackScreenProps<
-  BottomParamsList,
-  "publicationBottom"
+  StackParamsList,
+  "publication"
 >;
 
 export const PublicationScreen = ({ navigation }: PublicationType) => {
@@ -66,7 +66,7 @@ export const PublicationScreen = ({ navigation }: PublicationType) => {
   };
 
   const navigateToHome = () => {
-    navigation.navigate("homeBottom");
+    navigation.navigate("home");
   };
 
   return (

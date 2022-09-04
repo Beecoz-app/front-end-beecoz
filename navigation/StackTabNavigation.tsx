@@ -24,7 +24,7 @@ export type StackParamsList = {
     interested: IAutonomous
   }
 
-  order: undefined;
+  publication: undefined;
   settings: undefined;
 
   profile: undefined;
@@ -84,7 +84,7 @@ export const StackPublicationNavigator = () => {
       }}
     >
       <Tab.Screen
-        name="order"
+        name="publication"
         component={PublicationScreen}
         options={{ headerTitle: (props) => <Header title="Pedido" /> }}
       />
