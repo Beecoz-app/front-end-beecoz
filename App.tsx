@@ -12,8 +12,9 @@ export default function App() {
     <MainContextProvider>
       <NavigationContainer>
         <ThemeProvider theme={theme}>
-          <StackLoginNavigator />
-          <StatusBar style="inverted" />
+          <BottomTabNavigator/>
+          {/* <StackLoginNavigator/> */}
+          <StatusBar style="light" />
         </ThemeProvider>
       </NavigationContainer>
     </MainContextProvider>
