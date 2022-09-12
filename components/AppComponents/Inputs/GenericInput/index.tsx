@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     color: "#ccc",
   },
   inputFocusStyle: {
-    width: "90%",
+    width: "100%",
     height: 70,
     borderBottomWidth: 2,
     borderColor: "#fff",

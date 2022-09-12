@@ -1,7 +1,11 @@
 import { useState } from "react";
 import CheckBox from "react-native-bouncy-checkbox";
 
-export const AppCheckBox = () => {
+interface AppCheckProps {
+  onCheck: () => void
+}
+
+export const AppCheckBox = ({onCheck}: AppCheckProps) => {
   const [check, setCheck] = useState(false);
   return (
     <CheckBox
@@ -12,7 +16,7 @@ export const AppCheckBox = () => {
         backgroundColor: "transaparent",
         borderRadius: 8,
       }}
-      onPress={(isChecked: boolean) => setCheck(isChecked)}
+      onPress={onCheck}
     />
   );
 };

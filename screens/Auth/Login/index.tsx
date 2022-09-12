@@ -14,8 +14,12 @@ import {
   MissPasswordContent,
   AuthButton
 } from "./styles";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { AuthStackParams } from "../../../navigation/Auth/AuthStackNavigator";
 
-export const LoginScreen = () => {
+export type LoginType = NativeStackScreenProps<AuthStackParams, 'login'>
+
+export const LoginScreen = ({navigation}: LoginType) => {
   const theme = useTheme();
   return (
     <Container>
@@ -57,7 +61,7 @@ export const LoginScreen = () => {
       </AuthenticationContainer>
       <RegisterContainer>
         <Text style={{fontSize: 16, color: theme.colors.gray_100, fontWeight: '100'}}>
-          Não tem uma conta?  <Text style={{color: theme.colors.blue_p, fontWeight: 'bold'}}>Se cadastre!</Text>
+          Não tem uma conta?  <Text style={{color: theme.colors.blue_p, fontWeight: 'bold'}} onPress={() => navigation.navigate('register')}>Se cadastre!</Text>
         </Text>
       </RegisterContainer>
     </Container>

@@ -6,14 +6,16 @@ import { theme } from "./styles/theme";
 import { BottomTabNavigator } from "./navigation/BottomTabNavigator";
 import { MainContextProvider } from "./contexts/MainContext";
 import { StackLoginNavigator } from "./navigation/StackTabNavigation";
+import { AuthStackNavigator } from "./navigation/Auth/AuthStackNavigator";
 
 export default function App() {
   return (
     <MainContextProvider>
       <NavigationContainer>
         <ThemeProvider theme={theme}>
-          <BottomTabNavigator/>
+          {/* <BottomTabNavigator/> */}
           {/* <StackLoginNavigator/> */}
+          <AuthStackNavigator/>
           <StatusBar style="light" />
         </ThemeProvider>
       </NavigationContainer>
