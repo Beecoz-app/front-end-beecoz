@@ -36,7 +36,7 @@ export const ClientRegisterCPFScreen = ({
         <AppGenericButton
           disabled={disabled}
           title={"Continuar"}
-          onClick={() => navigate("registerClientLogin")}
+          onClick={() => navigate("insertCLientRGPhoto")}
         />
       </ButtonContainer>
     </Container>

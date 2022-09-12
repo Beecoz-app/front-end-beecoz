@@ -1,6 +1,6 @@
 import { Text, View } from "react-native"
 
-export const InsertPersonalPhotoScreen = () => {
+export const InsertClientPersonalPhotoScreen = () => {
     return (
         <View>
             <Text>

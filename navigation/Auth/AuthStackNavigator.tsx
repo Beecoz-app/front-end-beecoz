@@ -9,6 +9,9 @@ import { ClientRegisterLoginScreen } from "../../screens/Auth/Register/Client/Lo
 import { ClientRegisterPasswordScreen } from "../../screens/Auth/Register/Client/Password";
 import { ClientRegisterStateScreen } from "../../screens/Auth/Register/Client/State";
 import { ClientRegisterCPFScreen } from "../../screens/Auth/Register/Client/CPF";
+import { InsertClientRGPhotoScreen } from "../../screens/Auth/Register/Client/InsertRGPhoto";
+import { InsertClientProofPhotoScreen } from "../../screens/Auth/Register/Client/insertProofPhoto";
+import { InsertClientPersonalPhotoScreen } from "../../screens/Auth/Register/Client/insertPersonalPhoto";
 
 export type AuthStackParams = {
   login: undefined;
@@ -51,6 +54,10 @@ export const AuthStackNavigator = () => {
         <Tab.Screen name="registerClientPassword" component={ClientRegisterPasswordScreen}/>
         <Tab.Screen name="registerClientState" component={ClientRegisterStateScreen}/>
         <Tab.Screen name="registerClientCPF" component={ClientRegisterCPFScreen}/>
+
+        <Tab.Screen name="insertCLientRGPhoto" component={InsertClientRGPhotoScreen}/>
+        <Tab.Screen name="insertCLientProofPhoto" component={InsertClientProofPhotoScreen}/>
+        <Tab.Screen name="insertCLientPersonalPhoto" component={InsertClientPersonalPhotoScreen}/>
       </Tab.Group>
     </Tab.Navigator>
   );
