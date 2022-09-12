@@ -31,7 +31,7 @@ export const InsertClientRGPhotoScreen = ({
         <AppGenericButton
           disabled={disabled}
           title={"Continuar"}
-          onClick={() => navigate("registerClientLogin")}
+          onClick={() => navigate("insertCLientProofPhoto")}
         />
       </ButtonContainer>
     </Container>
