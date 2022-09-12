@@ -19,6 +19,16 @@ export const ClientRegisterLoginScreen = ({navigation: {navigate}}: ClientRegist
     <Container>
       <DataContainer>
         <Title >Muito bem, Thiago!  Agora, informe seu melhor email, ou se preferir, seu número de telefone-celular</Title>
+        <Text
+          style={{
+            color: theme.colors.white,
+            fontWeight: "100",
+            width: "100%",
+            textAlign: "left",
+          }}
+        >
+          Lembre-se  informe um e-mail ativo e profisssional ou um telefone ativo
+        </Text>
         {!check ? (
           <AppGeneticInput type="email" placeholder="nome@dominio.com" onChange={(text) => {
             if (name !== '') setDisabled(false)
@@ -43,7 +53,7 @@ export const ClientRegisterLoginScreen = ({navigation: {navigate}}: ClientRegist
         </View>
       </DataContainer>
       <ButtonContainer>
-        <AppGenericButton disabled={disabled} title={"Continuar"} onClick={() => navigate('registerClientLogin')}/>
+        <AppGenericButton disabled={disabled} title={"Continuar"} onClick={() => navigate('registerClientState')}/>
       </ButtonContainer>
     </Container>
   );
