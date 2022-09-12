@@ -21,6 +21,9 @@ export type AuthStackParams = {
   registerClientState: undefined;
   registerClientCPF: undefined;
 
+  insertCLientRGPhoto: undefined;
+  insertCLientProofPhoto: undefined;
+  insertCLientPersonalPhoto: undefined;
 
 };
 
