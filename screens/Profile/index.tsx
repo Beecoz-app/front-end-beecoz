@@ -9,7 +9,7 @@ import { OptionsCard } from "./components/OptionsCard";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { StackParamsList } from "../../navigation/StackTabNavigation";
 import { Container, Profile, ProfileContent, OptionsContainer,OptionsContent } from "./styles";
-import { AuthContext, IAuthContext } from "../../contexts/MainContext";
+import { AuthContext, IAuthContext } from "../../contexts/Auth/AuthContext";
 
 export type ProfileType = NativeStackScreenProps<StackParamsList, "profile">;
 

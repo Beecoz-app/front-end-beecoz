@@ -1,5 +1,4 @@
 import {
-  NativeStackNavigationProp,
   NativeStackScreenProps,
 } from "@react-navigation/native-stack";
 import { useContext, useState } from "react";
@@ -10,12 +9,13 @@ import { AppGeneticInput } from "../../components/AppComponents/Inputs/GenericIn
 import { AppTextArea } from "../../components/AppComponents/Inputs/TextAreaInput";
 import { AppJobsList } from "../../components/AppComponents/JobsLIst";
 import {
-  AuthContext,
-  IAuthContext,
   IPublicationContext,
   PublicationContext,
-} from "../../contexts/MainContext";
-import { BottomParamsList } from "../../navigation/BottomTabNavigator";
+} from "../../contexts/Publication/PublicationContext"
+import {
+  AuthContext,
+  IAuthContext,
+} from "../../contexts/Auth/AuthContext"
 import { StackParamsList } from "../../navigation/StackTabNavigation";
 import { theme } from "../../styles/theme";
 import {
