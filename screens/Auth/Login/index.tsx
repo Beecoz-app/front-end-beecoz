@@ -1,5 +1,5 @@
 import { Image, Text, View } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import * as SecureStore from 'expo-secure-store'
 import { useTheme } from "styled-components";
 import IconAnt from 'react-native-vector-icons/AntDesign'
 import IconFontisto from 'react-native-vector-icons/Fontisto'
@@ -16,11 +16,13 @@ import {
 } from "./styles";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { AuthStackParams } from "../../../navigation/Auth/AuthStackNavigator";
+import { useEffect, useState } from "react";
 
 export type LoginType = NativeStackScreenProps<AuthStackParams, 'login'>
 
 export const LoginScreen = ({navigation}: LoginType) => {
   const theme = useTheme();
+
   return (
     <Container>
       <Image style={{height: 183, width: 360}} source={require('../../../assets/logo.png')}/>
