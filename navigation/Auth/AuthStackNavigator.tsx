@@ -28,6 +28,17 @@ export type AuthStackParams = {
   insertCLientProofPhoto: undefined;
   insertCLientPersonalPhoto: undefined;
 
+
+  registerAutonomousName: undefined;
+  registerAutonomousLogin: undefined;
+  registerAutonomousPassword: undefined;
+  registerAutonomousState: undefined;
+  registerAutonomousCPF: undefined;
+
+  insertAutonomousRGPhoto: undefined;
+  insertAutonomousProofPhoto: undefined;
+  insertAutonomousPersonalPhoto: undefined;
+
 };
 
 const Tab = createNativeStackNavigator<AuthStackParams>();
@@ -58,6 +69,17 @@ export const AuthStackNavigator = () => {
         <Tab.Screen name="insertCLientRGPhoto" component={InsertClientRGPhotoScreen}/>
         <Tab.Screen name="insertCLientProofPhoto" component={InsertClientProofPhotoScreen}/>
         <Tab.Screen name="insertCLientPersonalPhoto" component={InsertClientPersonalPhotoScreen}/>
+      </Tab.Group>
+      <Tab.Group>
+      <Tab.Screen name="registerClientName" component={AutonomousRegisterNameScreen}/>
+        <Tab.Screen name="registerClientLogin" component={AutonomousRegisterLoginScreen}/>
+        <Tab.Screen name="registerClientPassword" component={AutonomousRegisterPasswordScreen}/>
+        <Tab.Screen name="registerClientState" component={AutonomousRegisterStateScreen}/>
+        <Tab.Screen name="registerClientCPF" component={AutonomousRegisterCPFScreen}/>
+
+        <Tab.Screen name="insertCLientRGPhoto" component={InsertAutonomoustRGPhotoScreen}/>
+        <Tab.Screen name="insertCLientProofPhoto" component={InsertAutonomousProofPhotoScreen}/>
+        <Tab.Screen name="insertCLientPersonalPhoto" component={InsertAutonomousPersonalPhotoScreen}/>
       </Tab.Group>
     </Tab.Navigator>
   );
