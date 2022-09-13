@@ -4,8 +4,8 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { AppGenericButton } from "../../../../../components/AppComponents/Buttons/Generic";
 import { AuthStackParams } from "../../../../../navigation/Auth/AuthStackNavigator";
 import { useTheme } from "styled-components";
-import Dropdown from "react-native-input-select";
 import { ButtonContainer, Container, DataContainer, Title } from "./styles";
+import { AppSelectInput } from "../../../../../components/AppComponents/Inputs/Select";
 
 type ClientRegisterStateScreenType = NativeStackScreenProps<
   AuthStackParams,
@@ -17,37 +17,19 @@ export const ClientRegisterStateScreen = ({
 }: ClientRegisterStateScreenType) => {
   const [state, setState] = useState('');
   const theme = useTheme();
+  const DATA = [
+    {name: 'São Paulo', code: 'SP'},
+    {name: 'Ceara', code: 'CE'},
+    {name: 'Ro grande do Sul', code: 'RS'},
+    {name: 'Bahia', code: 'BA'}
+  ]
+  
 
   return (
     <Container>
       <DataContainer>
         <Title>Tela ainda em processo</Title>
-        <Dropdown
-          label="estados"
-          placeholder="Estado"
-          options={[{ name: "São Paulo", code: "SP" }]}
-          optionLabel={"name"}
-          optionValue={"code"}
-          selectedValue={state}
-          onValueChange={(value: string) => setState(value)}
-          primaryColor={"green"}
-          disabled={false}
-          dropdownContainerStyle={{}}
-          dropdownErrorStyle={{}}
-          dropdownErrorTextStyle={{}}
-          dropdownHelperTextStyle={{}}
-          dropdownStyle={{}}
-          error={'a'}
-          helperText={'a'}
-          isMultiple={false}
-          isSearchable={false}
-          labelStyle={'a'}
-          modalBackgroundStyle={{}}
-          modalOptionsContainer={{}}
-          multipleSelectedItemStyle={{}}
-          searchInputStyle={{}}
-          selectedItemStyle={{}}
-        />
+        <AppSelectInput placeholder="Estado" data={DATA}/>
       </DataContainer>
       <ButtonContainer>
         <AppGenericButton
