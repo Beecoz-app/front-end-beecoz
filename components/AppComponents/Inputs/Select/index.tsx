@@ -11,6 +11,7 @@ interface AppSelectInputProps {
 }
 
 export const AppSelectInput = ({ data, placeholder }: AppSelectInputProps) => {
+  const [nameText, setNameText] = useState('');
   const [opened, setOpened] = useState(false);
   const theme = useTheme();
 
@@ -25,7 +26,7 @@ export const AppSelectInput = ({ data, placeholder }: AppSelectInputProps) => {
               fontWeight: "100",
             }}
           >
-            {placeholder}
+            {!nameText ? placeholder : nameText}
           </Text>
           <Icon
             name="chevron-thin-down"
@@ -60,7 +61,7 @@ export const AppSelectInput = ({ data, placeholder }: AppSelectInputProps) => {
           <Flat
             data={data}
             keyExtractor={(item) => item.code}
-            renderItem={({ item }) => <SelectItem data={item} />}
+            renderItem={({ item }) => <SelectItem data={item} onClose={() => setOpened(false)} setNameText={(name: string) => setNameText(name)}/>}
           />
         </>
       )}

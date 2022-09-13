@@ -18,6 +18,6 @@ export const Container = (styled.TouchableOpacity`
 
 export const SelectText = styled.Text`
     color: ${({theme}) => theme.colors.gray_100};
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 100;
 `

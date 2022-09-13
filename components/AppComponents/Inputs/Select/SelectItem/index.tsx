@@ -5,12 +5,17 @@ interface SelecetItem {
     data: {
         name: string;
         code: string;
-    }
+    },
+    onClose: () => void,
+    setNameText: (name: string) => void
 }
 
-export const SelectItem = ({data}: SelecetItem) => {
+export const SelectItem = ({data, onClose,setNameText}: SelecetItem) => {
     return (
-        <Container>
+        <Container onPress={() => {
+            setNameText(data.name)
+            onClose()
+        }}>
             <SelectText >{data.name}</SelectText>
         </Container>
     )

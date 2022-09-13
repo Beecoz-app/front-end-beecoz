@@ -34,3 +34,11 @@ export const Title = styled.Text`
 export const ButtonContainer = styled.View`
     width: 100%;
 `
+
+export const SelectContainer = styled.View`
+    width: 100%;
+
+    justify-content: center;
+
+    margin-bottom: 40px;
+`
