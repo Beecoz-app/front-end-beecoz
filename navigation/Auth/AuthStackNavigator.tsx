@@ -12,6 +12,15 @@ import { ClientRegisterCPFScreen } from "../../screens/Auth/Register/Client/CPF"
 import { InsertClientRGPhotoScreen } from "../../screens/Auth/Register/Client/InsertRGPhoto";
 import { InsertClientProofPhotoScreen } from "../../screens/Auth/Register/Client/insertProofPhoto";
 import { InsertClientPersonalPhotoScreen } from "../../screens/Auth/Register/Client/insertPersonalPhoto";
+import { AutonomousRegisterNameScreen } from "../../screens/Auth/Register/Autonomous/Name";
+import { AutonomousRegisterLoginScreen } from "../../screens/Auth/Register/Autonomous/Login";
+import { AutonomousRegisterPasswordScreen } from "../../screens/Auth/Register/Autonomous/Password";
+import { AutonomousRegisterCPFScreen } from "../../screens/Auth/Register/Autonomous/CPF";
+import { InsertAutonomousRGPhotoScreen } from "../../screens/Auth/Register/Autonomous/InsertRGPhoto";
+import { InsertAutonomousProofPhotoScreen } from "../../screens/Auth/Register/Autonomous/insertProofPhoto";
+import { InsertAutonomousPersonalPhotoScreen } from "../../screens/Auth/Register/Autonomous/insertPersonalPhoto";
+import { AutonomousRegisterCNPJScreen } from "../../screens/Auth/Register/Autonomous/CNPJ";
+import { AutonomousRegisterChooseServicesScreen } from "../../screens/Auth/Register/Autonomous/ChooseServices";
 
 export type AuthStackParams = {
   login: undefined;
@@ -28,17 +37,17 @@ export type AuthStackParams = {
   insertCLientProofPhoto: undefined;
   insertCLientPersonalPhoto: undefined;
 
-
   registerAutonomousName: undefined;
   registerAutonomousLogin: undefined;
   registerAutonomousPassword: undefined;
   registerAutonomousState: undefined;
   registerAutonomousCPF: undefined;
+  registerAutonomousCNPJ: undefined;
+  registerAutonomousChooseServices: undefined;
 
   insertAutonomousRGPhoto: undefined;
   insertAutonomousProofPhoto: undefined;
   insertAutonomousPersonalPhoto: undefined;
-
 };
 
 const Tab = createNativeStackNavigator<AuthStackParams>();
@@ -57,29 +66,85 @@ export const AuthStackNavigator = () => {
         component={LoginScreen}
         options={{ headerShown: false }}
       />
-      <Tab.Screen name="register" component={RegisterScreen} options={{ headerTitle: (props) => <Header title="Perfil" /> }}/>
+      <Tab.Screen
+        name="register"
+        component={RegisterScreen}
+        options={{ headerTitle: (props) => <Header title="Perfil" /> }}
+      />
 
-      <Tab.Group >
-        <Tab.Screen name="registerClientName" component={ClientRegisterNameScreen}/>
-        <Tab.Screen name="registerClientLogin" component={ClientRegisterLoginScreen}/>
-        <Tab.Screen name="registerClientPassword" component={ClientRegisterPasswordScreen}/>
-        <Tab.Screen name="registerClientState" component={ClientRegisterStateScreen}/>
-        <Tab.Screen name="registerClientCPF" component={ClientRegisterCPFScreen}/>
+      <Tab.Group>
+        <Tab.Screen
+          name="registerClientName"
+          component={ClientRegisterNameScreen}
+        />
+        <Tab.Screen
+          name="registerClientLogin"
+          component={ClientRegisterLoginScreen}
+        />
+        <Tab.Screen
+          name="registerClientPassword"
+          component={ClientRegisterPasswordScreen}
+        />
+        <Tab.Screen
+          name="registerClientState"
+          component={ClientRegisterStateScreen}
+        />
+        <Tab.Screen
+          name="registerClientCPF"
+          component={ClientRegisterCPFScreen}
+        />
 
-        <Tab.Screen name="insertCLientRGPhoto" component={InsertClientRGPhotoScreen}/>
-        <Tab.Screen name="insertCLientProofPhoto" component={InsertClientProofPhotoScreen}/>
-        <Tab.Screen name="insertCLientPersonalPhoto" component={InsertClientPersonalPhotoScreen}/>
+        <Tab.Screen
+          name="insertCLientRGPhoto"
+          component={InsertClientRGPhotoScreen}
+        />
+        <Tab.Screen
+          name="insertCLientProofPhoto"
+          component={InsertClientProofPhotoScreen}
+        />
+        <Tab.Screen
+          name="insertCLientPersonalPhoto"
+          component={InsertClientPersonalPhotoScreen}
+        />
       </Tab.Group>
       <Tab.Group>
-      <Tab.Screen name="registerClientName" component={AutonomousRegisterNameScreen}/>
-        <Tab.Screen name="registerClientLogin" component={AutonomousRegisterLoginScreen}/>
-        <Tab.Screen name="registerClientPassword" component={AutonomousRegisterPasswordScreen}/>
-        <Tab.Screen name="registerClientState" component={AutonomousRegisterStateScreen}/>
-        <Tab.Screen name="registerClientCPF" component={AutonomousRegisterCPFScreen}/>
+        <Tab.Screen
+          name="registerAutonomousName"
+          component={AutonomousRegisterNameScreen}
+        />
+        <Tab.Screen
+          name="registerAutonomousLogin"
+          component={AutonomousRegisterLoginScreen}
+        />
+        <Tab.Screen
+          name="registerAutonomousPassword"
+          component={AutonomousRegisterPasswordScreen}
+        />
+        <Tab.Screen
+          name="registerAutonomousCPF"
+          component={AutonomousRegisterCPFScreen}
+        />
+        <Tab.Screen
+          name="registerAutonomousCNPJ"
+          component={AutonomousRegisterCNPJScreen}
+        />
+        <Tab.Screen
+          name="registerAutonomousChooseServices"
+          component={AutonomousRegisterChooseServicesScreen}
+        />
 
-        <Tab.Screen name="insertCLientRGPhoto" component={InsertAutonomoustRGPhotoScreen}/>
-        <Tab.Screen name="insertCLientProofPhoto" component={InsertAutonomousProofPhotoScreen}/>
-        <Tab.Screen name="insertCLientPersonalPhoto" component={InsertAutonomousPersonalPhotoScreen}/>
+        <Tab.Screen
+          name="insertAutonomousRGPhoto"
+          component={InsertAutonomousRGPhotoScreen}
+        />
+        <Tab.Screen
+          name="insertAutonomousProofPhoto"
+          component={InsertAutonomousProofPhotoScreen}
+        />
+        <Tab.Screen
+          name="insertAutonomousPersonalPhoto"
+          component={InsertAutonomousPersonalPhotoScreen}
+        />
       </Tab.Group>
     </Tab.Navigator>
   );
