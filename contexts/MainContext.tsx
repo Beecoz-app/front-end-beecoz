@@ -4,14 +4,8 @@ import { IPost } from "../interfaces/Post/IPost";
 import { IServiceType } from "../interfaces/Service/IServiceType";
 import { IAutonomous } from "../interfaces/User/Autonomous/IAutonomous";
 import { IClient } from "../interfaces/User/CLient/IClient";
+import { AuthProvider } from "./Auth/AuthContext";
 
-export interface IAuthContext {
-  user: IClient | IAutonomous | null;
-  setUser:
-    | React.Dispatch<React.SetStateAction<IClient>>
-    | React.Dispatch<React.SetStateAction<IAutonomous>>
-    | null;
-}
 
 export interface IPublicationContext {
   publications: IPost[] | null;
@@ -20,25 +14,11 @@ export interface IPublicationContext {
   interest: IInterest[];
 }
 
-export const AuthContext = createContext<IAuthContext | null>(null);
 export const PublicationContext = createContext<IPublicationContext | null>(
   null
 );
 
 export const MainContextProvider = ({ children }: any) => {
-  const [client, setClient] = useState<IClient>({
-    id: 1,
-    name: "Thiago",
-    birthDate: "04-17-2005",
-    lastName: "Silva",
-    sex: "Male",
-    CPF: "000000",
-    loginId: 1,
-    profileId: 1,
-    typeId: 1,
-    profileImage:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNb1jnC52Zm-Z92rKJuIXRc7ahmsH1mpTUow&usqp=CAU",
-  });
   const [publications, setPublications] = useState<IPost[]>([
     {
       id: 1,
@@ -81,12 +61,10 @@ export const MainContextProvider = ({ children }: any) => {
   ]);
 
   return (
-    <AuthContext.Provider value={{ user: client, setUser: setClient }}>
-      <PublicationContext.Provider
-        value={{ publications, setPublications, servicesTypes, interest }}
-      >
-        {children}
-      </PublicationContext.Provider>
-    </AuthContext.Provider>
+    <PublicationContext.Provider
+      value={{ publications, setPublications, servicesTypes, interest }}
+    >
+      <AuthProvider>{children}</AuthProvider>
+    </PublicationContext.Provider>
   );
 };
