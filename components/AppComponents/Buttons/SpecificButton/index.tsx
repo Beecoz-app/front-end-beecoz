@@ -11,6 +11,7 @@ interface ButtonProps {
   };
   disabled: boolean;
   onClick?: (event: GestureResponderEvent) => void;
+  special?: boolean;
 }
 
 export const AppSpecificButton = ({
@@ -18,15 +19,17 @@ export const AppSpecificButton = ({
   style,
   disabled,
   onClick,
+  special,
   ...rest
 }: ButtonProps) => {
   return (
     <Container
       onPress={onClick}
       disabled={disabled}
+      special={special}
       {...rest}
     >
-      <Text disabled={disabled}>
+      <Text disabled={disabled} special={special}>
         {title}
       </Text>
     </Container>
