@@ -47,7 +47,7 @@ export const AutonomousRegisterPasswordScreen = ({
         <AppGenericButton
           disabled={disabled}
           title={"Continuar"}
-          onClick={() => navigate("registerClientLogin")}
+          onClick={() => navigate("registerAutonomousState")}
         />
       </ButtonContainer>
     </Container>

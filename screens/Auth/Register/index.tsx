@@ -14,7 +14,7 @@ export const RegisterScreen = ({navigation: {navigate}}: RegisterType) => {
       <TitleContainer>Bem-vindo á <Text>Beecoz!</Text> Para começar, você se encontra como:</TitleContainer>
       <ButtonsContainer>
         <AppSpecificButton disabled={false} title={'Cliente'} onClick={() => navigate('registerClientName')}/>
-        <AppSpecificButton disabled={false} title={'Prestador de serviços'}/>
+        <AppSpecificButton disabled={false} title={'Prestador de serviços'} onClick={() => navigate('registerAutonomousName')}/>
       </ButtonsContainer>
       <BackToLoginPageContainer>Já tem uma conta? <Text style={{color: theme.colors.blue_p, fontWeight: 'bold'}}>Faça login!</Text></BackToLoginPageContainer>
     </Container>

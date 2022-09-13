@@ -3,7 +3,7 @@ import styled from "../../../styles/styledComponents"
 
 export const Flat = (styled.FlatList`
     max-height: 160px;
-    width: 90%;
+    width: 100%;
 
     padding: 10px 20px;
 

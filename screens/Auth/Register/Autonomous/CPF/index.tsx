@@ -36,7 +36,7 @@ export const AutonomousRegisterCPFScreen = ({
         <AppGenericButton
           disabled={disabled}
           title={"Continuar"}
-          onClick={() => navigate("insertCLientRGPhoto")}
+          onClick={() => navigate("registerAutonomousCNPJ")}
         />
       </ButtonContainer>
     </Container>

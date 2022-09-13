@@ -30,7 +30,7 @@ export const InsertAutonomousProofPhotoScreen = ({
         <AppGenericButton
           disabled={disabled}
           title={"Continuar"}
-          onClick={() => navigate("insertCLientPersonalPhoto")}
+          onClick={() => navigate("insertAutonomousPersonalPhoto")}
         />
       </ButtonContainer>
     </Container>

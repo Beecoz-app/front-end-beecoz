@@ -22,7 +22,7 @@ export const AutonomousRegisterNameScreen = ({navigation: {navigate}}: ClientReg
             }}/>
       </DataContainer>
       <ButtonContainer>
-        <AppGenericButton disabled={disabled} title={"Continuar"} onClick={() => navigate('registerClientLogin')}/>
+        <AppGenericButton disabled={disabled} title={"Continuar"} onClick={() => navigate('registerAutonomousLogin')}/>
       </ButtonContainer>
     </Container>
   );

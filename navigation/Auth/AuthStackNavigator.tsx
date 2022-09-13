@@ -21,6 +21,7 @@ import { InsertAutonomousProofPhotoScreen } from "../../screens/Auth/Register/Au
 import { InsertAutonomousPersonalPhotoScreen } from "../../screens/Auth/Register/Autonomous/insertPersonalPhoto";
 import { AutonomousRegisterCNPJScreen } from "../../screens/Auth/Register/Autonomous/CNPJ";
 import { AutonomousRegisterChooseServicesScreen } from "../../screens/Auth/Register/Autonomous/ChooseServices";
+import { AutonomousRegisterStateScreen } from "../../screens/Auth/Register/Autonomous/State";
 
 export type AuthStackParams = {
   login: undefined;
@@ -127,6 +128,10 @@ export const AuthStackNavigator = () => {
         <Tab.Screen
           name="registerAutonomousCNPJ"
           component={AutonomousRegisterCNPJScreen}
+        />
+        <Tab.Screen
+          name="registerAutonomousState"
+          component={AutonomousRegisterStateScreen}
         />
         <Tab.Screen
           name="registerAutonomousChooseServices"

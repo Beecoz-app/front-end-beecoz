@@ -12,7 +12,7 @@ type ClientRegisterStateScreenType = NativeStackScreenProps<
   "registerAutonomousState"
 >;
 
-export const ClientRegisterStateScreen = ({
+export const AutonomousRegisterStateScreen = ({
   navigation: { navigate },
 }: ClientRegisterStateScreenType) => {
   const [state, setState] = useState('');
@@ -45,7 +45,7 @@ export const ClientRegisterStateScreen = ({
         <AppGenericButton
           disabled={false}
           title={"Continuar"}
-          onClick={() => navigate("registerClientCPF")}
+          onClick={() => navigate("registerAutonomousCPF")}
         />
       </ButtonContainer>
     </Container>

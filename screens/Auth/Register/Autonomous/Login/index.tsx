@@ -53,7 +53,7 @@ export const AutonomousRegisterLoginScreen = ({navigation: {navigate}}: ClientRe
         </View>
       </DataContainer>
       <ButtonContainer>
-        <AppGenericButton disabled={disabled} title={"Continuar"} onClick={() => navigate('registerClientState')}/>
+        <AppGenericButton disabled={disabled} title={"Continuar"} onClick={() => navigate('registerAutonomousPassword')}/>
       </ButtonContainer>
     </Container>
   );
