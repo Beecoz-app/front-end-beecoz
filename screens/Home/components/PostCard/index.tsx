@@ -6,15 +6,12 @@ import { Container, InteresedView, ResumeView, ListInterested } from "./styles";
 import { IPost } from "../../../../interfaces/Post/IPost";
 import { IInterest } from "../../../../interfaces/Job/IInterested";
 import { IAutonomous } from "../../../../interfaces/User/Autonomous/IAutonomous";
-import {
-  IPublicationContext,
-  PublicationContext,
-} from "../../../../contexts/MainContext";
+import { IPublicationContext, PublicationContext } from "../../../../contexts/Publication/PublicationContext";
 
 export const PostCard = ({ data }: { data: IPost }) => {
-  // const { servicesTypes, interest } = useContext(
-  //   PublicationContext
-  // ) as IPublicationContext;
+  const { interest, servicesTypes } = useContext(
+    PublicationContext
+  ) as IPublicationContext;
   const [seeInterested, setSeeInterested] = useState(false);
 
   const DATA: IInterest = {
@@ -52,7 +49,7 @@ export const PostCard = ({ data }: { data: IPost }) => {
                 marginRight: 30,
               }}
             />
-            {/* <View
+            <View
               style={{ width: 200, height: 60, justifyContent: "space-around" }}
             >
               <Text style={{ color: "#fff", fontSize: 24, fontWeight: "bold" }}>
@@ -73,9 +70,9 @@ export const PostCard = ({ data }: { data: IPost }) => {
                   );
                 })}
               </View>
-            </View> */}
+            </View>
           </ResumeView>
-          {/* <InteresedView onPress={() => setSeeInterested(true)}>
+          <InteresedView onPress={() => setSeeInterested(true)}>
           {interest.map((interestId, index) => {
               return (
                 interestId.post === data.id && (
@@ -87,7 +84,7 @@ export const PostCard = ({ data }: { data: IPost }) => {
                 )
               );
             })}
-          </InteresedView> */}
+          </InteresedView>
         </>
       ) : (
         <>
@@ -108,7 +105,7 @@ export const PostCard = ({ data }: { data: IPost }) => {
               <Text style={{ color: "#fff", fontSize: 24, fontWeight: "bold" }}>
                 {data.title}
               </Text>
-              {/* <View style={{ flexDirection: "row" }}>
+              <View style={{ flexDirection: "row" }}>
                 {data.tags.map((tag, index) => {
                   return servicesTypes?.map(
                     (service, index) =>
@@ -122,10 +119,10 @@ export const PostCard = ({ data }: { data: IPost }) => {
                       )
                   );
                 })}
-              </View> */}
+              </View>
             </View>
           </ResumeView>
-          {/* <InteresedView onPress={() => setSeeInterested(false)}>
+          <InteresedView onPress={() => setSeeInterested(false)}>
             {interest.map((interestId, index) => {
               return (
                 interestId.post === data.id && (
@@ -137,8 +134,8 @@ export const PostCard = ({ data }: { data: IPost }) => {
                 )
               );
             })}
-          </InteresedView> */}
-          {/* <ListInterested>
+          </InteresedView>
+          <ListInterested>
             {interest.map((interestId, index) => {
               return (
                 interestId.post === data.id && (
@@ -151,7 +148,7 @@ export const PostCard = ({ data }: { data: IPost }) => {
                 )
               );
             })}
-          </ListInterested> */}
+          </ListInterested>
         </>
       )}
     </Container>

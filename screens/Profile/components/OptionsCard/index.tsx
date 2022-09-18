@@ -8,7 +8,6 @@ import { StackParamsList } from "../../../../navigation/Stack/StackTabNavigation
 import { ProfileType } from "../../../../screens/Profile";
 import { Container } from "./styles";
 
-type optionsScreenProp = NativeStackScreenProps<StackParamsList, 'home'>
 
 interface OptionsCardProps {
   IconCard: ReactElement<any, any>;
@@ -27,7 +26,7 @@ export const OptionsCard = ({
 }: OptionsCardProps) => {
   const theme = useTheme();
   return (
-    <Container onPress={() => navigation.navigate(routeName)}>
+    <Container >
       <View style={{flex: 1, flexDirection: 'row'}}>
         <View
           style={{

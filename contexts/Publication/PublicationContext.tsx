@@ -6,7 +6,7 @@ import { IServiceType } from "../../interfaces/Service/IServiceType";
 export interface IPublicationContext {
   publications: IPost[] | null;
   setPublications: React.Dispatch<React.SetStateAction<IPost[]>> | null;
-  servicesTypes: IServiceType[];
+  servicesTypes: IServiceType[] | null;
   interest: IInterest[];
 }
 
