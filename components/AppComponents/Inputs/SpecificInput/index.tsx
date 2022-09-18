@@ -3,7 +3,7 @@ import { StyleSheet, TextInput, View } from "react-native";
 import { setKeyboardType } from "../../../../utils/setKeyboardType";
 import Icon from "react-native-vector-icons/FontAwesome";
 
-interface InputProps {
+interface InputProps extends  React.ComponentProps<typeof TextInput>{
   type: "email" | "phone" | "password" | "CPF" | "CNPJ";
   placeholder: string;
   iconName: string;

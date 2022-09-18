@@ -16,11 +16,15 @@ import {
 } from "./styles";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { AuthStackParams } from "../../../navigation/Auth/AuthStackNavigator";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext, IAuthContext } from "../../../contexts/Auth/AuthContext";
 
 export type LoginType = NativeStackScreenProps<AuthStackParams, 'login'>
 
 export const LoginScreen = ({navigation}: LoginType) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const {handleLogin} = useContext(AuthContext) as IAuthContext
   const theme = useTheme();
 
   return (
@@ -32,11 +36,15 @@ export const LoginScreen = ({navigation}: LoginType) => {
             type="email"
             iconName="user-circle-o"
             placeholder="Seu Login"
+            value={email}
+            onChangeText={(text) => setEmail(text)}
           />
           <AppSpecificInput
             type="password"
             iconName="lock"
             placeholder="Sua Senha"
+            value={password}
+            onChangeText={(text) => setPassword(text)}
           />
         </InputContent>
         <MissPasswordContent>
@@ -50,7 +58,7 @@ export const LoginScreen = ({navigation}: LoginType) => {
           </View>
         </MissPasswordContent>
       </InputContainer>
-      <AppSpecificButton disabled={false} title={"Entrar"} />
+      <AppSpecificButton disabled={false} title={"Entrar"} onClick={() => handleLogin({email, password})}/>
       <AuthenticationContainer>
         <AuthButton>
           <IconFontisto name="facebook" style={{color: theme.colors.white}}/>
