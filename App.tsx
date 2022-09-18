@@ -7,6 +7,7 @@ import { BottomTabNavigator } from "./navigation/BottomTabNavigator";
 import { MainContextProvider } from "./contexts/MainContext";
 import { StackLoginNavigator } from "./navigation/StackTabNavigation";
 import { AuthStackNavigator } from "./navigation/Auth/AuthStackNavigator";
+import { MainStack } from "./navigation/MainRoutes";
 
 export default function App() {
   return (
@@ -15,7 +16,7 @@ export default function App() {
         <ThemeProvider theme={theme}>
           {/* <BottomTabNavigator/> */}
           {/* <StackLoginNavigator/> */}
-          <AuthStackNavigator/>
+          <MainStack/>
           <StatusBar style="light" />
         </ThemeProvider>
       </NavigationContainer>

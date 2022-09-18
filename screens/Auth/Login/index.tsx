@@ -18,14 +18,26 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { AuthStackParams } from "../../../navigation/Auth/AuthStackNavigator";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext, IAuthContext } from "../../../contexts/Auth/AuthContext";
+import { MainStackParams } from "../../../navigation/MainRoutes";
 
-export type LoginType = NativeStackScreenProps<AuthStackParams, 'login'>
+export type LoginType = NativeStackScreenProps<MainStackParams, 'login'>
 
 export const LoginScreen = ({navigation}: LoginType) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const {handleLogin} = useContext(AuthContext) as IAuthContext
   const theme = useTheme();
+
+  const onLogin = async () => {
+    try {
+      await handleLogin({email,password})
+
+      navigation.navigate('mainBottomStacks')
+
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <Container>
@@ -58,7 +70,7 @@ export const LoginScreen = ({navigation}: LoginType) => {
           </View>
         </MissPasswordContent>
       </InputContainer>
-      <AppSpecificButton disabled={false} title={"Entrar"} onClick={() => handleLogin({email, password})}/>
+      <AppSpecificButton disabled={false} title={"Entrar"} onClick={onLogin}/>
       <AuthenticationContainer>
         <AuthButton>
           <IconFontisto name="facebook" style={{color: theme.colors.white}}/>

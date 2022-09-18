@@ -10,7 +10,7 @@ import { PublicationProvider } from "./Publication/PublicationContext";
 export interface IPublicationContext {
   publications: IPost[] | null;
   setPublications: React.Dispatch<React.SetStateAction<IPost[]>> | null;
-  servicesTypes: IServiceType[];
+  servicesTypes: IServiceType[] | null;
   interest: IInterest[];
 }
 
