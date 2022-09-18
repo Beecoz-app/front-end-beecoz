@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { View, Text, Image } from "react-native";
 import { useTheme } from "styled-components";
-import { IClient } from "../../interfaces/User/CLient/IClient";
 import IconMaterial from "react-native-vector-icons/MaterialCommunityIcons";
 import IconMaterialIcon from "react-native-vector-icons/MaterialIcons";
 import IconFont from "react-native-vector-icons/FontAwesome5";

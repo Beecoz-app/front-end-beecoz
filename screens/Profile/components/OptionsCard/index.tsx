@@ -13,7 +13,7 @@ interface OptionsCardProps {
   IconCard: ReactElement<any, any>;
   title: string;
   description: string;
-  routeName: 'aboutProfile' | 'editProfile' | 'accessibilityProfile' | 'logoutProfile' | 'securityProfile' | 'supportProfile';
+  routeName: 'aboutProfile' | 'editProfile' | 'securityProfile' | 'supportProfile' | 'logoutProfile';
   navigation: ProfileType['navigation']
 }
 
@@ -26,7 +26,7 @@ export const OptionsCard = ({
 }: OptionsCardProps) => {
   const theme = useTheme();
   return (
-    <Container >
+    <Container onPress={() => navigation.navigate(routeName)}>
       <View style={{flex: 1, flexDirection: 'row'}}>
         <View
           style={{
