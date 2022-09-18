@@ -1,21 +1,21 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { TopTabHomeNavigator } from "./TopTabNavigation";
+import { TopTabHomeNavigator } from "./Top/TopTabNavigation";
 import { useTheme } from "styled-components";
 
-import { Header } from "../components/AppComponents/Header";
-import { ChatScreen } from "../screens/Chat";
-import { ProfileScreen } from "../screens/Profile";
-import { PublicationScreen } from "../screens/Publication";
-import { SettingsScreen } from "../screens/Settings";
-import { EditProfileScreen } from "../screens/Profile/screens/Edit";
-import { SecurityProfileScreen } from "../screens/Profile/screens/Security";
-import { LogoutProfileScreen } from "../screens/Profile/screens/Logout";
-import { SupportProfileScreen } from "../screens/Profile/screens/Support";
-import { AboutProfileScreen } from "../screens/Profile/screens/About";
-import { ChatingScreen } from "../screens/Chat/Chating";
-import { IAutonomous } from "../interfaces/User/Autonomous/IAutonomous";
-import { LoginScreen } from "../screens/Auth/Login";
+import { Header } from "../../components/AppComponents/Header";
+import { ChatScreen } from "../../screens/Chat";
+import { ProfileScreen } from "../../screens/Profile";
+import { PublicationScreen } from "../../screens/Publication";
+import { SettingsScreen } from "../../screens/Settings";
+import { EditProfileScreen } from "../../screens/Profile/screens/Edit";
+import { SecurityProfileScreen } from "../../screens/Profile/screens/Security";
+import { LogoutProfileScreen } from "../../screens/Profile/screens/Logout";
+import { SupportProfileScreen } from "../../screens/Profile/screens/Support";
+import { AboutProfileScreen } from "../../screens/Profile/screens/About";
+import { ChatingScreen } from "../../screens/Chat/Chating";
+import { IAutonomous } from "../../interfaces/User/Autonomous/IAutonomous";
+import { LoginScreen } from "../../screens/Auth/Login";
 
 export type StackParamsList = {
   home: undefined;

@@ -8,7 +8,7 @@ import {
   StackPublicationNavigator,
   StackProfileNavigator,
   StackSettingsNavigator,
-} from "./StackTabNavigation";
+} from "../Stack/StackTabNavigation";
 
 import IconIoni from "react-native-vector-icons/Ionicons";
 import IconFontisto from "react-native-vector-icons/Fontisto";

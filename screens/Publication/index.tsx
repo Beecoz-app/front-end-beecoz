@@ -16,7 +16,7 @@ import {
   AuthContext,
   IAuthContext,
 } from "../../contexts/Auth/AuthContext"
-import { StackParamsList } from "../../navigation/StackTabNavigation";
+import { StackParamsList } from "../../navigation/Stack/StackTabNavigation";
 import { theme } from "../../styles/theme";
 import {
   Container,

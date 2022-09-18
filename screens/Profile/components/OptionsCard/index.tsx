@@ -4,7 +4,7 @@ import { ReactElement } from "react";
 import { Image, Text, View } from "react-native";
 import Icon from "react-native-vector-icons/AntDesign";
 import { useTheme } from "styled-components";
-import { StackParamsList } from "../../../../navigation/StackTabNavigation";
+import { StackParamsList } from "../../../../navigation/Stack/StackTabNavigation";
 import { ProfileType } from "../../../../screens/Profile";
 import { Container } from "./styles";
 

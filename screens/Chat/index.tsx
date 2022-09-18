@@ -5,7 +5,7 @@ import { Container, Flat, Input, InputContainer } from "./styles";
 import { IInterest } from "../../interfaces/Job/IInterested";
 import { ChatCard } from "./components/ChatCard";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { StackParamsList } from "../../navigation/StackTabNavigation";
+import { StackParamsList } from "../../navigation/Stack/StackTabNavigation";
 
 export type ChatType = NativeStackScreenProps<StackParamsList, "chat">;
 
