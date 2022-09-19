@@ -10,6 +10,7 @@ export interface IAuthContext {
   setUser:
     | React.Dispatch<React.SetStateAction<null | IClient | IAutonomous> > | null;
   handleLogin: ({email, password}: {email: string; password: string}) => Promise<void>;
+  handleLogout: () => Promise<void>;
   token: string | null;
   setToken: React.Dispatch<React.SetStateAction<string | null>>
 }
@@ -65,7 +66,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, setUser, handleLogin, token, setToken }}>
+    <AuthContext.Provider value={{ user, setUser, handleLogin, token, setToken, handleLogout }}>
       {children}
     </AuthContext.Provider>
   );
