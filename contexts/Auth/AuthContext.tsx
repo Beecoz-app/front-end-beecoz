@@ -1,5 +1,5 @@
 import axios, { AxiosError } from "axios";
-import { createContext, ReactNode, useState } from "react";
+import React, { createContext, ReactNode, useEffect, useState } from "react";
 import { IAutonomous } from "../../interfaces/User/Autonomous/IAutonomous";
 import { IClient } from "../../interfaces/User/CLient/IClient";
 import { api, CommonHeaderProperties } from "../../services/api";
@@ -9,7 +9,9 @@ export interface IAuthContext {
   user: IClient | IAutonomous | null;
   setUser:
     | React.Dispatch<React.SetStateAction<null | IClient | IAutonomous> > | null;
-  handleLogin: ({email, password}: {email: string; password: string}) => Promise<void>
+  handleLogin: ({email, password}: {email: string; password: string}) => Promise<void>;
+  token: string | null;
+  setToken: React.Dispatch<React.SetStateAction<string | null>>
 }
 
 interface AuthProviderProps {
@@ -20,6 +22,7 @@ export const AuthContext = createContext<IAuthContext | null>(null);
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [user, setUser] = useState<IClient | IAutonomous | null>(null);
+  const [token, setToken] = useState<string | null>(null);
 
   const handleLogin = async ({email, password}: {email: string; password: string}) => {
     try {
@@ -29,9 +32,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         })
 
         setUser(user)
+        setToken(token)
 
-        SecureStore.setItemAsync('user', JSON.stringify(user))
-        SecureStore.setItemAsync('token', `Bearer ${token}`)
+        await SecureStore.setItemAsync('user', JSON.stringify(user))
+        await SecureStore.setItemAsync('token', `Bearer ${token}`)
 
         api.defaults.headers = {authorization: `Bearer ${token}`} as CommonHeaderProperties
         
@@ -40,8 +44,19 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     }
   }
 
+  useEffect(() => {
+    const initializeToken = async () => {
+      const token = await SecureStore.getItemAsync('token')
+      const user = await JSON.parse(String(SecureStore.getItemAsync('user')))
+
+      setToken(token)
+      setUser(user)
+    }
+    initializeToken()
+  }, []);
+
   return (
-    <AuthContext.Provider value={{ user, setUser, handleLogin }}>
+    <AuthContext.Provider value={{ user, setUser, handleLogin, token, setToken }}>
       {children}
     </AuthContext.Provider>
   );
