@@ -45,6 +45,13 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         if (axios.isAxiosError(error)) console.log(error.response)
     }
   }
+  const handleLogout = async () => {
+    setUser(null)
+    setToken(null)
+
+    await SecureStore.deleteItemAsync('token')
+    await SecureStore.deleteItemAsync('user')
+  }
 
   useEffect(() => {
     const initializeToken = async () => {
