@@ -1,5 +1,4 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import SecureStore from "expo-secure-store";
 import { useContext } from "react";
 import { AuthContext, IAuthContext } from "../contexts/Auth/AuthContext";
 import { AuthStackNavigator, AuthStackParams } from "./Auth/AuthStackNavigator";
@@ -20,16 +19,20 @@ export type MainStackParams = AuthStackParams &
 const Tab = createNativeStackNavigator<MainStackParams>();
 
 export const MainStack = () => {
-    const {token} = useContext(AuthContext) as IAuthContext
+  const { token } = useContext(AuthContext) as IAuthContext;
   return (
     <Tab.Navigator
       initialRouteName="mainAuthStack"
       screenOptions={{ headerShown: false }}
     >
       {token ? (
-        <Tab.Screen name="mainAuthStack" component={AuthStackNavigator} />
+        <Tab.Group>
+          <Tab.Screen name="mainBottomStacks" component={BottomTabNavigator} />
+        </Tab.Group>
       ) : (
-        <Tab.Screen name="mainBottomStacks" component={BottomTabNavigator} />
+        <Tab.Group>
+          <Tab.Screen name="mainAuthStack" component={AuthStackNavigator} />
+        </Tab.Group>
       )}
     </Tab.Navigator>
   );

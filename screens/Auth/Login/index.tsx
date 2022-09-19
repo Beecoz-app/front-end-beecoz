@@ -1,5 +1,4 @@
 import { Image, Text, View } from "react-native";
-import * as SecureStore from 'expo-secure-store'
 import { useTheme } from "styled-components";
 import IconAnt from 'react-native-vector-icons/AntDesign'
 import IconFontisto from 'react-native-vector-icons/Fontisto'
@@ -20,7 +19,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext, IAuthContext } from "../../../contexts/Auth/AuthContext";
 import { MainStackParams } from "../../../navigation/MainRoutes";
 
-export type LoginType = NativeStackScreenProps<MainStackParams, 'login'>
+export type LoginType = NativeStackScreenProps<MainStackParams, 'mainAuthStack'>
 
 export const LoginScreen = ({navigation}: LoginType) => {
   const [email, setEmail] = useState('');
@@ -31,8 +30,6 @@ export const LoginScreen = ({navigation}: LoginType) => {
   const onLogin = async () => {
     try {
       await handleLogin({email,password})
-
-      navigation.navigate('mainBottomStacks')
 
     } catch (error) {
       console.log(error)
