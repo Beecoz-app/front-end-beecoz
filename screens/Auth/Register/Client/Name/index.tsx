@@ -18,11 +18,18 @@ type ClientRegisterNameScreenType = NativeStackScreenProps<
 export const ClientRegisterNameScreen = ({
   navigation: { navigate },
 }: ClientRegisterNameScreenType) => {
-  const { newClient } = useContext(
+  const { setNewClient } = useContext(
     ClientAuthRegisterContext
   ) as IClientAuthRegister;
   const [name, setName] = useState("");
   const [disabled, setDisabled] = useState(true);
+
+  const handleNavigateToNextStep = () => {
+    setNewClient(prev => ({name, birthDate: null, CPF: null, lastName: null, profileImage: null, sex: null}))
+
+    navigate("registerClientLogin")
+  }
+
   return (
     <Container>
       <DataContainer>
@@ -41,7 +48,7 @@ export const ClientRegisterNameScreen = ({
         <AppGenericButton
           disabled={disabled}
           title={"Continuar"}
-          onClick={() => navigate("registerClientLogin")}
+          onClick={handleNavigateToNextStep}
         />
       </ButtonContainer>
     </Container>

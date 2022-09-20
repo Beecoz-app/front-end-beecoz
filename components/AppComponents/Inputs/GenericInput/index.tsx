@@ -2,13 +2,12 @@ import { useState } from "react";
 import { StyleSheet, TextInput } from "react-native";
 import { setKeyboardType } from "../../../../utils/setKeyboardType";
 
-interface InputProps {
+interface InputProps extends  React.ComponentProps<typeof TextInput>{
   type: "email" | "phone" | "password" | "CPF" | "CNPJ" | 'text';
   placeholder: string;
-  onChange: (text: string) => void
 }
 
-export const AppGeneticInput = ({ type, placeholder, onChange , ...rest }: InputProps) => {
+export const AppGeneticInput = ({ type, placeholder, ...rest }: InputProps) => {
   const [focusInput, setFocusInput] = useState(false);
 
   return (
@@ -18,7 +17,6 @@ export const AppGeneticInput = ({ type, placeholder, onChange , ...rest }: Input
       placeholderTextColor={focusInput ? "#fff" : "#ccc"}
       onFocus={() => setFocusInput(true)}
       onBlur={() => setFocusInput(false)}
-      onChangeText={onChange}
       {...rest}
       style={focusInput ? styles.inputFocusStyle : styles.inputStyle}
     />
