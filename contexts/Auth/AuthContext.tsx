@@ -25,8 +25,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [user, setUser] = useState<IClient | IAutonomous | null>(null);
   const [token, setToken] = useState<string | null>(null);
 
-  console.log(token, 'token')
-
   const handleLogin = async ({email, password}: {email: string; password: string}) => {
     try {
         const {data: {user, token}} = await api.post<{user: IClient | IAutonomous, token: string}>('/auth/login', {
@@ -58,6 +56,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     const initializeToken = async () => {
       const token = await SecureStore.getItemAsync('token')
       const user = await SecureStore.getItemAsync('user')
+
+      console.log(token)
+      console.log(user)
 
       setToken(token)
       setUser(JSON.parse(String(user)))
