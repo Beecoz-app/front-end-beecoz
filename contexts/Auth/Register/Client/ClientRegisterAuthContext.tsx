@@ -1,15 +1,9 @@
 import React, { createContext, ReactNode, useState } from "react";
-import { IClient } from "../../../../interfaces/User/CLient/IClient";
+import { IClientRegister } from "../../../../interfaces/User/CLient/IClientRegister";
 
 export interface IClientAuthRegister {
-  newClient: {
-    teste: string,
-    teste2: string
-  } | null;
-  setNewClient: React.Dispatch<React.SetStateAction<{
-    teste: string,
-    teste2: string
-  } | null>>;
+  newClient: IClientRegister | null;
+  setNewClient: React.Dispatch<React.SetStateAction<IClientRegister | null>>;
 }
 interface ClientAuthRegisterProvider {
   children: ReactNode;
@@ -21,11 +15,8 @@ export const ClientAuthRegisterContext =
 export const ClientAuthRegisterProvider = ({
   children,
 }: ClientAuthRegisterProvider) => {
-  const [newClient, setNewClient] = useState<{
-    teste: string,
-    teste2: string
-  } | null>(null);
-  
+  const [newClient, setNewClient] = useState<IClientRegister | null>(null);
+
   return (
     <ClientAuthRegisterContext.Provider value={{ newClient, setNewClient }}>
       {children}
