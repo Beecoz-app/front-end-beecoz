@@ -1,11 +1,15 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Text, View } from "react-native";
 import { ButtonContainer, Container, DataContainer, Title } from "./styles";
 import { AuthStackParams } from "../../../../../navigation/Auth/AuthStackNavigator";
 import { AppGeneticInput } from "../../../../../components/AppComponents/Inputs/GenericInput";
 import { AppGenericButton } from "../../../../../components/AppComponents/Buttons/Generic";
 import { useTheme } from "styled-components";
+import {
+  ClientAuthRegisterContext,
+  IClientAuthRegister,
+} from "../../../../../contexts/Auth/Register/Client/ClientRegisterAuthContext";
 
 type ClientRegisterPasswordScreenType = NativeStackScreenProps<
   AuthStackParams,
@@ -15,9 +19,19 @@ type ClientRegisterPasswordScreenType = NativeStackScreenProps<
 export const ClientRegisterPasswordScreen = ({
   navigation: { navigate },
 }: ClientRegisterPasswordScreenType) => {
-  const [name, setName] = useState("");
+  const { setNewClient } = useContext(
+    ClientAuthRegisterContext
+  ) as IClientAuthRegister;
+  const [password, setPassword] = useState("");
   const [disabled, setDisabled] = useState(true);
   const theme = useTheme();
+
+  const handleNavigateToNextStep = () => {
+    setNewClient((prev) => ({ ...prev, password }));
+
+    navigate("registerClientState");
+  };
+
   return (
     <Container>
       <DataContainer>
@@ -36,10 +50,10 @@ export const ClientRegisterPasswordScreen = ({
         <AppGeneticInput
           type="password"
           placeholder="********"
-          onChange={(text) => {
-            if (name !== "") setDisabled(false);
+          onChangeText={(text) => {
+            if (password !== "") setDisabled(false);
 
-            setName(text);
+            setPassword(text);
           }}
         />
       </DataContainer>
@@ -47,7 +61,7 @@ export const ClientRegisterPasswordScreen = ({
         <AppGenericButton
           disabled={disabled}
           title={"Continuar"}
-          onClick={() => navigate("registerClientLogin")}
+          onClick={handleNavigateToNextStep}
         />
       </ButtonContainer>
     </Container>

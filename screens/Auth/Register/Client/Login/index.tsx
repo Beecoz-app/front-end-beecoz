@@ -22,7 +22,7 @@ export const ClientRegisterLoginScreen = ({navigation: {navigate}}: ClientRegist
     const handleNavigateToNextStep = () => {
       setNewClient(prev => ({...prev, login: email ? email : cellPhone}))
 
-      navigate('registerClientState')
+      navigate('registerClientPassword')
     }
 
     
