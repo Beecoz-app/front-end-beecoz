@@ -22,10 +22,11 @@ export const ClientRegisterNameScreen = ({
     ClientAuthRegisterContext
   ) as IClientAuthRegister;
   const [name, setName] = useState("");
+  const [lastName, setLastName] = useState('');
   const [disabled, setDisabled] = useState(true);
 
   const handleNavigateToNextStep = () => {
-    setNewClient(prev => ({...prev, name}))
+    setNewClient(prev => ({...prev, name, lastName}))
 
     navigate("registerClientLogin")
   }
@@ -33,7 +34,7 @@ export const ClientRegisterNameScreen = ({
   return (
     <Container>
       <DataContainer>
-        <Title>Bem-vindo á Beecoz! Para começar, qual seu nome?</Title>
+        <Title>Bem-vindo á Beecoz! Para começar, qual seu nome (completo)?</Title>
         <AppGeneticInput
           type="text"
           placeholder="Seu nome"
@@ -42,6 +43,16 @@ export const ClientRegisterNameScreen = ({
             if (name !== "") setDisabled(false);
 
             setName(text);
+          }}
+        />
+        <AppGeneticInput
+          type="text"
+          placeholder="Seu sobrenome"
+          value={lastName}
+          onChangeText={(text) => {
+            if (lastName !== "") setDisabled(false);
+
+            setLastName(text);
           }}
         />
       </DataContainer>
