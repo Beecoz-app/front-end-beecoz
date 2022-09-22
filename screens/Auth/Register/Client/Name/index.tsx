@@ -25,7 +25,7 @@ export const ClientRegisterNameScreen = ({
   const [disabled, setDisabled] = useState(true);
 
   const handleNavigateToNextStep = () => {
-    setNewClient(prev => ({teste: 'a', teste2: 'a'}))
+    setNewClient(prev => ({...prev, name}))
 
     navigate("registerClientLogin")
   }

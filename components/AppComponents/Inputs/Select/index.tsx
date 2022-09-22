@@ -8,9 +8,10 @@ import { Container, Content, Flat } from "./styls";
 interface AppSelectInputProps {
   data: Array<{ name: string; code: string }>;
   placeholder: string;
+  getValue: (value: string) => void
 }
 
-export const AppSelectInput = ({ data, placeholder }: AppSelectInputProps) => {
+export const AppSelectInput = ({ data, placeholder, getValue }: AppSelectInputProps) => {
   const [nameText, setNameText] = useState('');
   const [opened, setOpened] = useState(false);
   const theme = useTheme();
@@ -61,7 +62,10 @@ export const AppSelectInput = ({ data, placeholder }: AppSelectInputProps) => {
           <Flat
             data={data}
             keyExtractor={(item) => item.code}
-            renderItem={({ item }) => <SelectItem data={item} onClose={() => setOpened(false)} setNameText={(name: string) => setNameText(name)}/>}
+            renderItem={({ item }) => <SelectItem data={item} onClose={() => setOpened(false)} setNameText={(name: string) => {
+              setNameText(name)
+              getValue(name)
+            }}/>}
           />
         </>
       )}

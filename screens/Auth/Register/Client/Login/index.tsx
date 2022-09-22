@@ -20,7 +20,7 @@ export const ClientRegisterLoginScreen = ({navigation: {navigate}}: ClientRegist
     const theme = useTheme()
 
     const handleNavigateToNextStep = () => {
-      setNewClient(prev => ({teste: 'a', teste2: 'a'}))
+      setNewClient(prev => ({...prev, login: email ? email : cellPhone}))
 
       navigate('registerClientState')
     }
@@ -64,7 +64,7 @@ export const ClientRegisterLoginScreen = ({navigation: {navigate}}: ClientRegist
         </View>
       </DataContainer>
       <ButtonContainer>
-        <AppGenericButton disabled={disabled} title={"Continuar"} onClick={() => navigate('registerClientState')}/>
+        <AppGenericButton disabled={disabled} title={"Continuar"} onClick={handleNavigateToNextStep}/>
       </ButtonContainer>
     </Container>
   );

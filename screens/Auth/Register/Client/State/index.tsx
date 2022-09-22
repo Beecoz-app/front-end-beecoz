@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Text, View } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { AppGenericButton } from "../../../../../components/AppComponents/Buttons/Generic";
@@ -6,6 +6,7 @@ import { AuthStackParams } from "../../../../../navigation/Auth/AuthStackNavigat
 import { useTheme } from "styled-components";
 import { ButtonContainer, Container, DataContainer, Title, SelectContainer } from "./styles";
 import { AppSelectInput } from "../../../../../components/AppComponents/Inputs/Select";
+import { ClientAuthRegisterContext, IClientAuthRegister } from "../../../../../contexts/Auth/Register/Client/ClientRegisterAuthContext";
 
 type ClientRegisterStateScreenType = NativeStackScreenProps<
   AuthStackParams,
@@ -15,7 +16,9 @@ type ClientRegisterStateScreenType = NativeStackScreenProps<
 export const ClientRegisterStateScreen = ({
   navigation: { navigate },
 }: ClientRegisterStateScreenType) => {
-  const [state, setState] = useState('');
+  const {setNewClient} = useContext(ClientAuthRegisterContext) as IClientAuthRegister
+  const [country, setCountry] = useState('');
+  const [city, setCity] = useState('');
   const theme = useTheme();
   const DATA = [
     {name: 'São Paulo', code: 'SP'},
@@ -23,7 +26,19 @@ export const ClientRegisterStateScreen = ({
     {name: 'Ro grande do Sul', code: 'RS'},
     {name: 'Bahia', code: 'BA'}
   ]
-  
+
+  const handleNavigateToNextStep = () => {
+    setNewClient(prev => ({...prev, country, city}))
+
+    navigate("registerClientCPF")
+  }
+
+  const getValueCountry = (value: string) => {
+    setCountry(value)
+  }
+  const getValueCity = (value: string) => {
+    setCity(value)
+  }
 
   return (
     <Container>
@@ -33,11 +48,11 @@ export const ClientRegisterStateScreen = ({
 
         <SelectContainer>
           <Text style={{color: theme.colors.white, fontWeight: 'bold', fontSize: 20, marginBottom: 20}}>Seu estado</Text>
-          <AppSelectInput placeholder="Estado" data={DATA}/>
+          <AppSelectInput placeholder="Estado" data={DATA} getValue={(value) => getValueCountry(value)}/>
         </SelectContainer>
         <SelectContainer>
           <Text style={{color: theme.colors.white, fontWeight: 'bold', fontSize: 20, marginBottom: 20}}>Sua cidade ou município</Text>
-          <AppSelectInput placeholder="Cidade ou Município" data={DATA}/>
+          <AppSelectInput placeholder="Cidade ou Município" data={DATA} getValue={(value) => getValueCity(value)}/>
         </SelectContainer>
         </View>
       </DataContainer>
@@ -45,7 +60,7 @@ export const ClientRegisterStateScreen = ({
         <AppGenericButton
           disabled={false}
           title={"Continuar"}
-          onClick={() => navigate("registerClientCPF")}
+          onClick={handleNavigateToNextStep}
         />
       </ButtonContainer>
     </Container>
