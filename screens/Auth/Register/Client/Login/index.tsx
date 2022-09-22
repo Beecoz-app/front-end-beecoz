@@ -1,20 +1,31 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Text, View } from "react-native";
 import { useTheme } from "styled-components";
 import { AppGenericButton } from "../../../../../components/AppComponents/Buttons/Generic";
 import { AppCheckBox } from "../../../../../components/AppComponents/Inputs/CheckBoxInput";
 import { AppGeneticInput } from "../../../../../components/AppComponents/Inputs/GenericInput";
+import { ClientAuthRegisterContext, IClientAuthRegister } from "../../../../../contexts/Auth/Register/Client/ClientRegisterAuthContext";
 import { AuthStackParams } from "../../../../../navigation/Auth/AuthStackNavigator";
 import {Container, ButtonContainer, DataContainer, Title} from './styles'
 
 type ClientRegisterLoginType = NativeStackScreenProps<AuthStackParams, 'registerClientLogin'>
 
 export const ClientRegisterLoginScreen = ({navigation: {navigate}}: ClientRegisterLoginType) => {
-    const [name, setName] = useState('');
+  const {setNewClient} = useContext(ClientAuthRegisterContext) as IClientAuthRegister
+    const [email, setEmail] = useState('');
+    const [cellPhone, setCellPhone] = useState('');
     const [disabled, setDisabled] = useState(true);
     const [check, setCheck] = useState(false);
     const theme = useTheme()
+
+    const handleNavigateToNextStep = () => {
+      setNewClient(prev => ({teste: 'a', teste2: 'a'}))
+
+      navigate('registerClientState')
+    }
+
+    
   return (
     <Container>
       <DataContainer>
@@ -30,16 +41,16 @@ export const ClientRegisterLoginScreen = ({navigation: {navigate}}: ClientRegist
           Lembre-se  informe um e-mail ativo e profisssional ou um telefone ativo
         </Text>
         {!check ? (
-          <AppGeneticInput type="email" placeholder="nome@dominio.com" onChange={(text) => {
-            if (name !== '') setDisabled(false)
+          <AppGeneticInput type="email" placeholder="nome@dominio.com" value={email}  onChangeText={(text) => {
+            if (email !== '') setDisabled(false)
 
-            setName(text)
+            setEmail(text)
             }}/>
         ) : (
-          <AppGeneticInput type="phone" placeholder="(00) 00000-0000" onChange={(text) => {
-            if (name !== '') setDisabled(false)
+          <AppGeneticInput type="phone" placeholder="(00) 00000-0000" value={cellPhone} onChangeText={(text) => {
+            if (cellPhone !== '') setDisabled(false)
 
-            setName(text)
+            setCellPhone(text)
             }}/>
         )}
         

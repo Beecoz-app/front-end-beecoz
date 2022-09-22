@@ -2,8 +2,14 @@ import React, { createContext, ReactNode, useState } from "react";
 import { IClient } from "../../../../interfaces/User/CLient/IClient";
 
 export interface IClientAuthRegister {
-  newClient: Omit<IClient, 'id' | 'loginId' | 'profileId' | 'typeId'> | null;
-  setNewClient: React.Dispatch<React.SetStateAction<Omit<IClient, 'id' | 'loginId' | 'profileId' | 'typeId'> | null>>;
+  newClient: {
+    teste: string,
+    teste2: string
+  } | null;
+  setNewClient: React.Dispatch<React.SetStateAction<{
+    teste: string,
+    teste2: string
+  } | null>>;
 }
 interface ClientAuthRegisterProvider {
   children: ReactNode;
@@ -15,14 +21,11 @@ export const ClientAuthRegisterContext =
 export const ClientAuthRegisterProvider = ({
   children,
 }: ClientAuthRegisterProvider) => {
-  const [newClient, setNewClient] = useState<Omit<IClient, 'id' | 'loginId' | 'profileId' | 'typeId'> | null>({
-    name: null,
-    lastName: null,
-    birthDate: null,
-    CPF: null,
-    profileImage: null,
-    sex: null,
-  });
+  const [newClient, setNewClient] = useState<{
+    teste: string,
+    teste2: string
+  } | null>(null);
+  
   return (
     <ClientAuthRegisterContext.Provider value={{ newClient, setNewClient }}>
       {children}

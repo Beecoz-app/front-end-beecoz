@@ -25,7 +25,7 @@ export const ClientRegisterNameScreen = ({
   const [disabled, setDisabled] = useState(true);
 
   const handleNavigateToNextStep = () => {
-    setNewClient(prev => ({name, birthDate: null, CPF: null, lastName: null, profileImage: null, sex: null}))
+    setNewClient(prev => ({teste: 'a', teste2: 'a'}))
 
     navigate("registerClientLogin")
   }
@@ -37,7 +37,8 @@ export const ClientRegisterNameScreen = ({
         <AppGeneticInput
           type="text"
           placeholder="Seu nome"
-          onChange={(text) => {
+          value={name}
+          onChangeText={(text) => {
             if (name !== "") setDisabled(false);
 
             setName(text);
