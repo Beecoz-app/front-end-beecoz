@@ -1,6 +1,6 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React, { useContext, useState } from "react";
-import { Text, View } from "react-native";
+import { Text } from "react-native";
 import { ButtonContainer, Container, DataContainer, Title } from "./styles";
 import { AuthStackParams } from "../../../../../navigation/Auth/AuthStackNavigator";
 import { AppGeneticInput } from "../../../../../components/AppComponents/Inputs/GenericInput";

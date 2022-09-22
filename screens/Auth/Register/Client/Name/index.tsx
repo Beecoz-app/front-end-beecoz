@@ -1,6 +1,5 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useContext, useState } from "react";
-import { Text, View } from "react-native";
 import { AppGenericButton } from "../../../../../components/AppComponents/Buttons/Generic";
 import { AppGeneticInput } from "../../../../../components/AppComponents/Inputs/GenericInput";
 import {
@@ -22,19 +21,21 @@ export const ClientRegisterNameScreen = ({
     ClientAuthRegisterContext
   ) as IClientAuthRegister;
   const [name, setName] = useState("");
-  const [lastName, setLastName] = useState('');
+  const [lastName, setLastName] = useState("");
   const [disabled, setDisabled] = useState(true);
 
   const handleNavigateToNextStep = () => {
-    setNewClient(prev => ({...prev, name, lastName}))
+    setNewClient((prev) => ({ ...prev, name, lastName }));
 
-    navigate("registerClientLogin")
-  }
+    navigate("registerClientLogin");
+  };
 
   return (
     <Container>
       <DataContainer>
-        <Title>Bem-vindo á Beecoz! Para começar, qual seu nome (completo)?</Title>
+        <Title>
+          Bem-vindo á Beecoz! Para começar, qual seu nome (completo)?
+        </Title>
         <AppGeneticInput
           type="text"
           placeholder="Seu nome"
