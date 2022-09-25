@@ -10,7 +10,7 @@ export interface IAuthContext {
   user: IClient | IAutonomous | null;
   setUser: React.Dispatch<
     React.SetStateAction<null | IClient | IAutonomous>
-  > | null;
+  >;
   handleLogin: ({
     email,
     password,
@@ -60,6 +60,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       api.defaults.headers = {
         authorization: `Bearer ${token}`,
       } as CommonHeaderProperties;
+      
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) console.log(error.response);
     }

@@ -17,6 +17,9 @@ import {
 } from "../../../../../contexts/Auth/Register/Client/ClientRegisterAuthContext";
 import axios from "axios";
 import { api } from "../../../../../services/api";
+import { IClient } from "../../../../../interfaces/User/CLient/IClient";
+import { AuthContext, IAuthContext } from "../../../../../contexts/Auth/AuthContext";
+import * as SecureStore from 'expo-secure-store'
 
 export type InsertClientPersonalPhotoScreenType = NativeStackScreenProps<
   AuthStackParams,
@@ -29,12 +32,13 @@ export const InsertClientPersonalPhotoScreen = ({
   const { newClient, setNewClient } = useContext(
     ClientAuthRegisterContext
   ) as IClientAuthRegister;
+  const {setUser, setToken} = useContext(AuthContext) as IAuthContext
   const [disabled, setDisabled] = useState(true);
   const theme = useTheme();
 
   const handleRegisterNewClient = async () => {
     try {
-      const {data} = await api.post("/auth/clients/register", {
+      const {data: {client, token}} = await api.post<{client: IClient, token: string}>("/auth/clients/register", {
         name: newClient?.name,
         login: newClient?.login,
         password: newClient?.password,
@@ -45,7 +49,14 @@ export const InsertClientPersonalPhotoScreen = ({
         biography: '',
       });
 
-      console.log(data)
+      console.log(client, token)
+
+
+      setUser(client)
+      setToken(token)
+
+      await SecureStore.setItemAsync("user", JSON.stringify(client));
+      await SecureStore.setItemAsync("token", `Bearer ${token}`);
 
       navigate('login')
 
