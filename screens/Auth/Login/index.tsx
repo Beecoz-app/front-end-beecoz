@@ -18,8 +18,11 @@ import {
   MissPasswordContent,
   AuthButton,
   RadioButtonContainer,
-  RadioButtonContainer__Text
+  RadioButtonContainer__Text,
+  LoginWithNumberContainer,
+  LoginWithNumberContainer__Text,
 } from "./styles";
+import { AppCheckBox } from "../../../components/AppComponents/Inputs/CheckBoxInput";
 
 export type LoginType = NativeStackScreenProps<
   MainStackParams,
@@ -31,10 +34,11 @@ export const LoginScreen = ({ navigation }: LoginType) => {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const [values, setvalues] = useState([
-    { name: "Client", value: "Client" },
+    { name: "Cliente", value: "Client" },
     { name: "Autonomo", value: "Autonomous" },
   ]);
   const [type, setType] = useState("");
+  const [numberIsLogin, setNumberIsLogin] = useState(false);
   const theme = useTheme();
 
   const onLogin = async () => {
@@ -53,13 +57,31 @@ export const LoginScreen = ({ navigation }: LoginType) => {
       />
       <InputContainer>
         <InputContent>
-          <AppSpecificInput
-            type="email"
-            iconName="user-circle-o"
-            placeholder="Seu Login"
-            value={login}
-            onChangeText={(text) => setLogin(text)}
-          />
+          {!numberIsLogin ? (
+            <AppSpecificInput
+              type="email"
+              iconName="user-circle-o"
+              placeholder="Seu Login"
+              value={login}
+              onChangeText={(text) => setLogin(text)}
+            />
+          ) : (
+            <AppSpecificInput
+              type="phone"
+              iconName="phone"
+              placeholder="Seu Login"
+              value={login}
+              onChangeText={(text) => setLogin(text)}
+            />
+          )}
+        </InputContent>
+        <LoginWithNumberContainer>
+          <AppCheckBox onCheck={() => setNumberIsLogin(!numberIsLogin)} />
+          <LoginWithNumberContainer__Text>
+            Entrar com número
+          </LoginWithNumberContainer__Text>
+        </LoginWithNumberContainer>
+        <InputContent>
           <AppSpecificInput
             type="password"
             iconName="lock"
@@ -69,7 +91,9 @@ export const LoginScreen = ({ navigation }: LoginType) => {
           />
         </InputContent>
         <RadioButtonContainer>
-          <RadioButtonContainer__Text>Olá! você esta entrando como:</RadioButtonContainer__Text>
+          <RadioButtonContainer__Text>
+            Olá! você esta entrando como:
+          </RadioButtonContainer__Text>
           <AppRadioButton
             values={values}
             getValue={(value) => setType(value)}

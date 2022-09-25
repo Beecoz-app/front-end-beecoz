@@ -9,12 +9,12 @@ export const AppCheckBox = ({onCheck}: AppCheckProps) => {
   const [check, setCheck] = useState(false);
   return (
     <CheckBox
-      size={24}
+      size={18}
       fillColor={"#666"}
       unfillColor={"#666"}
       innerIconStyle={{
         backgroundColor: "transaparent",
-        borderRadius: 8,
+        borderRadius: 6,
       }}
       onPress={onCheck}
     />

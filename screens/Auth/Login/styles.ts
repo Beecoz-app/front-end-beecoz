@@ -19,11 +19,29 @@ export const InputContainer = styled.View`
 `;
 
 export const InputContent = styled.View`
-  height: 180px;
+  height: 80px;
   width: 100%;
+
 
   justify-content: space-between;
   align-items: center;
+`
+
+export const LoginWithNumberContainer = styled.View`
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+
+  margin-top: 10px;
+  margin-bottom: 20px;
+`
+
+export const LoginWithNumberContainer__Text = styled.Text`
+  color: ${({theme}) => theme.colors.gray_100};
+  font-weight: 100;
+  font-size: 12px;
 `
 
 export const RadioButtonContainer = styled.View`

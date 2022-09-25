@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "center",
     width: "100%",
-    height: 80,
+    height: "100%",
     backgroundColor: "#444",
     color: "#aaa",
     borderRadius: 10,
