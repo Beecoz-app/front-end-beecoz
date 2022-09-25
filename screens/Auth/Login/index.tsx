@@ -18,14 +18,20 @@ import { AuthStackParams } from "../../../navigation/Auth/AuthStackNavigator";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext, IAuthContext } from "../../../contexts/Auth/AuthContext";
 import { MainStackParams } from "../../../navigation/MainRoutes";
+import { AppCheckBox } from "../../../components/AppComponents/Inputs/CheckBoxInput";
+import { AppRadioButton } from "../../../components/AppComponents/Buttons/RadioButton";
 
 export type LoginType = NativeStackScreenProps<MainStackParams, 'mainAuthStack'>
 
 export const LoginScreen = ({navigation}: LoginType) => {
+  const {handleLogin} = useContext(AuthContext) as IAuthContext
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const {handleLogin} = useContext(AuthContext) as IAuthContext
+  const [values, setvalues] = useState([{name: 'Client'}, {name: 'Autonomous'}]);
+  const [type, setType] = useState('');
   const theme = useTheme();
+
+  console.log(type)
 
   const onLogin = async () => {
     try {
@@ -56,6 +62,7 @@ export const LoginScreen = ({navigation}: LoginType) => {
             onChangeText={(text) => setPassword(text)}
           />
         </InputContent>
+        <AppRadioButton values={values} getValue={(value) => setType(value)}/>
         <MissPasswordContent>
           <View>
             <Text>Lembre de mim</Text>

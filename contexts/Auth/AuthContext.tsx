@@ -19,7 +19,7 @@ export interface IAuthContext {
   }: {
     email: string;
     password: string;
-    type: "Client" | "Autonomous"
+    type: string
   }) => Promise<void>;
   handleLogout: () => Promise<void>;
   token: string | null;
@@ -45,7 +45,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   }: {
     email: string;
     password: string;
-    type: "Client" | "Autonomous"
+    type: string
   }) => {
     try {
       const {
