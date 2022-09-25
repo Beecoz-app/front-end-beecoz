@@ -26,6 +26,13 @@ export const InputContent = styled.View`
   align-items: center;
 `
 
+export const RadioButtonContainer = styled.View`
+  width: 100%;
+  height: 50px;
+
+  margin-top: 20px;
+`
+
 export const MissPasswordContent = styled.View`
   width: 100%;
   height: 40px;

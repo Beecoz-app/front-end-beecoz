@@ -12,9 +12,10 @@ import {
   InputContent,
   MissPasswordContent,
   AuthButton,
+  RadioButtonContainer
 } from "./styles";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import { AuthContext, IAuthContext } from "../../../contexts/Auth/AuthContext";
 import { MainStackParams } from "../../../navigation/MainRoutes";
 import { AppRadioButton } from "../../../components/AppComponents/Buttons/RadioButton";
@@ -66,12 +67,12 @@ export const LoginScreen = ({ navigation }: LoginType) => {
             onChangeText={(text) => setPassword(text)}
           />
         </InputContent>
-        <View style={{ width: "100%", height: 40 }}>
+        <RadioButtonContainer >
           <AppRadioButton
             values={values}
             getValue={(value) => setType(value)}
           />
-        </View>
+        </RadioButtonContainer>
         <MissPasswordContent>
           <View>
             <Text>Lembre de mim</Text>

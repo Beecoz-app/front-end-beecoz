@@ -15,7 +15,7 @@ export const FormContainer = styled.View`
   flex-direction: column;
 `
 
-export const FormContent = styled.View`
+export const FormContent = styled.TouchableOpacity`
   width: 100%;
 
   display: flex;
@@ -29,7 +29,7 @@ export const FormContentText = styled.Text`
   color: ${({theme}) => theme.colors.white};
 `
 
-export const CheckContainer = styled.TouchableOpacity<CheckContainerProps>`
+export const CheckContainer = styled.View<CheckContainerProps>`
   height: 20px;
   width: 20px;
   border-radius: 10px;
