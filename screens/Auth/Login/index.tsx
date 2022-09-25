@@ -1,7 +1,7 @@
 import { Image, Text, View } from "react-native";
 import { useTheme } from "styled-components";
-import IconAnt from 'react-native-vector-icons/AntDesign'
-import IconFontisto from 'react-native-vector-icons/Fontisto'
+import IconAnt from "react-native-vector-icons/AntDesign";
+import IconFontisto from "react-native-vector-icons/Fontisto";
 import { AppSpecificButton } from "../../../components/AppComponents/Buttons/SpecificButton";
 import { AppSpecificInput } from "../../../components/AppComponents/Inputs/SpecificInput";
 import {
@@ -11,40 +11,44 @@ import {
   RegisterContainer,
   InputContent,
   MissPasswordContent,
-  AuthButton
+  AuthButton,
 } from "./styles";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { AuthStackParams } from "../../../navigation/Auth/AuthStackNavigator";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { AuthContext, IAuthContext } from "../../../contexts/Auth/AuthContext";
 import { MainStackParams } from "../../../navigation/MainRoutes";
-import { AppCheckBox } from "../../../components/AppComponents/Inputs/CheckBoxInput";
 import { AppRadioButton } from "../../../components/AppComponents/Buttons/RadioButton";
 
-export type LoginType = NativeStackScreenProps<MainStackParams, 'mainAuthStack'>
+export type LoginType = NativeStackScreenProps<
+  MainStackParams,
+  "mainAuthStack"
+>;
 
-export const LoginScreen = ({navigation}: LoginType) => {
-  const {handleLogin} = useContext(AuthContext) as IAuthContext
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [values, setvalues] = useState([{name: 'Client'}, {name: 'Autonomous'}]);
-  const [type, setType] = useState('');
+export const LoginScreen = ({ navigation }: LoginType) => {
+  const { handleLogin } = useContext(AuthContext) as IAuthContext;
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [values, setvalues] = useState([
+    { name: "Client", value: "Client" },
+    { name: "Autonomo", value: "Autonomous" },
+  ]);
+  const [type, setType] = useState("");
   const theme = useTheme();
-
-  console.log(type)
 
   const onLogin = async () => {
     try {
-      await handleLogin({email,password, type})
-
+      await handleLogin({ email, password, type });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   return (
     <Container>
-      <Image style={{height: 183, width: 360}} source={require('../../../assets/logo.png')}/>
+      <Image
+        style={{ height: 183, width: 360 }}
+        source={require("../../../assets/logo.png")}
+      />
       <InputContainer>
         <InputContent>
           <AppSpecificInput
@@ -62,7 +66,12 @@ export const LoginScreen = ({navigation}: LoginType) => {
             onChangeText={(text) => setPassword(text)}
           />
         </InputContent>
-        <AppRadioButton values={values} getValue={(value) => setType(value)}/>
+        <View style={{ width: "100%", height: 40 }}>
+          <AppRadioButton
+            values={values}
+            getValue={(value) => setType(value)}
+          />
+        </View>
         <MissPasswordContent>
           <View>
             <Text>Lembre de mim</Text>
@@ -74,20 +83,32 @@ export const LoginScreen = ({navigation}: LoginType) => {
           </View>
         </MissPasswordContent>
       </InputContainer>
-      <AppSpecificButton disabled={false} title={"Entrar"} onClick={onLogin}/>
+      <AppSpecificButton disabled={false} title={"Entrar"} onClick={onLogin} />
       <AuthenticationContainer>
         <AuthButton>
-          <IconFontisto name="facebook" style={{color: theme.colors.white}}/>
-          <Text style={{color: theme.colors.white}}>Facebook</Text>
+          <IconFontisto name="facebook" style={{ color: theme.colors.white }} />
+          <Text style={{ color: theme.colors.white }}>Facebook</Text>
         </AuthButton>
         <AuthButton>
-          <IconAnt name="google" style={{color: theme.colors.white}}/>
-          <Text style={{color: theme.colors.white}} >Google</Text>
+          <IconAnt name="google" style={{ color: theme.colors.white }} />
+          <Text style={{ color: theme.colors.white }}>Google</Text>
         </AuthButton>
       </AuthenticationContainer>
       <RegisterContainer>
-        <Text style={{fontSize: 16, color: theme.colors.gray_100, fontWeight: '100'}}>
-          Não tem uma conta?  <Text style={{color: theme.colors.blue_p, fontWeight: 'bold'}} onPress={() => navigation.navigate('register')}>Se cadastre!</Text>
+        <Text
+          style={{
+            fontSize: 16,
+            color: theme.colors.gray_100,
+            fontWeight: "100",
+          }}
+        >
+          Não tem uma conta?{" "}
+          <Text
+            style={{ color: theme.colors.blue_p, fontWeight: "bold" }}
+            onPress={() => navigation.navigate("register")}
+          >
+            Se cadastre!
+          </Text>
         </Text>
       </RegisterContainer>
     </Container>
