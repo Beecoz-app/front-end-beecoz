@@ -12,7 +12,8 @@ import {
   InputContent,
   MissPasswordContent,
   AuthButton,
-  RadioButtonContainer
+  RadioButtonContainer,
+  RadioButtonContainer__Text
 } from "./styles";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React, { useContext, useState } from "react";
@@ -67,7 +68,8 @@ export const LoginScreen = ({ navigation }: LoginType) => {
             onChangeText={(text) => setPassword(text)}
           />
         </InputContent>
-        <RadioButtonContainer >
+        <RadioButtonContainer>
+          <RadioButtonContainer__Text>Olá! você esta entrando como:</RadioButtonContainer__Text>
           <AppRadioButton
             values={values}
             getValue={(value) => setType(value)}

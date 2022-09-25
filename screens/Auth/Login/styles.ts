@@ -31,6 +31,14 @@ export const RadioButtonContainer = styled.View`
   height: 50px;
 
   margin-top: 20px;
+  margin-bottom: 20px;
+`
+
+export const RadioButtonContainer__Text = styled.Text`
+  color: ${({theme}) => theme.colors.gray_100};
+  font-size: 10px;
+
+  margin-bottom: 10px;
 `
 
 export const MissPasswordContent = styled.View`
