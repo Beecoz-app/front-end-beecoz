@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useContext, useState } from "react";
 import { Image, Text } from "react-native";
 import {
   Container,
@@ -11,6 +11,12 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { AppGenericButton } from "../../../../../components/AppComponents/Buttons/Generic";
 import { AuthStackParams } from "../../../../../navigation/Auth/AuthStackNavigator";
 import { useTheme } from "styled-components";
+import {
+  ClientAuthRegisterContext,
+  IClientAuthRegister,
+} from "../../../../../contexts/Auth/Register/Client/ClientRegisterAuthContext";
+import axios from "axios";
+import { api } from "../../../../../services/api";
 
 export type InsertClientPersonalPhotoScreenType = NativeStackScreenProps<
   AuthStackParams,
@@ -20,9 +26,36 @@ export type InsertClientPersonalPhotoScreenType = NativeStackScreenProps<
 export const InsertClientPersonalPhotoScreen = ({
   navigation: { navigate },
 }: InsertClientPersonalPhotoScreenType) => {
-  const [name, setName] = useState("");
+  const { newClient, setNewClient } = useContext(
+    ClientAuthRegisterContext
+  ) as IClientAuthRegister;
   const [disabled, setDisabled] = useState(true);
   const theme = useTheme();
+
+  const handleRegisterNewClient = async () => {
+    try {
+      const {data} = await api.post("/auth/clients/register", {
+        name: newClient?.name,
+        login: newClient?.login,
+        password: newClient?.password,
+        lastName: newClient?.lastName,
+        gender: newClient?.gender,
+        bornDate: "2005-04-17",
+        cpf: newClient?.cpf,
+        biography: '',
+      });
+
+      console.log(data)
+
+      navigate('login')
+
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.log(error.response);
+      }
+    }
+  };
+
   return (
     <Container>
       <DataContainer>
@@ -41,7 +74,7 @@ export const InsertClientPersonalPhotoScreen = ({
         <AppGenericButton
           disabled={disabled}
           title={"Continuar"}
-          onClick={() => navigate("login")}
+          onClick={handleRegisterNewClient}
         />
       </ButtonContainer>
     </Container>
