@@ -15,6 +15,7 @@ import {
   ClientAuthRegisterContext,
   IClientAuthRegister,
 } from "../../../../../contexts/Auth/Register/Client/ClientRegisterAuthContext";
+import { AuthContext, IAuthContext } from "../../../../../contexts/Auth/AuthContext";
 
 export type InsertClientPersonalPhotoScreenType = NativeStackScreenProps<
   AuthStackParams,
@@ -25,13 +26,14 @@ export const InsertClientPersonalPhotoScreen = ({
   navigation: { navigate },
 }: InsertClientPersonalPhotoScreenType) => {
   const { handleRegisterNewClient } = useContext(
-    ClientAuthRegisterContext
-  ) as IClientAuthRegister;
+    AuthContext
+  ) as IAuthContext;
+  const {newClient} = useContext(ClientAuthRegisterContext) as IClientAuthRegister
   const [disabled, setDisabled] = useState(true);
   const theme = useTheme();
 
   const onRegisterNewLogin = async () => {
-    await handleRegisterNewClient()
+    await handleRegisterNewClient({newClient})
 
     navigate('login')
   }

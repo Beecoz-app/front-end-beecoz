@@ -18,22 +18,18 @@ import { AuthStackParams } from "../../../navigation/Auth/AuthStackNavigator";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext, IAuthContext } from "../../../contexts/Auth/AuthContext";
 import { MainStackParams } from "../../../navigation/MainRoutes";
-import { ClientAuthRegisterContext, IClientAuthRegister } from "../../../contexts/Auth/Register/Client/ClientRegisterAuthContext";
 
 export type LoginType = NativeStackScreenProps<MainStackParams, 'mainAuthStack'>
 
 export const LoginScreen = ({navigation}: LoginType) => {
-  const {newClient} = useContext(ClientAuthRegisterContext) as IClientAuthRegister
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const {handleLogin} = useContext(AuthContext) as IAuthContext
   const theme = useTheme();
 
-  console.log(newClient)
-
   const onLogin = async () => {
     try {
-      await handleLogin({email,password})
+      await handleLogin({email,password, type})
 
     } catch (error) {
       console.log(error)

@@ -1,10 +1,12 @@
 import axios, { AxiosError } from "axios";
-import React, { createContext, ReactNode, useEffect, useState } from "react";
+import React, { createContext, ReactNode, useContext, useEffect, useState } from "react";
 import { IAutonomous } from "../../interfaces/User/Autonomous/IAutonomous";
 import { IClient } from "../../interfaces/User/CLient/IClient";
 import { api, CommonHeaderProperties } from "../../services/api";
 import * as SecureStore from "expo-secure-store";
 import { RegisterAuthProvider } from "./Register/RegisterAuthContext";
+import { ClientAuthRegisterContext, IClientAuthRegister } from "./Register/Client/ClientRegisterAuthContext";
+import { IClientRegister } from "../../interfaces/User/CLient/IClientRegister";
 
 export interface IAuthContext {
   user: IClient | IAutonomous | null;
@@ -17,10 +19,13 @@ export interface IAuthContext {
   }: {
     email: string;
     password: string;
+    type: "Client" | "Autonomous"
   }) => Promise<void>;
   handleLogout: () => Promise<void>;
   token: string | null;
   setToken: React.Dispatch<React.SetStateAction<string | null>>;
+
+  handleRegisterNewClient: ({newClient}: {newClient: IClientRegister | null}) => void
 }
 
 interface AuthProviderProps {
@@ -36,9 +41,11 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const handleLogin = async ({
     email,
     password,
+    type
   }: {
     email: string;
     password: string;
+    type: "Client" | "Autonomous"
   }) => {
     try {
       const {
@@ -48,6 +55,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         {
           email,
           password,
+          type
         }
       );
 
@@ -87,9 +95,40 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     initializeToken();
   }, []);
 
+  const handleRegisterNewClient = async ({newClient}: {newClient: IClientRegister | null}) => {
+    try {
+      const {data: {client, token}} = await api.post<{client: IClient, token: string}>("/auth/clients/register", {
+        name: newClient?.name,
+        login: newClient?.login,
+        password: newClient?.password,
+        lastName: newClient?.lastName,
+        gender: newClient?.gender,
+        bornDate: "2005-04-17",
+        cpf: newClient?.cpf,
+        biography: '',
+      });
+
+
+      setUser(client)
+      setToken(token)
+
+      console.log('new client', client)
+      console.log('token', token)
+
+      await SecureStore.setItemAsync("user", JSON.stringify(client));
+      await SecureStore.setItemAsync("token", `Bearer ${token}`);
+
+
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.log(error.response);
+      }
+    }
+  };
+
   return (
     <AuthContext.Provider
-      value={{ user, setUser, handleLogin, token, setToken, handleLogout }}
+      value={{ user, setUser, handleLogin, token, setToken, handleLogout, handleRegisterNewClient }}
     >
       <RegisterAuthProvider>{children}</RegisterAuthProvider>
     </AuthContext.Provider>
