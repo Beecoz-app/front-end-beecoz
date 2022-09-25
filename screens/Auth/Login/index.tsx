@@ -4,6 +4,11 @@ import IconAnt from "react-native-vector-icons/AntDesign";
 import IconFontisto from "react-native-vector-icons/Fontisto";
 import { AppSpecificButton } from "../../../components/AppComponents/Buttons/SpecificButton";
 import { AppSpecificInput } from "../../../components/AppComponents/Inputs/SpecificInput";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import React, { useContext, useState } from "react";
+import { AuthContext, IAuthContext } from "../../../contexts/Auth/AuthContext";
+import { MainStackParams } from "../../../navigation/MainRoutes";
+import { AppRadioButton } from "../../../components/AppComponents/Buttons/RadioButton";
 import {
   Container,
   AuthenticationContainer,
@@ -15,11 +20,6 @@ import {
   RadioButtonContainer,
   RadioButtonContainer__Text
 } from "./styles";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import React, { useContext, useState } from "react";
-import { AuthContext, IAuthContext } from "../../../contexts/Auth/AuthContext";
-import { MainStackParams } from "../../../navigation/MainRoutes";
-import { AppRadioButton } from "../../../components/AppComponents/Buttons/RadioButton";
 
 export type LoginType = NativeStackScreenProps<
   MainStackParams,
@@ -28,7 +28,7 @@ export type LoginType = NativeStackScreenProps<
 
 export const LoginScreen = ({ navigation }: LoginType) => {
   const { handleLogin } = useContext(AuthContext) as IAuthContext;
-  const [email, setEmail] = useState("");
+  const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const [values, setvalues] = useState([
     { name: "Client", value: "Client" },
@@ -39,7 +39,7 @@ export const LoginScreen = ({ navigation }: LoginType) => {
 
   const onLogin = async () => {
     try {
-      await handleLogin({ email, password, type });
+      await handleLogin({ login, password, type });
     } catch (error) {
       console.log(error);
     }
@@ -57,8 +57,8 @@ export const LoginScreen = ({ navigation }: LoginType) => {
             type="email"
             iconName="user-circle-o"
             placeholder="Seu Login"
-            value={email}
-            onChangeText={(text) => setEmail(text)}
+            value={login}
+            onChangeText={(text) => setLogin(text)}
           />
           <AppSpecificInput
             type="password"

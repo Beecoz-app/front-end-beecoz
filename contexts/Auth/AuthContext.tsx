@@ -14,10 +14,11 @@ export interface IAuthContext {
     React.SetStateAction<null | IClient | IAutonomous>
   >;
   handleLogin: ({
-    email,
+    login,
     password,
+    type
   }: {
-    email: string;
+    login: string;
     password: string;
     type: string
   }) => Promise<void>;
@@ -39,11 +40,11 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [token, setToken] = useState<string | null>(null);
 
   const handleLogin = async ({
-    email,
+    login,
     password,
     type
   }: {
-    email: string;
+    login: string;
     password: string;
     type: string
   }) => {
@@ -53,7 +54,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       } = await api.post<{ user: IClient | IAutonomous; token: string }>(
         "/auth/login",
         {
-          email,
+          login,
           password,
           type
         }
