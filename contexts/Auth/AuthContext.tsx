@@ -131,7 +131,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const handleRegisterNewAutonomous = async ({newAutonomous}: {newAutonomous: IAutonomousRegister | null}) => {
     try {
-      const {data: {autonomous, token}} = await api.post<{autonomous: IAutonomous, token: string}>("/auth/clients/register", {
+      const {data: {autonomous, token}} = await api.post<{autonomous: IAutonomous, token: string}>("/auth/autonomous/register", {
         name: newAutonomous?.name,
         login: newAutonomous?.login,
         password: newAutonomous?.password,
