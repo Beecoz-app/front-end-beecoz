@@ -7,6 +7,7 @@ import * as SecureStore from "expo-secure-store";
 import { RegisterAuthProvider } from "./Register/RegisterAuthContext";
 import { ClientAuthRegisterContext, IClientAuthRegister } from "./Register/Client/ClientRegisterAuthContext";
 import { IClientRegister } from "../../interfaces/User/CLient/IClientRegister";
+import { IAutonomousRegister } from "../../interfaces/User/Autonomous/IAutonomousRegister";
 
 export interface IAuthContext {
   user: IClient | IAutonomous | null;
@@ -27,6 +28,7 @@ export interface IAuthContext {
   setToken: React.Dispatch<React.SetStateAction<string | null>>;
 
   handleRegisterNewClient: ({newClient}: {newClient: IClientRegister | null}) => void
+  handleRegisterNewAutonomous: ({newAutonomous}: {newAutonomous: IAutonomousRegister | null}) => void
 }
 
 interface AuthProviderProps {
@@ -127,9 +129,41 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     }
   };
 
+  const handleRegisterNewAutonomous = async ({newAutonomous}: {newAutonomous: IAutonomousRegister | null}) => {
+    try {
+      const {data: {autonomous, token}} = await api.post<{autonomous: IAutonomous, token: string}>("/auth/clients/register", {
+        name: newAutonomous?.name,
+        login: newAutonomous?.login,
+        password: newAutonomous?.password,
+        lastName: newAutonomous?.lastName,
+        gender: newAutonomous?.gender,
+        bornDate: "2005-04-17",
+        cpf: newAutonomous?.cpf,
+        cnpj: newAutonomous?.cnpj,
+        biography: '',
+      });
+
+
+      setUser(autonomous)
+      setToken(token)
+
+      console.log('new client', autonomous)
+      console.log('token', token)
+
+      await SecureStore.setItemAsync("user", JSON.stringify(autonomous));
+      await SecureStore.setItemAsync("token", `Bearer ${token}`);
+
+
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.log(error.response);
+      }
+    }
+  };
+
   return (
     <AuthContext.Provider
-      value={{ user, setUser, handleLogin, token, setToken, handleLogout, handleRegisterNewClient }}
+      value={{ user, setUser, handleLogin, token, setToken, handleLogout, handleRegisterNewClient, handleRegisterNewAutonomous }}
     >
       <RegisterAuthProvider>{children}</RegisterAuthProvider>
     </AuthContext.Provider>
