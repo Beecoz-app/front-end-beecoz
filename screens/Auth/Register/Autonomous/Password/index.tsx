@@ -1,11 +1,15 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Text, View } from "react-native";
 import { ButtonContainer, Container, DataContainer, Title } from "./styles";
 import { AuthStackParams } from "../../../../../navigation/Auth/AuthStackNavigator";
 import { AppGeneticInput } from "../../../../../components/AppComponents/Inputs/GenericInput";
 import { AppGenericButton } from "../../../../../components/AppComponents/Buttons/Generic";
 import { useTheme } from "styled-components";
+import {
+  AutonomousAuthRegisterContext,
+  IAutonomousAuthRegister,
+} from "../../../../../contexts/Auth/Register/Autonomous/AutonomousRegisterAuthContext";
 
 type ClientRegisterPasswordScreenType = NativeStackScreenProps<
   AuthStackParams,
@@ -15,9 +19,20 @@ type ClientRegisterPasswordScreenType = NativeStackScreenProps<
 export const AutonomousRegisterPasswordScreen = ({
   navigation: { navigate },
 }: ClientRegisterPasswordScreenType) => {
-  const [name, setName] = useState("");
+  const { setNewAutonomous } = useContext(
+    AutonomousAuthRegisterContext
+  ) as IAutonomousAuthRegister;
+  const [password, setPassword] = useState("");
   const [disabled, setDisabled] = useState(true);
+  const [check, setCheck] = useState(false);
   const theme = useTheme();
+
+  const handleNavigateToNextStep = () => {
+    setNewAutonomous((prev) => ({ ...prev, password }));
+
+    navigate("registerAutonomousState");
+  };
+
   return (
     <Container>
       <DataContainer>
@@ -36,10 +51,11 @@ export const AutonomousRegisterPasswordScreen = ({
         <AppGeneticInput
           type="password"
           placeholder="********"
-          onChange={(text) => {
-            if (name !== "") setDisabled(false);
+          value={password}
+          onChangeText={(text) => {
+            if (password !== "") setDisabled(false);
 
-            setName(text);
+            setPassword(text);
           }}
         />
       </DataContainer>
@@ -47,7 +63,7 @@ export const AutonomousRegisterPasswordScreen = ({
         <AppGenericButton
           disabled={disabled}
           title={"Continuar"}
-          onClick={() => navigate("registerAutonomousState")}
+          onClick={handleNavigateToNextStep}
         />
       </ButtonContainer>
     </Container>

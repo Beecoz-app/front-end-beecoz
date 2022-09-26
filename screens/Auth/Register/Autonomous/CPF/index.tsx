@@ -1,11 +1,13 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import React, { useState } from "react";
-import { Text, View } from "react-native";
+import React, { useContext, useState } from "react";
 import { ButtonContainer, Container, DataContainer, Title } from "./styles";
 import { AuthStackParams } from "../../../../../navigation/Auth/AuthStackNavigator";
 import { AppGeneticInput } from "../../../../../components/AppComponents/Inputs/GenericInput";
 import { AppGenericButton } from "../../../../../components/AppComponents/Buttons/Generic";
-import { useTheme } from "styled-components";
+import {
+  AutonomousAuthRegisterContext,
+  IAutonomousAuthRegister,
+} from "../../../../../contexts/Auth/Register/Autonomous/AutonomousRegisterAuthContext";
 
 type ClientRegisterCPFScreenType = NativeStackScreenProps<
   AuthStackParams,
@@ -15,20 +17,30 @@ type ClientRegisterCPFScreenType = NativeStackScreenProps<
 export const AutonomousRegisterCPFScreen = ({
   navigation: { navigate },
 }: ClientRegisterCPFScreenType) => {
-  const [name, setName] = useState("");
+  const { setNewAutonomous } = useContext(
+    AutonomousAuthRegisterContext
+  ) as IAutonomousAuthRegister;
+  const [cpf, setCpf] = useState("");
   const [disabled, setDisabled] = useState(true);
-  const theme = useTheme();
+
+  const handleNavigateToNextStep = () => {
+    setNewAutonomous((prev) => ({ ...prev, cpf }));
+
+    navigate("registerAutonomousCNPJ");
+  };
+
   return (
     <Container>
       <DataContainer>
-        <Title>Falta pouco!{'\n'}Informe seu CPF.</Title>
+        <Title>Falta pouco!{"\n"}Informe seu CPF.</Title>
         <AppGeneticInput
           type="CPF"
           placeholder="000.000.000-00"
-          onChange={(text) => {
-            if (name !== "") setDisabled(false);
+          value={cpf}
+          onChangeText={(text) => {
+            if (cpf !== "") setDisabled(false);
 
-            setName(text);
+            setCpf(text);
           }}
         />
       </DataContainer>
@@ -36,7 +48,7 @@ export const AutonomousRegisterCPFScreen = ({
         <AppGenericButton
           disabled={disabled}
           title={"Continuar"}
-          onClick={() => navigate("registerAutonomousCNPJ")}
+          onClick={handleNavigateToNextStep}
         />
       </ButtonContainer>
     </Container>

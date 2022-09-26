@@ -3,7 +3,7 @@ import { IClientRegister } from "../../../../interfaces/User/CLient/IClientRegis
 import { IAutonomousRegister } from "../../../../interfaces/User/Autonomous/IAutonomousRegister";
 
 export interface IAutonomousAuthRegister {
-  newAutonomous: IClientRegister | null;
+  newAutonomous: IAutonomousRegister | null;
   setNewAutonomous: React.Dispatch<React.SetStateAction<IClientRegister | null>>;
 }
 interface AutonomousAuthRegisterProviderProps {

@@ -1,4 +1,5 @@
 import React, { ReactNode } from "react";
+import { AutonomousAuthRegisterProvider } from "./Autonomous/AutonomousRegisterAuthContext";
 import { ClientAuthRegisterProvider } from "./Client/ClientRegisterAuthContext";
 
 interface RegisterAuthProviderProps {
@@ -8,5 +9,11 @@ interface RegisterAuthProviderProps {
 export const RegisterAuthProvider = ({
   children,
 }: RegisterAuthProviderProps) => {
-  return <ClientAuthRegisterProvider>{children}</ClientAuthRegisterProvider>;
+  return (
+    <ClientAuthRegisterProvider>
+      <AutonomousAuthRegisterProvider>
+        {children}
+      </AutonomousAuthRegisterProvider>
+    </ClientAuthRegisterProvider>
+  );
 };

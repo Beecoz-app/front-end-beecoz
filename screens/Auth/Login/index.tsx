@@ -23,6 +23,7 @@ import {
   LoginWithNumberContainer__Text,
 } from "./styles";
 import { AppCheckBox } from "../../../components/AppComponents/Inputs/CheckBoxInput";
+import { AutonomousAuthRegisterContext, IAutonomousAuthRegister } from "../../../contexts/Auth/Register/Autonomous/AutonomousRegisterAuthContext";
 
 export type LoginType = NativeStackScreenProps<
   MainStackParams,
@@ -31,6 +32,7 @@ export type LoginType = NativeStackScreenProps<
 
 export const LoginScreen = ({ navigation }: LoginType) => {
   const { handleLogin } = useContext(AuthContext) as IAuthContext;
+  const {newAutonomous} = useContext(AutonomousAuthRegisterContext) as IAutonomousAuthRegister
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const [values, setvalues] = useState([
@@ -40,6 +42,8 @@ export const LoginScreen = ({ navigation }: LoginType) => {
   const [type, setType] = useState("");
   const [numberIsLogin, setNumberIsLogin] = useState(false);
   const theme = useTheme();
+
+  console.log(newAutonomous)
 
   const onLogin = async () => {
     try {
