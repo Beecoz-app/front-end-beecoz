@@ -25,6 +25,9 @@ import {
 import { AppCheckBox } from "../../../components/AppComponents/Inputs/CheckBoxInput";
 import { AutonomousAuthRegisterContext, IAutonomousAuthRegister } from "../../../contexts/Auth/Register/Autonomous/AutonomousRegisterAuthContext";
 
+import { auth } from "../../../services/firebase";
+import { provider } from "../../../services/firebase";
+
 export type LoginType = NativeStackScreenProps<
   MainStackParams,
   "mainAuthStack"
@@ -50,6 +53,12 @@ export const LoginScreen = ({ navigation }: LoginType) => {
       await handleLogin({ login, password, type });
     } catch (error) {
       console.log(error);
+    }
+  };
+
+  const onLoginWithGoogle = async () => {
+    const handleSignin = () => {
+      auth.signInWithPopup(provider).catch(alert);
     }
   };
 
@@ -116,14 +125,17 @@ export const LoginScreen = ({ navigation }: LoginType) => {
       </InputContainer>
       <AppSpecificButton disabled={false} title={"Entrar"} onClick={onLogin} />
       <AuthenticationContainer>
+
         <AuthButton>
           <IconFontisto name="facebook" style={{ color: theme.colors.white }} />
           <Text style={{ color: theme.colors.white }}>Facebook</Text>
         </AuthButton>
-        <AuthButton>
+
+        <AuthButton onClick={onLoginWithGoogle}>
           <IconAnt name="google" style={{ color: theme.colors.white }} />
           <Text style={{ color: theme.colors.white }}>Google</Text>
         </AuthButton>
+
       </AuthenticationContainer>
       <RegisterContainer>
         <Text
