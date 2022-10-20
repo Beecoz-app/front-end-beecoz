@@ -2,12 +2,14 @@ import { Children, createContext, ReactNode, useState } from "react";
 import { IInterest } from "../../interfaces/Job/IInterested";
 import { IPost } from "../../interfaces/Post/IPost";
 import { IServiceType } from "../../interfaces/Service/IServiceType";
+import { api } from "../../services/api";
 
 export interface IPublicationContext {
   publications: IPost[] | null;
   setPublications: React.Dispatch<React.SetStateAction<IPost[]>> | null;
   servicesTypes: IServiceType[] | null;
   interest: IInterest[];
+  handleAddPublication: (publication: {title: string, description: string, servTypeId: string}) => void
 }
 
 interface PublicationProviderProps {
@@ -60,9 +62,22 @@ export const PublicationProvider = ({ children }: PublicationProviderProps) => {
     },
   ]);
 
+  const handleAddPublication = async (publication: {title: string, description: string, servTypeId: string}) => {
+    const {data} = await api.post<{publication: Array<IPost>}>('/publication/create', {
+      ...publication
+    })
+
+    setPublications((prev: any) => [
+      ...prev,
+      {
+        ...data.publication
+      },
+    ]);
+  }
+
   return (
     <PublicationContext.Provider
-      value={{ publications, interest, servicesTypes, setPublications }}
+      value={{ publications, interest, servicesTypes, setPublications, handleAddPublication }}
     >
       {children}
     </PublicationContext.Provider>
