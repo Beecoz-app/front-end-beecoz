@@ -62,6 +62,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         }
       );
 
+        console.log('login', user)
+        
+
       setUser(user);
       setToken(token);
 

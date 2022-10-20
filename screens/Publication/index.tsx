@@ -1,8 +1,6 @@
-import {
-  NativeStackScreenProps,
-} from "@react-navigation/native-stack";
-import { useContext, useState } from "react";
-import { Text } from "react-native";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import React, { useContext, useState } from "react";
+import { Text, View } from "react-native";
 import Icon from "react-native-vector-icons/Fontisto";
 import { AppSpecificButton } from "../../components/AppComponents/Buttons/SpecificButton";
 import { AppGeneticInput } from "../../components/AppComponents/Inputs/GenericInput";
@@ -11,11 +9,8 @@ import { AppJobsList } from "../../components/AppComponents/JobsLIst";
 import {
   IPublicationContext,
   PublicationContext,
-} from "../../contexts/Publication/PublicationContext"
-import {
-  AuthContext,
-  IAuthContext,
-} from "../../contexts/Auth/AuthContext"
+} from "../../contexts/Publication/PublicationContext";
+import { AuthContext, IAuthContext } from "../../contexts/Auth/AuthContext";
 import { StackParamsList } from "../../navigation/Stack/StackTabNavigation";
 import { theme } from "../../styles/theme";
 import {
@@ -72,16 +67,22 @@ export const PublicationScreen = ({ navigation }: PublicationType) => {
   return (
     <Container>
       <Content>
-        <AppGeneticInput
-          placeholder="Título do pedido"
-          type="text"
-          onChange={(text) => setTitleText(text)}
-        />
-        <AppTextArea
-          placeholder="Descrição do pedido (opcional)"
-          onChange={(text) => setDescriptionText(text)}
-        />
-        <AppJobsList />
+        <View style={{ width: "100%" }}>
+          <AppGeneticInput
+            placeholder="Título do pedido"
+            type="text"
+            onChangeText={(text) => setTitleText(text)}
+          />
+        </View>
+        <View style={{ width: "100%" }}>
+          <AppTextArea
+            placeholder="Descrição do pedido (opcional)"
+            onChange={(text) => setDescriptionText(text)}
+          />
+        </View>
+        <View style={{ width: "100%" }}>
+          <AppJobsList />
+        </View>
         <AddImageContainer>
           <AddImageContent>
             <Icon

@@ -1,10 +1,5 @@
 import React, { createContext, ReactNode, useContext, useState } from "react";
-import { IClient } from "../../../../interfaces/User/CLient/IClient";
 import { IClientRegister } from "../../../../interfaces/User/CLient/IClientRegister";
-import { api } from "../../../../services/api";
-import { AuthContext, IAuthContext } from "../../AuthContext";
-import * as SecureStore from 'expo-secure-store'
-import axios from "axios";
 
 export interface IClientAuthRegister {
   newClient: IClientRegister | null;

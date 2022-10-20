@@ -16,6 +16,8 @@ export const ProfileScreen = ({ navigation }: ProfileType) => {
   const {user} = useContext(AuthContext) as IAuthContext
   const theme = useTheme();
 
+  console.log(user)
+
   return (
     <Container>
       <Profile>
