@@ -1,10 +1,10 @@
 import { useState } from "react";
 import CheckBox from "react-native-bouncy-checkbox";
 
-interface AppCheckProps {
+interface AppCheckProps extends React.ComponentProps<typeof CheckBox> {
 }
 
-export const AppCheckBox = () => {
+export const AppCheckBox = ({...rest}: AppCheckProps) => {
   return (
     <CheckBox
       size={18}
@@ -14,6 +14,7 @@ export const AppCheckBox = () => {
         backgroundColor: "transaparent",
         borderRadius: 6,
       }}
+      {...rest}
     />
   );
 };

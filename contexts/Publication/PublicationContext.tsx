@@ -9,7 +9,7 @@ export interface IPublicationContext {
   setPublications: React.Dispatch<React.SetStateAction<IPost[]>> | null;
   servicesTypes: IServiceType[] | null;
   interest: IInterest[];
-  handleAddPublication: (publication: {title: string, description: string, servTypeId: string}) => void
+  onAddPublication: (publication: {title: string, description: string, servTypeId: string}) => void
 }
 
 interface PublicationProviderProps {
@@ -62,7 +62,7 @@ export const PublicationProvider = ({ children }: PublicationProviderProps) => {
     },
   ]);
 
-  const handleAddPublication = async (publication: {title: string, description: string, servTypeId: string}) => {
+  const onAddPublication = async (publication: {title: string, description: string, servTypeId: string}) => {
     const {data} = await api.post<{publication: Array<IPost>}>('/publication/create', {
       ...publication
     })
@@ -77,7 +77,7 @@ export const PublicationProvider = ({ children }: PublicationProviderProps) => {
 
   return (
     <PublicationContext.Provider
-      value={{ publications, interest, servicesTypes, setPublications, handleAddPublication }}
+      value={{ publications, interest, servicesTypes, setPublications, onAddPublication }}
     >
       {children}
     </PublicationContext.Provider>

@@ -17,8 +17,8 @@ export const AppGeneticInput = ({ type, placeholder, ...rest }: InputProps) => {
       placeholderTextColor={focusInput ? "#fff" : "#ccc"}
       onFocus={() => setFocusInput(true)}
       onBlur={() => setFocusInput(false)}
-      {...rest}
       style={focusInput ? styles.inputFocusStyle : styles.inputStyle}
+      {...rest}
     />
   );
 };

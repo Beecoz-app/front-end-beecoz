@@ -6,8 +6,11 @@ import { api } from "../../../services/api"
 import { AppJobsCard } from "./JobsCard"
 import { Flat } from "./styles"
 
+interface AppJobsListProps {
+  getValue: (value: string) => void
+}
 
-export const AppJobsList = () => {
+export const AppJobsList = ({getValue}: AppJobsListProps) => {
     const [jobs, setJobs] = useState<IServiceType[]>([]);  
 
     useEffect(() => {
@@ -35,7 +38,7 @@ export const AppJobsList = () => {
           data={jobs}
           keyExtractor={(item) => String(item.id)}
           renderItem={({ item }) => (
-            <AppJobsCard service={item}/>
+            <AppJobsCard service={item} setValue={(value: string) => getValue(value)}/>
             )}
             />
         </>

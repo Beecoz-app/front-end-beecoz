@@ -6,14 +6,15 @@ import { AppCheckBox } from "../../Inputs/CheckBoxInput"
 import { Container } from "./styles"
 
 interface AppJobsCardProps {
-    service: IServiceType 
+    service: IServiceType,
+    setValue: (value: string) => void
 }
 
-export const AppJobsCard = ({service}: AppJobsCardProps) => {
+export const AppJobsCard = ({service, setValue}: AppJobsCardProps) => {
     const theme = useTheme()
     return (
         <Container>
-            <AppCheckBox />
+            <AppCheckBox  onPress={() => setValue(String(service.service))} />
               <Text style={{color: theme.colors.gray_100, fontWeight: '500'}}>{service.service}</Text>
         </Container>
     )
