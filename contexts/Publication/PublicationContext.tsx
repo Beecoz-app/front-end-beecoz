@@ -20,11 +20,6 @@ export const PublicationContext = createContext<IPublicationContext | null>(
 
 export const PublicationProvider = ({ children }: PublicationProviderProps) => {
   const [publications, setPublications] = useState<IPost[]>([]);
-  const [servicesTypes, setServicesTypes] = useState<IServiceType[]>([
-    { id: 1, service: "Marcenaria" },
-    { id: 2, service: "Cozinha" },
-    { id: 3, service: "Construção" },
-  ]);
 
   useEffect(() => {
     const fetch = async () => {
