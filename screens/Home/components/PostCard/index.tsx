@@ -5,11 +5,15 @@ import { Container, InteresedView, ResumeView, ListInterested } from "./styles";
 import { IPost } from "../../../../interfaces/Post/IPost";
 import { IAutonomous } from "../../../../interfaces/User/Autonomous/IAutonomous";
 import { IPublicationContext, PublicationContext } from "../../../../contexts/Publication/PublicationContext";
+import { IServiceContext, ServiceContext } from "../../../../contexts/serviceContext/ServiceContext";
 
 export const PostCard = ({ data }: { data: IPost }) => {
   const { publications } = useContext(
     PublicationContext
   ) as IPublicationContext;
+  const { serviceTypes } = useContext(
+    ServiceContext
+  ) as IServiceContext;
   const [seeInterested, setSeeInterested] = useState(false);
 
   console.log(publications)
@@ -49,6 +53,17 @@ export const PostCard = ({ data }: { data: IPost }) => {
                       )
                   );
                 })} */}
+                {serviceTypes.map(serviceType => serviceType.id === data.tags ? (
+                  <Text
+                  style={{ fontSize: 14, color: "#9FE4F4" }}
+                  key={serviceType.id}
+                >
+                  {serviceType.service}, {""}
+                </Text>
+                ) : (
+                  <>
+                  </>
+                ))}
               </View>
             </View>
           </ResumeView>

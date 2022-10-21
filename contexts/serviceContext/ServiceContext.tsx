@@ -1,6 +1,6 @@
 import { Children, createContext, ReactNode, useEffect, useState } from "react";
 import { IServiceType } from "../../interfaces/Service/IServiceType";
-import { privateApi } from "../../services/api";
+import { api, privateApi } from "../../services/api";
 
 export interface IServiceContext {
     serviceTypes: IServiceType[]
@@ -16,7 +16,7 @@ export const ServiceProvider = ({children}: ServiceProviderProps) => {
 
     useEffect(() => {
         const fetch = async () => {
-            const {data: {serviceType}} = await privateApi.get<{serviceType: Array<IServiceType>}>('/service_type/read')
+            const {data: {serviceType}} = await api.get<{serviceType: Array<IServiceType>}>('/service_type/read')
 
             setServiceTypes(serviceType)
         }
