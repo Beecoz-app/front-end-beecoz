@@ -64,8 +64,12 @@ export const PublicationProvider = ({ children }: PublicationProviderProps) => {
 
   const onAddPublication = async (publication: {title: string, description: string, servTypeId: string}) => {
     const {data} = await api.post<{publication: Array<IPost>}>('/publication/create', {
-      ...publication
+      title: publication.title,
+      description: publication.description,
+      servTypeId: publication.servTypeId
     })
+
+    console.log(data)
 
     setPublications((prev: any) => [
       ...prev,
