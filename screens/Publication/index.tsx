@@ -29,7 +29,6 @@ export const PublicationScreen = ({ navigation }: PublicationType) => {
   const { setPublications, onAddPublication } = useContext(
     PublicationContext
   ) as IPublicationContext;
-  const { user } = useContext(AuthContext) as IAuthContext;
   const [titleText, setTitleText] = useState("");
   const [descriptionText, setDescriptionText] = useState("");
   const [serviceTypeValue, setServiceTypeValue] = useState('');

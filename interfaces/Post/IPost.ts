@@ -10,5 +10,7 @@ export interface IPost {
     photo: string;
     date: string;
     region: string;
-    tags: Array<IServiceType['id']>
+    tags: IServiceType['id'];
+    type: string,
+    interest: []
   }

@@ -14,7 +14,7 @@ export const AppJobsCard = ({service, setValue}: AppJobsCardProps) => {
     const theme = useTheme()
     return (
         <Container>
-            <AppCheckBox  onPress={() => setValue(String(service.service))} />
+            <AppCheckBox  onPress={() => setValue(String(service.id))} />
               <Text style={{color: theme.colors.gray_100, fontWeight: '500'}}>{service.service}</Text>
         </Container>
     )
