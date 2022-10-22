@@ -87,6 +87,9 @@ export const BottomTabNavigator = () => {
         name="publicationBottom"
         component={StackPublicationNavigator}
         options={{
+          tabBarStyle:{
+            display: "none"
+          },
           tabBarIcon: ({ focused }) => (
             <View style={{ justifyContent: "center", alignItems: "center" }}>
               <IconFontisto

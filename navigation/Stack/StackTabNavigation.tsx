@@ -89,7 +89,7 @@ export const StackPublicationNavigator = () => {
       <Tab.Screen
         name="publication"
         component={PublicationScreen}
-        options={{ headerTitle: (props) => <Header title="Pedido" /> }}
+        options={{ headerTitle: (props) => <Header title="Pedido" backable={true} {...props}/> }}
       />
     </Tab.Navigator>
   );

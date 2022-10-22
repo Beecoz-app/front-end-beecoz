@@ -32,6 +32,5 @@ export const NoPublicationsMessage = styled.Text`
 
     font-weight: bold;
 
-
-    border-radius: 0%   ;
+    border-radius: 10px;
 `
