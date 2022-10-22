@@ -3,6 +3,7 @@ import styled from "../../styles/styledComponents";
 export const Container = styled.View`
     flex: 1;
     background-color: ${({theme}) => theme.colors.background};
+    justify-content: space-between;
 `
 
 export const Content = styled.View`

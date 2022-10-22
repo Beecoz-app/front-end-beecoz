@@ -19,6 +19,7 @@ import {
   AddImageContainer,
   AddImageContent,
 } from "./styles";
+import { AppGenericButton } from "../../components/AppComponents/Buttons/Generic";
 
 export type PublicationType = NativeStackScreenProps<
   StackParamsList,
@@ -100,12 +101,12 @@ export const PublicationScreen = ({ navigation }: PublicationType) => {
             </Text>
           </AddImageContent>
         </AddImageContainer>
-        <AppSpecificButton
+        </Content>
+        <AppGenericButton
           disabled={false}
           title="Criar pedido"
           onClick={handleAddPublication}
         />
-      </Content>
     </Container>
   );
 };

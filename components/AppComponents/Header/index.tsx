@@ -4,7 +4,7 @@ import { StackParamsList } from "../../../navigation/Stack/StackTabNavigation";
 import {useNavigation} from '@react-navigation/native'
 import { BackButton, Title } from "./styles";
 
-type HeaderNavigationProps = NativeStackNavigationProp<StackParamsList, 'home'>;
+type HeaderNavigationProps = NativeStackNavigationProp<StackParamsList>;
 
 interface HeaderProps {
   backable?: boolean;
@@ -13,7 +13,7 @@ interface HeaderProps {
 
 
 export const Header = ({ title, backable,...rest }: HeaderProps) => {
-  const {navigate} = useNavigation<HeaderNavigationProps>()
+  const {goBack} = useNavigation<HeaderNavigationProps>()
 
 
   return (
@@ -21,7 +21,7 @@ export const Header = ({ title, backable,...rest }: HeaderProps) => {
       {backable ? (
         <>
           <BackButton>
-            <Icon name="arrow-back" size={20} style={{ color: "#fff" }} onPress={() => navigate('home')}/>
+            <Icon name="arrow-back" size={20} style={{ color: "#fff" }} onPress={() => goBack()}/>
           </BackButton>
           <Title>{title}</Title>
         </>

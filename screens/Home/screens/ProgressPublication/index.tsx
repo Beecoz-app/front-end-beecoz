@@ -13,8 +13,6 @@ export const ProgressPosts = () => {
     PublicationContext
   ) as IPublicationContext;
 
-  console.log(publications);
-
   return (
     <Container>
       <Content>
