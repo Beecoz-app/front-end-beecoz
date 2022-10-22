@@ -20,3 +20,7 @@ export const Flat = (styled.FlatList`
     margin-top: 20px;
 
 ` as unknown) as typeof FlatList
+
+export const NoPublicationsMessage = styled.View`
+    
+`
