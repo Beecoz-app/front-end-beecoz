@@ -7,6 +7,8 @@ import { IPublicationContext, PublicationContext } from "../../../../contexts/Pu
 export const ProgressPosts = () => {
   const {publications} = useContext(PublicationContext) as IPublicationContext
 
+  console.log(publications)
+
   return (
     <Container>
       <Content>

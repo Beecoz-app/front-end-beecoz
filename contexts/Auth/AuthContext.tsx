@@ -2,12 +2,14 @@ import axios, { AxiosError } from "axios";
 import React, { createContext, ReactNode, useContext, useEffect, useState } from "react";
 import { IAutonomous } from "../../interfaces/User/Autonomous/IAutonomous";
 import { IClient } from "../../interfaces/User/CLient/IClient";
-import { api, CommonHeaderProperties } from "../../services/api";
 import * as SecureStore from "expo-secure-store";
 import { RegisterAuthProvider } from "./Register/RegisterAuthContext";
 import { ClientAuthRegisterContext, IClientAuthRegister } from "./Register/Client/ClientRegisterAuthContext";
 import { IClientRegister } from "../../interfaces/User/CLient/IClientRegister";
 import { IAutonomousRegister } from "../../interfaces/User/Autonomous/IAutonomousRegister";
+import { api } from "../../services/api";
+import { privateApi } from "../../services/privateApi";
+import { CommonHeaderProperties } from "../../types/axios";
 
 export interface IAuthContext {
   user: IClient | IAutonomous | null;
@@ -27,8 +29,10 @@ export interface IAuthContext {
   token: string | null;
   setToken: React.Dispatch<React.SetStateAction<string | null>>;
 
-  handleRegisterNewClient: ({newClient}: {newClient: IClientRegister | null}) => void
+  handleRegisterNewClient: ({newClient}: {newClient: IClientRegister}) => void
   handleRegisterNewAutonomous: ({newAutonomous}: {newAutonomous: IAutonomousRegister | null}) => void
+
+  loading: boolean
 }
 
 interface AuthProviderProps {
@@ -40,6 +44,8 @@ export const AuthContext = createContext<IAuthContext | null>(null);
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [user, setUser] = useState<IClient | IAutonomous | null>(null);
   const [token, setToken] = useState<string | null>(null);
+
+  const [loading, setLoading] = useState(true);
 
   const handleLogin = async ({
     login,
@@ -71,10 +77,11 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       await SecureStore.setItemAsync("user", JSON.stringify(user));
       await SecureStore.setItemAsync("token", `Bearer ${token}`);
 
-      api.defaults.headers = {
+      privateApi.defaults.headers = {
         authorization: `Bearer ${token}`,
       } as CommonHeaderProperties;
       
+
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) console.log(error.response);
     }
@@ -101,29 +108,37 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     initializeToken();
   }, []);
 
-  const handleRegisterNewClient = async ({newClient}: {newClient: IClientRegister | null}) => {
+  const handleRegisterNewClient = async ({newClient}: {newClient: IClientRegister}) => {
     try {
       const {data: {client, token}} = await api.post<{client: IClient, token: string}>("/auth/clients/register", {
-        name: newClient?.name,
-        login: newClient?.login,
-        password: newClient?.password,
-        lastName: newClient?.lastName,
-        gender: newClient?.gender,
-        bornDate: "2005-04-17",
-        cpf: newClient?.cpf,
+        name: newClient.name,
+        login: newClient.login,
+        password: newClient.password,
+        lastName: newClient.lastName,
+        gender: newClient.gender,
+        bornDate: newClient.bornDate,
+        cpf: newClient.cpf,
         biography: '',
       });
 
 
-      setUser(client)
-      setToken(token)
-
+      
       console.log('new client', client)
       console.log('token', token)
+
+      privateApi.defaults.headers = {
+        authorization: `Bearer ${token}`,
+      } as CommonHeaderProperties;
 
       await SecureStore.setItemAsync("user", JSON.stringify(client));
       await SecureStore.setItemAsync("token", `Bearer ${token}`);
 
+      console.log('local token', await SecureStore.getItemAsync('token'))
+
+      setUser(client)
+      setToken(token)
+
+      setLoading(false)
 
     } catch (error) {
       if (axios.isAxiosError(error)) {
@@ -166,7 +181,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   return (
     <AuthContext.Provider
-      value={{ user, setUser, handleLogin, token, setToken, handleLogout, handleRegisterNewClient, handleRegisterNewAutonomous }}
+      value={{ user, setUser, handleLogin, token, setToken, handleLogout, handleRegisterNewClient, handleRegisterNewAutonomous, loading }}
     >
       <RegisterAuthProvider>{children}</RegisterAuthProvider>
     </AuthContext.Provider>

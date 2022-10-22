@@ -40,7 +40,7 @@ export const AutonomousRegisterNameScreen = ({
   ];
 
   const handleNavigateToNextStep = () => {
-    setNewAutonomous((prev) => ({ ...prev, name, lastName, gender }));
+    setNewAutonomous((prev: any) => ({ ...prev, name, lastName, gender }));
 
     navigate("registerAutonomousLogin");
   };

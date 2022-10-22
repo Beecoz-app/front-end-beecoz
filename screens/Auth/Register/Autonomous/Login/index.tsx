@@ -31,7 +31,7 @@ export const AutonomousRegisterLoginScreen = ({
   const theme = useTheme();
 
   const handleNavigateToNextStep = () => {
-    setNewAutonomous((prev) => ({ ...prev, login: email ? email : cellPhone }));
+    setNewAutonomous((prev: any) => ({ ...prev, login: email ? email : cellPhone }));
 
     navigate("registerAutonomousPassword");
   };

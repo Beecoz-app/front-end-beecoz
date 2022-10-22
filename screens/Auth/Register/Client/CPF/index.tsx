@@ -24,7 +24,7 @@ export const ClientRegisterCPFScreen = ({
   const [disabled, setDisabled] = useState(true);
 
   const handleNavigateToNextStep = () => {
-    setNewClient((prev) => ({ ...prev, cpf }));
+    setNewClient((prev: any) => ({ ...prev, cpf }));
 
     navigate("insertCLientRGPhoto");
   };

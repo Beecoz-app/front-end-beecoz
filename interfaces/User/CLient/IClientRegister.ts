@@ -1,12 +1,12 @@
 export interface IClientRegister {
-  name?: string | undefined;
-  login?: string | undefined;
-  lastName?: string | undefined;
-  password?: string | undefined;
-  gender?: "Female" | "Male" | undefined;
-  cpf?: string | undefined;
-  biography?: string | undefined;
-  bornDate?: string | undefined;
-  country?: string | undefined
-  city?: string | undefined
+  name: string;
+  login: string;
+  lastName: string
+  password: string
+  gender: "Female" | "Male"
+  cpf: string
+  biography: string
+  bornDate: string
+  country: string
+  city: string
 }

@@ -33,7 +33,7 @@ export const ClientRegisterNameScreen = ({
   ];
 
   const handleNavigateToNextStep = () => {
-    setNewClient((prev) => ({ ...prev, name, lastName, gender }));
+    setNewClient((prev: any) => ({ ...prev, name, lastName, gender }));
 
     navigate("registerClientLogin");
   };

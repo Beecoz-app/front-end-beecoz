@@ -1,8 +1,6 @@
-import { Children, createContext, ReactNode, useEffect, useState } from "react";
-import { IInterest } from "../../interfaces/Job/IInterested";
+import { createContext, ReactNode, useEffect, useState } from "react";
 import { IPost } from "../../interfaces/Post/IPost";
-import { IServiceType } from "../../interfaces/Service/IServiceType";
-import { api, privateApi } from "../../services/api";
+import { privateApi } from "../../services/privateApi";
 
 export interface IPublicationContext {
   publications: IPost[];

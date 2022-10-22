@@ -39,7 +39,7 @@ export const ClientRegisterStateScreen = ({
   ];
 
   const handleNavigateToNextStep = () => {
-    setNewClient((prev) => ({ ...prev, country, city }));
+    setNewClient((prev: any) => ({ ...prev, country, city }));
 
     navigate("registerClientCPF");
   };

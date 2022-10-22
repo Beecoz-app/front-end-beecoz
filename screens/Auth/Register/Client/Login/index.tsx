@@ -30,7 +30,7 @@ export const ClientRegisterLoginScreen = ({
   const theme = useTheme();
 
   const handleNavigateToNextStep = () => {
-    setNewClient((prev) => ({ ...prev, login: email ? email : cellPhone }));
+    setNewClient((prev: any) => ({ ...prev, login: email ? email : cellPhone }));
 
     navigate("registerClientPassword");
   };

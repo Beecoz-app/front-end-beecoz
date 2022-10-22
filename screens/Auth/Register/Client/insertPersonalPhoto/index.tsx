@@ -15,7 +15,11 @@ import {
   ClientAuthRegisterContext,
   IClientAuthRegister,
 } from "../../../../../contexts/Auth/Register/Client/ClientRegisterAuthContext";
-import { AuthContext, IAuthContext } from "../../../../../contexts/Auth/AuthContext";
+import {
+  AuthContext,
+  IAuthContext,
+} from "../../../../../contexts/Auth/AuthContext";
+import { IClientRegister } from "../../../../../interfaces/User/CLient/IClientRegister";
 
 export type InsertClientPersonalPhotoScreenType = NativeStackScreenProps<
   AuthStackParams,
@@ -25,18 +29,33 @@ export type InsertClientPersonalPhotoScreenType = NativeStackScreenProps<
 export const InsertClientPersonalPhotoScreen = ({
   navigation: { navigate },
 }: InsertClientPersonalPhotoScreenType) => {
-  const { handleRegisterNewClient } = useContext(
-    AuthContext
-  ) as IAuthContext;
-  const {newClient} = useContext(ClientAuthRegisterContext) as IClientAuthRegister
+  const { handleRegisterNewClient } = useContext(AuthContext) as IAuthContext;
+  const { newClient } = useContext(
+    ClientAuthRegisterContext
+  ) as IClientAuthRegister;
   const [disabled, setDisabled] = useState(true);
   const theme = useTheme();
 
   const onRegisterNewLogin = async () => {
-    await handleRegisterNewClient({newClient})
+    const newClientAdapter: { newClient: IClientRegister } = {
+      newClient: {
+        name: String(newClient?.name),
+        lastName: String(newClient?.lastName),
+        biography: String(newClient?.biography),
+        city: String(newClient?.city),
+        country: String(newClient?.country),
+        cpf: String(newClient?.cpf),
+        gender: String(newClient?.gender) as "Male" | "Female",
+        login: String(newClient?.login),
+        password: String(newClient?.password),
+        bornDate: "2005-04-17"
+      },
+    };
 
-    navigate('login')
-  }
+    await handleRegisterNewClient({ newClient: newClientAdapter.newClient });
+
+    navigate("login");
+  };
 
   return (
     <Container>

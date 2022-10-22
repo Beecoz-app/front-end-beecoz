@@ -27,7 +27,7 @@ export const ClientRegisterPasswordScreen = ({
   const theme = useTheme();
 
   const handleNavigateToNextStep = () => {
-    setNewClient((prev) => ({ ...prev, password }));
+    setNewClient((prev: any) => ({ ...prev, password }));
 
     navigate("registerClientState");
   };

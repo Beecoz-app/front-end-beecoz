@@ -30,7 +30,7 @@ export const AutonomousRegisterStateScreen = ({
   ];
 
   const handleNavigateToNextStep = () => {
-    setNewAutonomous((prev) => ({ ...prev, country, city }));
+    setNewAutonomous((prev: any) => ({ ...prev, country, city }));
 
     navigate("registerAutonomousCPF");
   };

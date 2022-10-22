@@ -28,7 +28,7 @@ export const AutonomousRegisterPasswordScreen = ({
   const theme = useTheme();
 
   const handleNavigateToNextStep = () => {
-    setNewAutonomous((prev) => ({ ...prev, password }));
+    setNewAutonomous((prev: any) => ({ ...prev, password }));
 
     navigate("registerAutonomousState");
   };
