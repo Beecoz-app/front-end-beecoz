@@ -1,16 +1,13 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React, { useContext, useState } from "react";
-import { Text, View } from "react-native";
+import { Text, TextInput, View } from "react-native";
 import Icon from "react-native-vector-icons/Fontisto";
-import { AppSpecificButton } from "../../components/AppComponents/Buttons/SpecificButton";
-import { AppGeneticInput } from "../../components/AppComponents/Inputs/GenericInput";
 import { AppTextArea } from "../../components/AppComponents/Inputs/TextAreaInput";
 import { AppJobsList } from "../../components/AppComponents/JobsLIst";
 import {
   IPublicationContext,
   PublicationContext,
 } from "../../contexts/Publication/PublicationContext";
-import { AuthContext, IAuthContext } from "../../contexts/Auth/AuthContext";
 import { StackParamsList } from "../../navigation/Stack/StackTabNavigation";
 import { theme } from "../../styles/theme";
 import {
@@ -18,8 +15,10 @@ import {
   Content,
   AddImageContainer,
   AddImageContent,
+  AddPublicationInputText
 } from "./styles";
 import { AppGenericButton } from "../../components/AppComponents/Buttons/Generic";
+import { AppSelectInput } from "../../components/AppComponents/Inputs/Select";
 
 export type PublicationType = NativeStackScreenProps<
   StackParamsList,
@@ -57,12 +56,10 @@ export const PublicationScreen = ({ navigation }: PublicationType) => {
     <Container>
       <Content>
         <View style={{ width: "100%" }}>
-          <AppGeneticInput
-            placeholder="Título do pedido"
-            type="text"
+          <AddPublicationInputText placeholder="Título do pedido"
+            keyboardType="default"
             value={titleText}
-            onChangeText={(text) => setTitleText(text)}
-          />
+            onChangeText={(text) => setTitleText(text)}/>
         </View>
         <View style={{ width: "100%" }}>
           <AppTextArea

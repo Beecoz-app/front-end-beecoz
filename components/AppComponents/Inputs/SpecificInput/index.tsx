@@ -4,7 +4,7 @@ import { setKeyboardType } from "../../../../utils/setKeyboardType";
 import Icon from "react-native-vector-icons/FontAwesome";
 
 interface InputProps extends  React.ComponentProps<typeof TextInput>{
-  type: "email" | "phone" | "password" | "CPF" | "CNPJ";
+  type: "email" | "phone" | "password" | "CPF" | "CNPJ" | "text";
   placeholder: string;
   iconName: string;
 }

@@ -1,4 +1,6 @@
+import { TextInput } from "react-native-gesture-handler";
 import styled from "../../styles/styledComponents";
+import { theme } from "../../styles/theme";
 
 export const Container = styled.View`
     flex: 1;
@@ -8,12 +10,14 @@ export const Container = styled.View`
 
 export const Content = styled.View`
     width: 90%;
-    height: 80%;
+    flex: 1;
 
     justify-content: space-evenly;
     align-items: center;
 
     align-self: center;
+
+    overflow-y: scroll;
 `
 
 export const AddImageContainer = styled.TouchableOpacity`
@@ -36,3 +40,18 @@ export const AddImageContent = styled.View`
     background-color: ${({theme}) => theme.colors.main};
 
 `
+
+export const AddPublicationInputText = (styled.TextInput.attrs((props) => ({
+    placeholderTextColor: props.theme.colors.gray_100,
+}))`
+    width: 100%;
+    height: 60px;
+
+    padding: 20px;
+
+    border-radius: 10px;
+
+
+    background-color: ${({theme}) => theme.colors.main};
+
+` as unknown) as TextInput
