@@ -52,6 +52,7 @@ export const AddPublicationInputText = (styled.TextInput.attrs((props) => ({
 
     border-radius: 10px;
 
+    font-size: 16px;
 
     background-color: ${({theme}) => theme.colors.main};
 

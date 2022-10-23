@@ -3,7 +3,7 @@ import styled from "../../../../../styles/styledComponents";
 
 export const Container = (styled.TouchableOpacity`
     width: 100%;
-    height: 80px;
+    height: 60px;
 
     padding: 20px;
 
@@ -18,6 +18,5 @@ export const Container = (styled.TouchableOpacity`
 
 export const SelectText = styled.Text`
     color: ${({theme}) => theme.colors.gray_100};
-    font-size: 18px;
-    font-weight: 100;
+    font-size: 16px;
 `

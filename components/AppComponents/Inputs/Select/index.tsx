@@ -23,8 +23,7 @@ export const AppSelectInput = ({ data, placeholder, getValue }: AppSelectInputPr
           <Text
             style={{
               color: theme.colors.gray_100,
-              fontSize: 18,
-              fontWeight: "100",
+              fontSize: 16,
             }}
           >
             {!nameText ? placeholder : nameText}
@@ -44,8 +43,7 @@ export const AppSelectInput = ({ data, placeholder, getValue }: AppSelectInputPr
             <Text
               style={{
                 color: theme.colors.gray_100,
-                fontSize: 18,
-                fontWeight: "100",
+                fontSize: 16,
               }}
             >
               {placeholder}
