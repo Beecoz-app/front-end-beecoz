@@ -22,6 +22,7 @@ import {
 import { AppGenericButton } from "../../components/AppComponents/Buttons/Generic";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import {useTheme} from 'styled-components'
+import moment from "moment";
 
 export type PublicationType = NativeStackScreenProps<
   StackParamsList,
@@ -97,7 +98,7 @@ export const PublicationScreen = ({ navigation }: PublicationType) => {
 
           <DateContainer>
             <Text style={{color: theme.colors.yellow_p}}>
-              {String(dateText)}
+              {moment(`${dateText}`).format('D[/]MM[/]YY')}
             </Text>
           </DateContainer>
 
