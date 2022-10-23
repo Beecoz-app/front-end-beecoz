@@ -15,10 +15,13 @@ import {
   Content,
   AddImageContainer,
   AddImageContent,
-  AddPublicationInputText
+  AddPublicationInputText,
+  DateTimePickerContainer,
+  DateContainer
 } from "./styles";
 import { AppGenericButton } from "../../components/AppComponents/Buttons/Generic";
-import { AppSelectInput } from "../../components/AppComponents/Inputs/Select";
+import DateTimePicker from "@react-native-community/datetimepicker";
+import {useTheme} from 'styled-components'
 
 export type PublicationType = NativeStackScreenProps<
   StackParamsList,
@@ -31,10 +34,25 @@ export const PublicationScreen = ({ navigation }: PublicationType) => {
   ) as IPublicationContext;
   const [titleText, setTitleText] = useState("");
   const [descriptionText, setDescriptionText] = useState("");
-  const [serviceTypeValue, setServiceTypeValue] = useState('');
+  const [serviceTypeValue, setServiceTypeValue] = useState("");
+  const [dateText, setDateText] = useState(new Date());
+  const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
+  const theme = useTheme()
+
+    const handleChangeDate = (event: any, date: any) => {
+      const selectedDate = date || dateText
+      
+      setDateText(selectedDate)
+
+      setIsDatePickerOpen(false)
+    }
 
   const handleAddPublication = async () => {
-    await onAddPublication({title: titleText, description: descriptionText, servTypeId: serviceTypeValue})
+    await onAddPublication({
+      title: titleText,
+      description: descriptionText,
+      servTypeId: serviceTypeValue,
+    });
 
     clearInputs();
 
@@ -50,26 +68,56 @@ export const PublicationScreen = ({ navigation }: PublicationType) => {
     navigation.navigate("home");
   };
 
-  console.log(serviceTypeValue)
+  console.log(serviceTypeValue);
 
   return (
     <Container>
       <Content>
+        {/* TITLE */}
         <View style={{ width: "100%" }}>
-          <AddPublicationInputText placeholder="Título do pedido"
+          <AddPublicationInputText
+            placeholder="Título do pedido"
             keyboardType="default"
             value={titleText}
-            onChangeText={(text) => setTitleText(text)}/>
+            onChangeText={(text) => setTitleText(text)}
+          />
         </View>
+
+        {/* DESC */}
         <View style={{ width: "100%" }}>
           <AppTextArea
             placeholder="Descrição do pedido (opcional)"
             onChange={(text) => setDescriptionText(text)}
           />
         </View>
+
+        {/* DATE */}
+        <DateTimePickerContainer onPress={() => setIsDatePickerOpen(true)}>
+          <Text style={{color: theme.colors.gray_100, fontSize: 16}}>Previsão de finalização</Text>
+
+          <DateContainer>
+            <Text style={{color: theme.colors.yellow_p}}>
+              {String(dateText)}
+            </Text>
+          </DateContainer>
+
+          {isDatePickerOpen ? (
+            <DateTimePicker mode="date" display="default" value={dateText} onChange={handleChangeDate}/>
+          ) : (
+            <>
+            </>
+          )}
+
+        </DateTimePickerContainer>
+
+        {/* JOBS LIST */}
         <View style={{ width: "100%" }}>
-          <AppJobsList getValue={(value: string) => setServiceTypeValue(value)}/>
+          <AppJobsList
+            getValue={(value: string) => setServiceTypeValue(value)}
+          />
         </View>
+
+        {/* ADD PHOTOS */}
         <AddImageContainer>
           <AddImageContent>
             <Icon
@@ -98,12 +146,15 @@ export const PublicationScreen = ({ navigation }: PublicationType) => {
             </Text>
           </AddImageContent>
         </AddImageContainer>
-        </Content>
-        <AppGenericButton
-          disabled={false}
-          title="Criar pedido"
-          onClick={handleAddPublication}
-        />
+        {/* ... */}
+      </Content>
+
+      {/* ADD BUTTON */}
+      <AppGenericButton
+        disabled={false}
+        title="Criar pedido"
+        onClick={handleAddPublication}
+      />
     </Container>
   );
 };

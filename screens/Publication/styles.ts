@@ -1,5 +1,6 @@
 import { TextInput } from "react-native-gesture-handler";
 import styled from "../../styles/styledComponents";
+import {TouchableOpacity, View} from 'react-native'
 import { theme } from "../../styles/theme";
 
 export const Container = styled.View`
@@ -54,4 +55,37 @@ export const AddPublicationInputText = (styled.TextInput.attrs((props) => ({
 
     background-color: ${({theme}) => theme.colors.main};
 
-` as unknown) as TextInput
+` as unknown) as typeof TextInput
+
+export const DateTimePickerContainer = (styled.TouchableOpacity`
+    width: 100%;
+    height: 60px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+
+    padding: 20px;
+
+    border-radius: 10px;
+
+
+    background-color: ${({theme}) => theme.colors.main};
+` as unknown) as typeof TouchableOpacity
+
+export const DateContainer = styled.View`
+    width: 80px;
+    height: 100%;
+
+    padding: 2px 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 5px;
+
+    background: ${({theme}) => theme.colors.second};
+
+`
