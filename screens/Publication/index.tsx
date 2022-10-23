@@ -23,6 +23,7 @@ import { AppGenericButton } from "../../components/AppComponents/Buttons/Generic
 import DateTimePicker from "@react-native-community/datetimepicker";
 import {useTheme} from 'styled-components'
 import moment from "moment";
+import { AppSelectInput } from "../../components/AppComponents/Inputs/Select";
 
 export type PublicationType = NativeStackScreenProps<
   StackParamsList,
@@ -38,6 +39,7 @@ export const PublicationScreen = ({ navigation }: PublicationType) => {
   const [serviceTypeValue, setServiceTypeValue] = useState("");
   const [dateText, setDateText] = useState(new Date());
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
+  const [localText, setLocalText] = useState('');
   const theme = useTheme()
 
     const handleChangeDate = (event: any, date: any) => {
@@ -110,6 +112,11 @@ export const PublicationScreen = ({ navigation }: PublicationType) => {
           )}
 
         </DateTimePickerContainer>
+
+        {/* LOCAL */}
+        <View style={{width: "100%"}}>
+          <AppSelectInput placeholder="Local do serviço" data={[{name: "Barueri", code: "a"}]} getValue={(local) => setLocalText(local)}/>
+        </View>
 
         {/* JOBS LIST */}
         <View style={{ width: "100%" }}>
