@@ -5,7 +5,13 @@ import { privateApi } from "../../services/privateApi";
 export interface IPublicationContext {
   publications: IPost[];
   setPublications: React.Dispatch<React.SetStateAction<IPost[]>>;
-  onAddPublication: (publication: {title: string, description: string, servTypeId: string}) => void
+  onAddPublication: (publication: {
+    title: string;
+    description: string;
+    servTypeId: string;
+    data: string;
+    region: string;
+  }) => void;
 }
 
 interface PublicationProviderProps {
@@ -21,32 +27,45 @@ export const PublicationProvider = ({ children }: PublicationProviderProps) => {
 
   useEffect(() => {
     const fetch = async () => {
-      const {data: {publications}} = await privateApi.get<{publications: Array<IPost>}>('/publication/read')
+      const {
+        data: { publications },
+      } = await privateApi.get<{ publications: Array<IPost> }>(
+        "/publication/read"
+      );
 
-      setPublications(publications)
-    }
+      setPublications(publications);
+    };
 
-    fetch()
+    fetch();
   }, []);
 
-  const onAddPublication = async (publication: {title: string, description: string, servTypeId: string}) => {
-    const {data} = await privateApi.post<{publication: Array<IPost>}>('/publication/create', {
-      title: publication.title,
-      description: publication.description,
-      servTypeId: publication.servTypeId,
-      data: "2005-04-17",
-	  region: "Santana de Parnaíba",
-    })
+  const onAddPublication = async (publication: {
+    title: string;
+    description: string;
+    servTypeId: string;
+    data: string;
+    region: string;
+  }) => {
+    const { data } = await privateApi.post<{ publication: Array<IPost> }>(
+      "/publication/create",
+      {
+        title: publication.title,
+        description: publication.description,
+        servTypeId: publication.servTypeId,
+        data: publication.data,
+        region: publication.region,
+      }
+    );
 
-    console.log(data)
+    console.log(data);
 
     setPublications((prev: any) => [
       ...prev,
       {
-        ...data.publication
+        ...data.publication,
       },
     ]);
-  }
+  };
 
   return (
     <PublicationContext.Provider

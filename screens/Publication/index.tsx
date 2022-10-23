@@ -55,6 +55,8 @@ export const PublicationScreen = ({ navigation }: PublicationType) => {
       title: titleText,
       description: descriptionText,
       servTypeId: serviceTypeValue,
+      data: String(dateText),
+      region: localText
     });
 
     clearInputs();
