@@ -8,6 +8,7 @@ import {
   StackPublicationNavigator,
   StackProfileNavigator,
   StackSettingsNavigator,
+  StackChatingNavigator,
 } from "../Stack/StackTabNavigation";
 
 import IconIoni from "react-native-vector-icons/Ionicons";
@@ -22,6 +23,7 @@ export type BottomParamsList = {
   publicationBottom: undefined;
   profileBottom: undefined;
   settingsBottom: undefined;
+  chatingBottom: undefined;
 };
 
 const Tab = createBottomTabNavigator<BottomParamsList>();
@@ -83,6 +85,7 @@ export const BottomTabNavigator = () => {
           ),
         }}
       />
+      
       <Tab.Screen
         name="publicationBottom"
         component={StackPublicationNavigator}

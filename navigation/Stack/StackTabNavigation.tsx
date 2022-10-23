@@ -22,8 +22,8 @@ export type StackParamsList = {
 
   chat: undefined;
   chating: {
-    interested: IAutonomous
-  }
+    interested: IAutonomous;
+  };
 
   publication: undefined;
   settings: undefined;
@@ -73,7 +73,13 @@ export const StackChatNavigator = () => {
         component={ChatScreen}
         options={{ headerTitle: (props) => <Header title="Chat" /> }}
       />
-      <Tab.Screen name="chating" component={ChatingScreen} options={{headerTitle: (props) => <Header title='COlocar o nome da pessoa' /> }}/>
+      <Tab.Screen
+        name="chating"
+        component={ChatingScreen}
+        options={{
+          headerTitle: (props) => <Header title="COlocar o nome da pessoa" />,
+        }}
+      />
     </Tab.Navigator>
   );
 };
@@ -89,7 +95,11 @@ export const StackPublicationNavigator = () => {
       <Tab.Screen
         name="publication"
         component={PublicationScreen}
-        options={{ headerTitle: (props) => <Header title="Pedido" backable={true} {...props}/> }}
+        options={{
+          headerTitle: (props) => (
+            <Header title="Pedido" backable={true} {...props} />
+          ),
+        }}
       />
     </Tab.Navigator>
   );
@@ -140,8 +150,12 @@ export const StackSettingsNavigator = () => {
 
 export const StackLoginNavigator = () => {
   return (
-    <Tab.Navigator screenOptions={{headerTransparent: true}}>
-      <Tab.Screen name="login" component={LoginScreen} options={{headerShown: false}}/>
+    <Tab.Navigator screenOptions={{ headerTransparent: true }}>
+      <Tab.Screen
+        name="login"
+        component={LoginScreen}
+        options={{ headerShown: false }}
+      />
     </Tab.Navigator>
-  )
-}
+  );
+};

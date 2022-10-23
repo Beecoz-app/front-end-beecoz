@@ -7,7 +7,7 @@ import { ChatCard } from "./components/ChatCard";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { StackParamsList } from "../../navigation/Stack/StackTabNavigation";
 
-export type ChatType = NativeStackScreenProps<StackParamsList, "chat">;
+export type ChatType = NativeStackScreenProps<StackParamsList>;
 
 export const ChatScreen = ({ navigation }: ChatType) => {
   const interested: IInterest["interest"] = [
