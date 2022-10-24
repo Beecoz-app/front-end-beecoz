@@ -20,6 +20,8 @@ const Tab = createNativeStackNavigator<MainStackParams>();
 
 export const MainStack = () => {
   const { token } = useContext(AuthContext) as IAuthContext;
+  console.log(token, 'aaaaaaaaaaaa')
+
   return (
     <Tab.Navigator
       initialRouteName="mainAuthStack"

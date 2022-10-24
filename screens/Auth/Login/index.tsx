@@ -48,6 +48,7 @@ export const LoginScreen = ({ navigation }: LoginType) => {
   const onLogin = async () => {
     try {
       await handleLogin({ login, password, type });
+
     } catch (error) {
       console.log(error);
     }
@@ -80,7 +81,7 @@ export const LoginScreen = ({ navigation }: LoginType) => {
           )}
         </InputContent>
         <LoginWithNumberContainer>
-          <AppCheckBox onCheck={() => setNumberIsLogin(!numberIsLogin)} />
+          <AppCheckBox/>
           <LoginWithNumberContainer__Text>
             Entrar com número
           </LoginWithNumberContainer__Text>

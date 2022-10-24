@@ -1,5 +1,6 @@
 import { View, TouchableOpacity } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import { useTheme } from "styled-components";
 
 import {
@@ -8,14 +9,11 @@ import {
   StackPublicationNavigator,
   StackProfileNavigator,
   StackSettingsNavigator,
-  StackChatingNavigator,
 } from "../Stack/StackTabNavigation";
 
 import IconIoni from "react-native-vector-icons/Ionicons";
 import IconFontisto from "react-native-vector-icons/Fontisto";
 import IconAwesome from "react-native-vector-icons/FontAwesome";
-
-
 
 export type BottomParamsList = {
   homeBottom: undefined;
@@ -28,14 +26,32 @@ export type BottomParamsList = {
 
 const Tab = createBottomTabNavigator<BottomParamsList>();
 
+const getTabBarStyle = (route: any) => {
+  const screen = getFocusedRouteNameFromRoute(route);
+
+  if (
+    screen === "chating" ||
+    screen === 'editProfile' ||
+    screen === 'securityProfile' ||
+    screen === 'logoutProfile' ||
+    screen === 'supportProfile' || 
+    screen === 'aboutProfile'
+  ) {
+    return "none";
+  }
+
+  return "flex";
+};
+
 export const BottomTabNavigator = () => {
   const theme = useTheme();
   return (
     <Tab.Navigator
-      screenOptions={{
+      screenOptions={(route: any) => ({
         headerShown: false,
         tabBarShowLabel: false,
         tabBarStyle: {
+          display: getTabBarStyle(route.route),
           position: "absolute",
           bottom: 25,
           left: 20,
@@ -45,7 +61,7 @@ export const BottomTabNavigator = () => {
           height: 60,
           borderTopColor: "transparent",
         },
-      }}
+      })}
     >
       <Tab.Screen
         name="homeBottom"
@@ -85,13 +101,13 @@ export const BottomTabNavigator = () => {
           ),
         }}
       />
-      
+
       <Tab.Screen
         name="publicationBottom"
         component={StackPublicationNavigator}
         options={{
-          tabBarStyle:{
-            display: "none"
+          tabBarStyle: {
+            display: "none",
           },
           tabBarIcon: ({ focused }) => (
             <View style={{ justifyContent: "center", alignItems: "center" }}>

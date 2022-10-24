@@ -1,9 +1,10 @@
 import { Text, View } from "react-native"
+import {Container} from './styles'
 
 export const EditProfileScreen = () => {
     return (
-        <View>
-            <Text>EDit screen</Text>
-        </View>
+        <Container>
+            <Text>aaaaaaaaaaaa</Text>
+        </Container>
     )
 }
