@@ -10,6 +10,7 @@ import { api } from "../../services/api";
 import { privateApi } from "../../services/privateApi";
 import { CommonHeaderProperties } from "../../types/axios";
 import { IClient } from "../../interfaces/User/CLient/IClient";
+import { addUser } from "../../services/firebase";
 
 export interface IAuthContext {
   user: IClient | IAutonomous | null;
@@ -122,6 +123,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       });
 
 
+      addUser({email: newClient.login, id: client.id, avatar: '',  type: 'Client'})
+
       
       console.log('new client', client)
       console.log('token', token)
@@ -161,6 +164,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         biography: '',
       });
 
+
+      addUser({email: newAutonomous?.login as string, id: autonomous.id, avatar: '',  type: 'Autonomous'})
 
       setUser(autonomous)
       setToken(token)

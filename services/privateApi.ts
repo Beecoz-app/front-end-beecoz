@@ -3,7 +3,7 @@ import * as SecureStorage from 'expo-secure-store'
 import { CommonHeaderInteceptors } from "../types/axios"
 
 export const privateApi = axios.create({
-    baseURL:"http://192.168.0.103:8080"
+    baseURL:"http://192.168.95.33:8080"
 })
 
 privateApi.interceptors.request.use(async (config) => {
