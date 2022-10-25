@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { doc, getFirestore, setDoc } from "firebase/firestore";
+import { collection, doc, getFirestore, onSnapshot, query, QuerySnapshot, setDoc, where } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyArxYAoLzlOWogTgEaq3tXOTcHAzybFs-E",
@@ -17,6 +17,23 @@ export const addUser = async (sender: {id: number, email: string, avatar: string
         type: sender.type,
         avatar: sender.avatar
     })
+}
+
+export const getAllOpenedChats = (userId: string, setChat: any) => {
+  let chats: Array<any>[]
+  const setQuery = query(
+    collection(db, 'users'),
+      where('id', '==', userId)
+  )
+
+  const onsubscribe = onSnapshot(setQuery, (querySnapshot) => {
+    querySnapshot.forEach(doc => {
+      const data = doc.data()
+
+      chats.push(...data.chats)
+    })
+    setChat(chats)
+  })
 }
 
 const app = initializeApp(firebaseConfig);
