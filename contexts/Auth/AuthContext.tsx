@@ -1,7 +1,6 @@
 import axios, { AxiosError } from "axios";
 import React, { createContext, ReactNode, useContext, useEffect, useState } from "react";
 import { IAutonomous } from "../../interfaces/User/Autonomous/IAutonomous";
-import { IClient } from "../../interfaces/User/CLient/IClient";
 import * as SecureStore from "expo-secure-store";
 import { RegisterAuthProvider } from "./Register/RegisterAuthContext";
 import { ClientAuthRegisterContext, IClientAuthRegister } from "./Register/Client/ClientRegisterAuthContext";
@@ -10,6 +9,7 @@ import { IAutonomousRegister } from "../../interfaces/User/Autonomous/IAutonomou
 import { api } from "../../services/api";
 import { privateApi } from "../../services/privateApi";
 import { CommonHeaderProperties } from "../../types/axios";
+import { IClient } from "../../interfaces/User/CLient/IClient";
 
 export interface IAuthContext {
   user: IClient | IAutonomous | null;

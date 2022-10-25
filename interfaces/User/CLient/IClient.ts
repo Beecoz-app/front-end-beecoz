@@ -4,7 +4,10 @@ import { ITypeUser } from "../ITypeUser";
 
 export interface IClient {
     id: number;
-    profileId: IClientProfile['id'];
+    profile: {
+        id: number;
+        biography: string;
+    };
     loginId: ILogin['id'];
     typeId: ITypeUser['id'];
     name: string;
