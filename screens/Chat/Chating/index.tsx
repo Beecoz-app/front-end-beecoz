@@ -1,5 +1,5 @@
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
-import { useRoute, RouteProp } from '@react-navigation/native';
+import { useRoute, RouteProp } from "@react-navigation/native";
 import {
   Container,
   Content,
@@ -10,40 +10,72 @@ import {
   ReceiverMessage,
   SenderMessage,
   SenderMessageText,
-  ReceiverMessageText
+  ReceiverMessageText,
 } from "./styles";
 import Icon from "react-native-vector-icons/Ionicons";
 import IconAwesome from "react-native-vector-icons/FontAwesome";
 import { useTheme } from "styled-components";
+import { useContext, useEffect, useState } from "react";
+import { getAllMessagesOfCurrentChating } from "../../../services/firebase";
+import { AuthContext, IAuthContext } from "../../../contexts/Auth/AuthContext";
 
 type ChatingScreenParamsList = {
   Receiver: {
     receiver: {
-
       id: string;
       title: string;
       with: string;
       avatar: string;
-    }
-  }
-}
+    };
+    chatId: string;
+  };
+};
 
 export const ChatingScreen = () => {
-  const route = useRoute<RouteProp<ChatingScreenParamsList, 'Receiver'>>()
+  const route = useRoute<RouteProp<ChatingScreenParamsList, "Receiver">>();
+  const { user } = useContext(AuthContext) as IAuthContext;
+  const [messages, setMessages] = useState<
+    Array<{
+      id: string;
+      chatId: string;
+      userId: string;
+      message: string;
+      timestamp: string;
+    }>
+  >([]);
   const theme = useTheme();
 
-  console.log('oiiiiiiiiiiii', route.params.receiver.title)
+  useEffect(() => {
+    const fetch = async () => {
+      getAllMessagesOfCurrentChating(
+        route.params.chatId,
+        String(user?.id),
+        setMessages
+      );
+    };
+
+    fetch();
+  }, []);
+
+  console.log("oiiiiiiiiiiii", route.params.receiver.title);
 
   return (
     <Container>
       <Content>
         <MessagesContainer>
-          <SenderMessage>
-            <SenderMessageText>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veniam repudiandae libero fugiat consequuntur cupiditate vero.</SenderMessageText>
-          </SenderMessage>
-          <ReceiverMessage>
-            <ReceiverMessageText>tendi...</ReceiverMessageText>
-          </ReceiverMessage>
+          {messages.map((message) =>
+            message.userId === String(user?.id) ? (
+              <SenderMessage>
+                <SenderMessageText>
+                  {message.message}
+                </SenderMessageText>
+              </SenderMessage>
+            ) : (
+              <ReceiverMessage>
+                <ReceiverMessageText>{message.message}</ReceiverMessageText>
+              </ReceiverMessage>
+            )
+          )}
         </MessagesContainer>
 
         <SendMessageContainer>

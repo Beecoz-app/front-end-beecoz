@@ -14,7 +14,7 @@ export type ChatType = NativeStackScreenProps<StackParamsList>;
 
 export const ChatScreen = ({ navigation }: ChatType) => {
   const {user} = useContext(AuthContext) as IAuthContext
-  const [chat, setChat] = useState<Array<{id: string, title: string, with: string, avatar: string}>>([]);
+  const [chat, setChat] = useState<Array<{id: string, title: string, with: string, avatar: string, chatId: string}>>([]);
 
   useEffect(() => {
     const fetch = async () => {

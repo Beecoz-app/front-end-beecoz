@@ -31,7 +31,6 @@ export const SenderMessage = styled.View`
   max-width: 80%;
 
   padding: 20px;
-  margin-bottom: 5px;
 
   border-radius: 10px;
 
@@ -39,7 +38,7 @@ export const SenderMessage = styled.View`
   align-items: center;
   flex-direction: row;
 
-  align-self: flex-start;
+  align-self: flex-end;
 
   background-color: ${({ theme }) => theme.colors.main};
 `;
@@ -56,6 +55,7 @@ export const ReceiverMessage = styled.View`
   max-width: 80%;
 
   padding: 20px;
+  margin-bottom: 5px;
 
   border-radius: 10px;
 
@@ -63,7 +63,7 @@ export const ReceiverMessage = styled.View`
   align-items: center;
   flex-direction: row;
 
-  align-self: flex-end;
+  align-self: flex-start;
 
   background-color: ${({ theme }) => theme.colors.main};
 `;

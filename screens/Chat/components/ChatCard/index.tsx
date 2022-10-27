@@ -4,7 +4,7 @@ import { ChatType } from "../../../../screens/Chat";
 import { Container } from "./styles";
 
 interface ChatCardProps {
-    data: {id: string, title: string, with: string, avatar: string},
+    data: {id: string, title: string, with: string, avatar: string, chatId: string},
     navigation: ChatType['navigation']
 }
 
@@ -12,7 +12,12 @@ export const ChatCard = ({data, navigation}: ChatCardProps) => {
   const theme = useTheme();
 
   return (
-    <Container onPress={() => navigation.navigate('chating', {receiver: data})}>
+    <Container onPress={() => navigation.navigate('chating', {receiver: {
+      id: data.id,
+      avatar: data.avatar,
+      title: data.title,
+      with: data.with
+    }, chatId: data.chatId})}>
       <Image
         style={{ width: 50, height: 50, borderRadius: 50 }}
         resizeMode="contain"

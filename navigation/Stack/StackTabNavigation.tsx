@@ -23,6 +23,7 @@ export type StackParamsList = {
   chat: undefined;
   chating: {
     receiver: {id: string, title: string, with: string, avatar: string};
+    chatId: string
   };
 
   publication: undefined;
