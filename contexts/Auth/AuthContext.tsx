@@ -123,7 +123,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       });
 
 
-      addUser({email: newClient.login, id: client.id, avatar: '',  type: 'Client'})
+      addUser({login: newClient.login, id: client.id, avatar: '',  type: 'Client', name: newClient.name})
 
       
       console.log('new client', client)
@@ -165,7 +165,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       });
 
 
-      addUser({email: newAutonomous?.login as string, id: autonomous.id, avatar: '',  type: 'Autonomous'})
+      addUser({login: newAutonomous?.login as string, id: autonomous.id, avatar: '',  type: 'Autonomous', name: newAutonomous?.name as string})
 
       setUser(autonomous)
       setToken(token)

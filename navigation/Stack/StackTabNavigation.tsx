@@ -22,7 +22,7 @@ export type StackParamsList = {
 
   chat: undefined;
   chating: {
-    interested: IAutonomous;
+    receiver: {id: string, title: string, with: string, avatar: string};
   };
 
   publication: undefined;

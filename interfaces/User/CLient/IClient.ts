@@ -8,7 +8,7 @@ export interface IClient {
         id: number;
         biography: string;
     };
-    loginId: ILogin['id'];
+    login: string;
     typeId: ITypeUser['id'];
     name: string;
     lastName: string;

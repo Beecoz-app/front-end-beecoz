@@ -5,7 +5,7 @@ import { ITypeUser } from "../ITypeUser";
 export interface IAutonomous {
     id: number;
     profileId: IAutonomousProfile['id'];
-    loginId: ILogin['id'];
+    login: string;
     typeId: ITypeUser['id'];
     name: string;
     lasName: string;
