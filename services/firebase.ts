@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { collection, doc, getFirestore, onSnapshot, query, QuerySnapshot, setDoc, where } from "firebase/firestore";
+import { collection, doc, getFirestore, onSnapshot, orderBy, query, QuerySnapshot, setDoc, where } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyArxYAoLzlOWogTgEaq3tXOTcHAzybFs-E",
@@ -41,6 +41,20 @@ export const getAllOpenedChats = (userEmail: string, setChat: any) => {
       chats.push(...data.chats)
     })
     setChat(chats)
+  })
+}
+
+const getAllMessagesOfCurrentChating = (chatId: string, userId: string, setMessages: any) => {
+  const setQuery = query(collection(db, 'messages'), orderBy('timestamp'), where('chatId', '==', chatId))
+
+  onSnapshot(setQuery, (querySnapshot) => {
+    let messages: Array<any>= []
+
+    querySnapshot.forEach(doc => {
+      const data = doc.data()
+
+      console.log(data)
+    })
   })
 }
 
