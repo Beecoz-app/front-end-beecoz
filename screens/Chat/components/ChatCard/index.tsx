@@ -1,7 +1,5 @@
 import { Image, Text, View } from "react-native";
 import { useTheme } from "styled-components";
-import { IInterest } from "../../../../interfaces/Job/IInterested";
-import { IAutonomous } from "../../../../interfaces/User/Autonomous/IAutonomous";
 import { ChatType } from "../../../../screens/Chat";
 import { Container } from "./styles";
 

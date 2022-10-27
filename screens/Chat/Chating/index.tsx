@@ -1,4 +1,5 @@
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
+import { useRoute, RouteProp } from '@react-navigation/native';
 import {
   Container,
   Content,
@@ -15,8 +16,23 @@ import Icon from "react-native-vector-icons/Ionicons";
 import IconAwesome from "react-native-vector-icons/FontAwesome";
 import { useTheme } from "styled-components";
 
+type ChatingScreenParamsList = {
+  Receiver: {
+    receiver: {
+
+      id: string;
+      title: string;
+      with: string;
+      avatar: string;
+    }
+  }
+}
+
 export const ChatingScreen = () => {
+  const route = useRoute<RouteProp<ChatingScreenParamsList, 'Receiver'>>()
   const theme = useTheme();
+
+  console.log('oiiiiiiiiiiii', route.params.receiver.title)
 
   return (
     <Container>
