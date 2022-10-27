@@ -7,8 +7,10 @@ import {
   orderBy,
   query,
   QuerySnapshot,
+  serverTimestamp,
   setDoc,
   where,
+  addDoc
 } from "firebase/firestore";
 import React, { SetStateAction } from "react";
 
@@ -100,6 +102,15 @@ export const getAllMessagesOfCurrentChating = (
     setMessages(messages);
   });
 };
+
+export const sendNewMessage = async (chatId: string, userId: string, message: string) => {
+  await addDoc(collection(db, 'messages'), {
+    chatId: chatId,
+    userId: userId,
+    message: message,
+    timestamp: serverTimestamp()
+  })
+}
 
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
