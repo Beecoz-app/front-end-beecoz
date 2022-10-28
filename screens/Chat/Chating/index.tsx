@@ -16,7 +16,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 import IconAwesome from "react-native-vector-icons/FontAwesome";
 import { useTheme } from "styled-components";
 import { useContext, useEffect, useState } from "react";
-import { getAllMessagesOfCurrentChating } from "../../../services/firebase";
+import { getAllMessagesOfCurrentChating, sendNewMessage } from "../../../services/firebase";
 import { AuthContext, IAuthContext } from "../../../contexts/Auth/AuthContext";
 
 type ChatingScreenParamsList = {
@@ -43,6 +43,7 @@ export const ChatingScreen = () => {
       timestamp: string;
     }>
   >([]);
+  const [messageText, setMessageText] = useState('');
   const theme = useTheme();
 
   useEffect(() => {
@@ -57,7 +58,16 @@ export const ChatingScreen = () => {
     fetch();
   }, []);
 
-  console.log("oiiiiiiiiiiii", route.params.receiver.title);
+
+  const handleSendNewMessage = async () => {
+    await sendNewMessage(route.params.chatId, String(user?.id), messageText)
+
+    clearMessageTextInput()
+  }
+
+  const clearMessageTextInput = () => {
+    setMessageText('')
+  }
 
   return (
     <Container>
@@ -79,7 +89,7 @@ export const ChatingScreen = () => {
         </MessagesContainer>
 
         <SendMessageContainer>
-          <SendMessageInput placeholder="Digite..." />
+          <SendMessageInput placeholder="Digite..." value={messageText} onChangeText={(text) => setMessageText(text)} />
           <SendMessageIcons>
             <TouchableOpacity>
               <Icon
@@ -97,6 +107,7 @@ export const ChatingScreen = () => {
               <Icon
                 name="send"
                 style={{ fontSize: 22, color: theme.colors.gray_100 }}
+                onPress={handleSendNewMessage}
               />
             </TouchableOpacity>
           </SendMessageIcons>
