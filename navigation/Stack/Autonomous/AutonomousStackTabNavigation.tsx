@@ -3,6 +3,17 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useTheme } from "styled-components";
 import { Header } from "../../../components/AppComponents/Header";
 
+import { ChatScreen } from "../../../screens/Autonomous/Chat";
+import { ProfileScreen } from "../../../screens/Autonomous/Profile/";
+import { SettingsScreen } from "../../../screens/Autonomous/Settings";
+import { EditProfileScreen } from "../../../screens/Autonomous/Profile/screens/Edit";
+import { SecurityProfileScreen } from "../../../screens/Autonomous/Profile/screens/Security";
+import { LogoutProfileScreen } from "../../../screens/Autonomous/Profile/screens/Logout";
+import { SupportProfileScreen } from "../../../screens/Autonomous/Profile/screens/Support";
+import { AboutProfileScreen } from "../../../screens/Autonomous/Profile/screens/About";
+import { ChatingScreen } from "../../../screens/Autonomous/Chat/Chating";
+import { LoginScreen } from "../../../screens/Auth/Login";
+
 export type AutonomousStackParamsList = {
   home: undefined;
 
