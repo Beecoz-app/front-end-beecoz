@@ -1,9 +1,9 @@
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { Text, View } from "react-native";
 import { useTheme } from "styled-components";
-import { ConcludedPublication } from "../../../../screens/Home/screens/ConcludedPublication";
-import { OpenedPublication } from "../../../../screens/Home/screens/OpenedPublication";
-import { ProgressPosts } from "../../../../screens/Home/screens/ProgressPublication";
+import { ConcludedPublication } from "../../../../screens/Client/Home/screens/ConcludedPublication";
+import { OpenedPublication } from "../../../../screens/Client/Home/screens/OpenedPublication";
+import { ProgressPosts } from "../../../../screens/Client/Home/screens/ProgressPublication";
 
 const Tab = createMaterialTopTabNavigator();
 

@@ -2,12 +2,12 @@ import { useContext, useState } from "react";
 import { Text, View, Image, ListRenderItem, FlatList } from "react-native";
 import { InterestedCard } from "../InterestedCard";
 import { Container, InteresedView, ResumeView, ListInterested } from "./styles";
-import { IPost } from "../../../../interfaces/Post/IPost";
-import { IAutonomous } from "../../../../interfaces/User/Autonomous/IAutonomous";
+import { IPost } from "../../../../../interfaces/Post/IPost";
+import { IAutonomous } from "../../../../../interfaces/User/Autonomous/IAutonomous";
 import {
   IServiceContext,
   ServiceContext,
-} from "../../../../contexts/serviceContext/ServiceContext";
+} from "../../../../../contexts/serviceContext/ServiceContext";
 
 export const PostCard = ({ data }: { data: IPost }) => {
   const { serviceTypes } = useContext(ServiceContext) as IServiceContext;
