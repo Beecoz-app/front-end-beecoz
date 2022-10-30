@@ -14,4 +14,5 @@ export interface IClient {
     birthDate: string;
     CPF: string;
     profileImage: string;
+    clientType: 'Client' | 'Autonomous'
 }

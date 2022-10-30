@@ -2,6 +2,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useContext } from "react";
 import { AuthContext, IAuthContext } from "../contexts/Auth/AuthContext";
 import { AuthStackNavigator, AuthStackParams } from "./Auth/AuthStackNavigator";
+import { AutonomousBottomTabNavigator } from "./Bottom/Autonomous/AutonomousBottomTabNavigator";
 import {
   ClientBottomParamsList,
   ClientBottomTabNavigator,
@@ -19,7 +20,9 @@ export type MainStackParams = AuthStackParams &
 const Tab = createNativeStackNavigator<MainStackParams>();
 
 export const MainStack = () => {
-  const { token } = useContext(AuthContext) as IAuthContext;
+  const { token, user } = useContext(AuthContext) as IAuthContext;
+
+  console.log('allllllllllllll', user?.clientType)
 
   return (
     <Tab.Navigator
@@ -27,9 +30,23 @@ export const MainStack = () => {
       screenOptions={{ headerShown: false }}
     >
       {token ? (
-        <Tab.Group>
-          <Tab.Screen name="mainBottomStacks" component={ClientBottomTabNavigator} />
-        </Tab.Group>
+        <>
+          {user?.clientType === "Client" ? (
+            <Tab.Group>
+              <Tab.Screen
+                name="mainBottomStacks"
+                component={ClientBottomTabNavigator}
+              />
+            </Tab.Group>
+          ) : (
+            <Tab.Group>
+              <Tab.Screen
+                name="mainBottomStacks"
+                component={AutonomousBottomTabNavigator}
+              />
+            </Tab.Group>
+          )}
+        </>
       ) : (
         <Tab.Group>
           <Tab.Screen name="mainAuthStack" component={AuthStackNavigator} />
