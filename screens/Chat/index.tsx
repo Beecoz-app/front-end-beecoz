@@ -2,15 +2,14 @@ import { TouchableOpacity } from "react-native";
 import { useTheme } from "styled-components";
 import Icon from "react-native-vector-icons/AntDesign";
 import { Container, Flat, Input, InputContainer } from "./styles";
-import { IInterest } from "../../interfaces/Job/IInterested";
 import { ChatCard } from "./components/ChatCard";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { StackParamsList } from "../../navigation/Stack/Client/ClientStackTabNavigation";
+import { ClientStackParamsList } from "../../navigation/Stack/Client/ClientStackTabNavigation";
 import { useState, useEffect, useContext } from "react";
 import { getAllOpenedChats } from "../../services/firebase";
 import { AuthContext, IAuthContext } from "../../contexts/Auth/AuthContext";
 
-export type ChatType = NativeStackScreenProps<StackParamsList>;
+export type ChatType = NativeStackScreenProps<ClientStackParamsList>;
 
 export const ChatScreen = ({ navigation }: ChatType) => {
   const {user} = useContext(AuthContext) as IAuthContext

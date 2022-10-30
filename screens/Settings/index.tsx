@@ -1,13 +1,13 @@
 import { Text, View } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useTheme } from "styled-components";
-import { StackParamsList } from "../../navigation/Stack/Client/ClientStackTabNavigation";
+import { ClientStackParamsList } from "../../navigation/Stack/Client/ClientStackTabNavigation";
 import { OptionsCard } from "./OptionsCard";
 import { Container, Content, IconContainer, OptionsContainer } from "./styles";
 import IconIo from "react-native-vector-icons/Ionicons";
 import IconMat from "react-native-vector-icons/MaterialCommunityIcons";
 
-export type SettingsType = NativeStackScreenProps<StackParamsList, "settings">;
+export type SettingsType = NativeStackScreenProps<ClientStackParamsList, "settings">;
 
 export const SettingsScreen = ({ navigation }: SettingsType) => {
   const theme = useTheme();

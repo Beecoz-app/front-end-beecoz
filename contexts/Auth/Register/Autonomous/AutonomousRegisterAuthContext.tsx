@@ -1,10 +1,9 @@
-import React, { createContext, ReactNode, useContext, useState } from "react";
-import { IClientRegister } from "../../../../interfaces/User/CLient/IClientRegister";
+import React, { createContext, ReactNode, useState } from "react";
 import { IAutonomousRegister } from "../../../../interfaces/User/Autonomous/IAutonomousRegister";
 
 export interface IAutonomousAuthRegister {
   newAutonomous: IAutonomousRegister | null;
-  setNewAutonomous: React.Dispatch<React.SetStateAction<IClientRegister | null>>;
+  setNewAutonomous: React.Dispatch<React.SetStateAction<IAutonomousRegister | null>>;
 }
 interface AutonomousAuthRegisterProviderProps {
   children: ReactNode;

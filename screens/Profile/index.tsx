@@ -6,11 +6,11 @@ import IconMaterialIcon from "react-native-vector-icons/MaterialIcons";
 import IconFont from "react-native-vector-icons/FontAwesome5";
 import { OptionsCard } from "./components/OptionsCard";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { StackParamsList } from "../../navigation/Stack/Client/ClientStackTabNavigation";
+import { ClientStackParamsList } from "../../navigation/Stack/Client/ClientStackTabNavigation";
 import { Container, Profile, ProfileContent, OptionsContainer,OptionsContent } from "./styles";
 import { AuthContext, IAuthContext } from "../../contexts/Auth/AuthContext";
 
-export type ProfileType = NativeStackScreenProps<StackParamsList, "profile">;
+export type ProfileType = NativeStackScreenProps<ClientStackParamsList, "profile">;
 
 export const ProfileScreen = ({ navigation }: ProfileType) => {
   const {user} = useContext(AuthContext) as IAuthContext

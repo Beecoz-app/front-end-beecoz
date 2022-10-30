@@ -1,10 +1,10 @@
 import Icon from "react-native-vector-icons/Ionicons";
 import {NativeStackNavigationProp, NativeStackScreenProps} from '@react-navigation/native-stack'
-import { StackParamsList } from "../../../navigation/Stack/Client/ClientStackTabNavigation";
+import { ClientStackParamsList } from "../../../navigation/Stack/Client/ClientStackTabNavigation";
 import {useNavigation} from '@react-navigation/native'
 import { BackButton, Title } from "./styles";
 
-type HeaderNavigationProps = NativeStackNavigationProp<StackParamsList>;
+type HeaderNavigationProps = NativeStackNavigationProp<ClientStackParamsList>;
 
 interface HeaderProps {
   backable?: boolean;

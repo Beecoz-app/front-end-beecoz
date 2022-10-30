@@ -1,6 +1,6 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React, { useContext, useState } from "react";
-import { Text, TextInput, View } from "react-native";
+import { Text, View } from "react-native";
 import Icon from "react-native-vector-icons/Fontisto";
 import { AppTextArea } from "../../components/AppComponents/Inputs/TextAreaInput";
 import { AppJobsList } from "../../components/AppComponents/JobsLIst";
@@ -8,8 +8,7 @@ import {
   IPublicationContext,
   PublicationContext,
 } from "../../contexts/Publication/PublicationContext";
-import { StackParamsList } from "../../navigation/Stack/Client/ClientStackTabNavigation";
-import { theme } from "../../styles/theme";
+import { ClientStackParamsList } from "../../navigation/Stack/Client/ClientStackTabNavigation";
 import {
   Container,
   Content,
@@ -26,7 +25,7 @@ import moment from "moment";
 import { AppSelectInput } from "../../components/AppComponents/Inputs/Select";
 
 export type PublicationType = NativeStackScreenProps<
-  StackParamsList,
+  ClientStackParamsList,
   "publication"
 >;
 

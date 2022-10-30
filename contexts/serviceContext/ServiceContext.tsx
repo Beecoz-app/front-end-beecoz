@@ -1,6 +1,6 @@
 import { Children, createContext, ReactNode, useEffect, useState } from "react";
 import { IServiceType } from "../../interfaces/Service/IServiceType";
-import { api, privateApi } from "../../services/api";
+import { api } from "../../services/api";
 
 export interface IServiceContext {
     serviceTypes: IServiceType[]
