@@ -65,7 +65,7 @@ export const ProfileScreen = ({ navigation }: ProfileType) => {
               />
             }
           />
-          <OptionsCard
+          {/* <OptionsCard
             title="Segurança"
             description="Configurar segurança"
             routeName="securityProfile"
@@ -76,8 +76,8 @@ export const ProfileScreen = ({ navigation }: ProfileType) => {
                 name="shield-alt"
               />
             }
-          />
-          <OptionsCard
+          /> */}
+          {/* <OptionsCard
             title="Suporte"
             description="Peça ajuda á equipe Beecoz"
             routeName="supportProfile"
@@ -88,7 +88,7 @@ export const ProfileScreen = ({ navigation }: ProfileType) => {
                 name="help"
               />
             }
-          />
+          /> */}
           <OptionsCard
             title="Sobre a Beecoz"
             description="Entenda a filosofia de nossa equipe"
