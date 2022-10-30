@@ -2,20 +2,20 @@ import styled from "../../styles/styledComponents";
 
 export const Container = styled.View`
   flex: 1;
+  width: 100%;
+
   background-color: ${({ theme }) => theme.colors.background};
-  justify-content: space-between;
 `;
 
 export const Content = styled.View`
-  width: 90%;
-  flex: 1;
+  width: 100%;
+  height: 100%;
 
-  justify-content: space-evenly;
+  padding: 20px;
+
+  display: flex;
   align-items: center;
-
-  align-self: center;
-
-  overflow-y: scroll;
+  flex-direction: column;
 `;
 
 export const IconContainer = styled.View`
@@ -35,4 +35,8 @@ export const OptionsContainer = styled.View`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
+  border-radius: 10px;
+
+  overflow: hidden;
 `;
