@@ -7,6 +7,7 @@ export const Container = styled.View`
   align-items: center;
   justify-content: space-between;
 
+
   background-color: ${({ theme }) => theme.colors.background};
 `;
 
@@ -16,6 +17,8 @@ export const Content = styled.View`
 
   align-items: center;
   justify-content: space-between;
+
+
 `;
 
 export const MessagesContainer = styled.View`
@@ -25,13 +28,14 @@ export const MessagesContainer = styled.View`
 
   flex: 1;
   flex-direction: column;
+
+
 `;
 
 export const SenderMessage = styled.View`
   max-width: 80%;
 
   padding: 20px;
-  margin-bottom: 5px;
 
   border-radius: 10px;
 
@@ -39,7 +43,7 @@ export const SenderMessage = styled.View`
   align-items: center;
   flex-direction: row;
 
-  align-self: flex-start;
+  align-self: flex-end;
 
   background-color: ${({ theme }) => theme.colors.main};
 `;
@@ -56,6 +60,7 @@ export const ReceiverMessage = styled.View`
   max-width: 80%;
 
   padding: 20px;
+  margin-bottom: 5px;
 
   border-radius: 10px;
 
@@ -63,7 +68,7 @@ export const ReceiverMessage = styled.View`
   align-items: center;
   flex-direction: row;
 
-  align-self: flex-end;
+  align-self: flex-start;
 
   background-color: ${({ theme }) => theme.colors.main};
 `;

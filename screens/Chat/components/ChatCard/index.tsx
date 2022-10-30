@@ -1,12 +1,10 @@
 import { Image, Text, View } from "react-native";
 import { useTheme } from "styled-components";
-import { IInterest } from "../../../../interfaces/Job/IInterested";
-import { IAutonomous } from "../../../../interfaces/User/Autonomous/IAutonomous";
 import { ChatType } from "../../../../screens/Chat";
 import { Container } from "./styles";
 
 interface ChatCardProps {
-    data: IAutonomous,
+    data: {id: string, title: string, with: string, avatar: string, chatId: string},
     navigation: ChatType['navigation']
 }
 
@@ -14,11 +12,16 @@ export const ChatCard = ({data, navigation}: ChatCardProps) => {
   const theme = useTheme();
 
   return (
-    <Container onPress={() => navigation.navigate('chating', {interested: data})}>
+    <Container onPress={() => navigation.navigate('chating', {receiver: {
+      id: data.id,
+      avatar: data.avatar,
+      title: data.title,
+      with: data.with
+    }, chatId: data.chatId})}>
       <Image
         style={{ width: 50, height: 50, borderRadius: 50 }}
         resizeMode="contain"
-        source={{ uri: data.profileImage }}
+        source={{ uri: data.avatar }}
       />
       <View
         style={{
@@ -34,7 +37,7 @@ export const ChatCard = ({data, navigation}: ChatCardProps) => {
             fontWeight: "bold",
           }}
         >
-          {data.name}
+          {data.title}
         </Text>
         <Text style={{color: theme.colors.blue_p, fontSize: 12, fontWeight: '100'}}>Opa, fechado! (estatico)</Text>
       </View>

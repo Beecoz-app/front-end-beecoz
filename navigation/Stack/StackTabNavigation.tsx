@@ -22,7 +22,8 @@ export type StackParamsList = {
 
   chat: undefined;
   chating: {
-    interested: IAutonomous;
+    receiver: {id: string, title: string, with: string, avatar: string};
+    chatId: string
   };
 
   publication: undefined;
@@ -76,9 +77,10 @@ export const StackChatNavigator = () => {
       <Tab.Screen
         name="chating"
         component={ChatingScreen}
-        options={{
-          headerTitle: (props) => <Header title="COlocar o nome da pessoa" />,
-        }}
+        options={({navigation, route}) => ({
+          headerTitle: (props) => <Header title={route.params.receiver.title} backable={true}/>,
+          headerBackVisible: false
+        })}
       />
     </Tab.Navigator>
   );
