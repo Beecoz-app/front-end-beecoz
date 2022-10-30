@@ -7,6 +7,7 @@ export const Container = styled.View`
   align-items: center;
   justify-content: space-between;
 
+
   background-color: ${({ theme }) => theme.colors.background};
 `;
 
@@ -16,6 +17,8 @@ export const Content = styled.View`
 
   align-items: center;
   justify-content: space-between;
+
+
 `;
 
 export const MessagesContainer = styled.View`
@@ -25,6 +28,8 @@ export const MessagesContainer = styled.View`
 
   flex: 1;
   flex-direction: column;
+
+
 `;
 
 export const SenderMessage = styled.View`
