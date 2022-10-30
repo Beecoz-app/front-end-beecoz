@@ -1,23 +1,60 @@
-import { useContext } from "react"
-import { Text, View } from "react-native"
-import { AppGeneticEditInput } from "../../../../components/AppComponents/Inputs/GenericEditInput"
-import { AppGeneticInput } from "../../../../components/AppComponents/Inputs/GenericInput"
-import { AuthContext, IAuthContext } from "../../../../contexts/Auth/AuthContext"
-import {Container, Content, InputsContainer} from './styles'
+import { useContext } from "react";
+import { View } from "react-native";
+import { useTheme } from "styled-components";
+import { AppGeneticEditInput } from "../../../../components/AppComponents/Inputs/GenericEditInput";
+import {
+  AuthContext,
+  IAuthContext,
+} from "../../../../contexts/Auth/AuthContext";
+import IconFont from "react-native-vector-icons/FontAwesome5";
+
+import { Container, Content, InputsContainer, IconContainer } from "./styles";
 
 export const EditProfileScreen = () => {
-    const {user} = useContext(AuthContext) as IAuthContext
+  const { user } = useContext(AuthContext) as IAuthContext;
+  const theme = useTheme();
 
-    return (
-        <Container>
-            <Content>
-
-            <InputsContainer>
-                <AppGeneticInput type="text" placeholder={user?.name as string}/>
-                <AppGeneticEditInput type="email" placeholder={user?.lastName as string } handlePress={() => console.log('vazio')}/>
-                <AppGeneticEditInput type="email" placeholder={user?.profile.biography ?user?.profile.biography as string : 'edite uma biografia para vocẽ' } handlePress={() => console.log('vazio')}/>
-            </InputsContainer>
-            </Content>
-        </Container>
-    )
-}
+  return (
+    <Container>
+      <Content>
+        <IconContainer
+        >
+          <IconFont
+            style={{ fontSize: 25, color: theme.colors.yellow_p }}
+            name="user"
+          />
+        </IconContainer>
+        <InputsContainer>
+          <AppGeneticEditInput
+            type="email"
+            placeholder={user?.name as string}
+            handlePress={() => console.log("vazio")}
+          />
+          <AppGeneticEditInput
+            type="email"
+            placeholder={user?.lastName as string}
+            handlePress={() => console.log("vazio")}
+          />
+          <AppGeneticEditInput
+            type="email"
+            placeholder={
+              user?.profile.biography
+                ? (user?.profile.biography as string)
+                : "coloque sua data de nascimento"
+            }
+            handlePress={() => console.log("vazio")}
+          />
+          <AppGeneticEditInput
+            type="email"
+            placeholder={
+              user?.profile.biography
+                ? (user?.profile.biography as string)
+                : "edite uma biografia para vocẽ"
+            }
+            handlePress={() => console.log("vazio")}
+          />
+        </InputsContainer>
+      </Content>
+    </Container>
+  );
+};
