@@ -1,11 +1,12 @@
-import { IAutonomousProfile } from "./IAutonomousProfile";
-import { ILogin } from "../ILogin";
 import { ITypeUser } from "../ITypeUser";
 
 export interface IAutonomous {
     id: number;
-    profileId: IAutonomousProfile['id'];
-    loginId: ILogin['id'];
+    profile: {
+        id: number;
+        biography: string;
+    };
+    login: string;
     typeId: ITypeUser['id'];
     name: string;
     lasName: string;

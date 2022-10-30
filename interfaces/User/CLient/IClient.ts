@@ -1,11 +1,12 @@
-import { IClientProfile } from "./IClientProfile";
-import { ILogin } from "../ILogin";
 import { ITypeUser } from "../ITypeUser";
 
 export interface IClient {
     id: number;
-    profileId: IClientProfile['id'];
-    loginId: ILogin['id'];
+    profile: {
+        id: number;
+        biography: string;
+    };
+    login: string;
     typeId: ITypeUser['id'];
     name: string;
     lastName: string;
