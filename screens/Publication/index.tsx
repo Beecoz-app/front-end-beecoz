@@ -8,7 +8,7 @@ import {
   IPublicationContext,
   PublicationContext,
 } from "../../contexts/Publication/PublicationContext";
-import { StackParamsList } from "../../navigation/Stack/ClientStackTabNavigation";
+import { StackParamsList } from "../../navigation/Stack/Client/ClientStackTabNavigation";
 import { theme } from "../../styles/theme";
 import {
   Container,

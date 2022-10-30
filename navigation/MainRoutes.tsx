@@ -6,7 +6,7 @@ import {
   ClientBottomParamsList,
   ClientBottomTabNavigator,
 } from "./Bottom/Client/ClientBottomTabNavigator";
-import { ClientStackParamsList } from "./Stack/ClientStackTabNavigation";
+import { ClientStackParamsList } from "./Stack/Client/ClientStackTabNavigation";
 
 export type MainStackParams = AuthStackParams &
   ClientStackParamsList &

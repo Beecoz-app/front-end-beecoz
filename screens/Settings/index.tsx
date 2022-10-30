@@ -1,7 +1,7 @@
 import { Text, View } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useTheme } from "styled-components";
-import { StackParamsList } from "../../navigation/Stack/ClientStackTabNavigation";
+import { StackParamsList } from "../../navigation/Stack/Client/ClientStackTabNavigation";
 import { OptionsCard } from "./OptionsCard";
 import { Container, Content, IconContainer, OptionsContainer } from "./styles";
 import IconIo from "react-native-vector-icons/Ionicons";

@@ -6,7 +6,7 @@ import IconMaterialIcon from "react-native-vector-icons/MaterialIcons";
 import IconFont from "react-native-vector-icons/FontAwesome5";
 import { OptionsCard } from "./components/OptionsCard";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { StackParamsList } from "../../navigation/Stack/ClientStackTabNavigation";
+import { StackParamsList } from "../../navigation/Stack/Client/ClientStackTabNavigation";
 import { Container, Profile, ProfileContent, OptionsContainer,OptionsContent } from "./styles";
 import { AuthContext, IAuthContext } from "../../contexts/Auth/AuthContext";
 

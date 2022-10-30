@@ -9,7 +9,7 @@ import {
   StackPublicationNavigator,
   StackProfileNavigator,
   StackSettingsNavigator,
-} from "../../Stack/ClientStackTabNavigation";
+} from "../../Stack/Client/ClientStackTabNavigation";
 
 import IconIoni from "react-native-vector-icons/Ionicons";
 import IconFontisto from "react-native-vector-icons/Fontisto";
