@@ -14,10 +14,9 @@ import { LogoutProfileScreen } from "../../screens/Profile/screens/Logout";
 import { SupportProfileScreen } from "../../screens/Profile/screens/Support";
 import { AboutProfileScreen } from "../../screens/Profile/screens/About";
 import { ChatingScreen } from "../../screens/Chat/Chating";
-import { IAutonomous } from "../../interfaces/User/Autonomous/IAutonomous";
 import { LoginScreen } from "../../screens/Auth/Login";
 
-export type StackParamsList = {
+export type ClientStackParamsList = {
   home: undefined;
 
   chat: undefined;
@@ -40,9 +39,9 @@ export type StackParamsList = {
   login: undefined;
 };
 
-const Tab = createNativeStackNavigator<StackParamsList>();
+const Tab = createNativeStackNavigator<ClientStackParamsList>();
 
-export const StackHomeNavigator = () => {
+export const ClientStackHomeNavigator = () => {
   const theme = useTheme();
   return (
     <Tab.Navigator

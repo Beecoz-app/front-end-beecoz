@@ -1,6 +1,6 @@
 import Icon from "react-native-vector-icons/Ionicons";
 import {NativeStackNavigationProp, NativeStackScreenProps} from '@react-navigation/native-stack'
-import { StackParamsList } from "../../../navigation/Stack/StackTabNavigation";
+import { StackParamsList } from "../../../navigation/Stack/ClientStackTabNavigation";
 import {useNavigation} from '@react-navigation/native'
 import { BackButton, Title } from "./styles";
 

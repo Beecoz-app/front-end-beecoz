@@ -5,17 +5,17 @@ import { useTheme } from "styled-components";
 
 import {
   StackChatNavigator,
-  StackHomeNavigator,
+  ClientStackHomeNavigator,
   StackPublicationNavigator,
   StackProfileNavigator,
   StackSettingsNavigator,
-} from "../Stack/StackTabNavigation";
+} from "../../Stack/ClientStackTabNavigation";
 
 import IconIoni from "react-native-vector-icons/Ionicons";
 import IconFontisto from "react-native-vector-icons/Fontisto";
 import IconAwesome from "react-native-vector-icons/FontAwesome";
 
-export type BottomParamsList = {
+export type ClientBottomParamsList = {
   homeBottom: undefined;
   chatBottom: undefined;
   publicationBottom: undefined;
@@ -24,7 +24,7 @@ export type BottomParamsList = {
   chatingBottom: undefined;
 };
 
-const Tab = createBottomTabNavigator<BottomParamsList>();
+const Tab = createBottomTabNavigator<ClientBottomParamsList>();
 
 const getTabBarStyle = (route: any) => {
   const screen = getFocusedRouteNameFromRoute(route);
@@ -43,7 +43,7 @@ const getTabBarStyle = (route: any) => {
   return "flex";
 };
 
-export const BottomTabNavigator = () => {
+export const ClientBottomTabNavigator = () => {
   const theme = useTheme();
   return (
     <Tab.Navigator
@@ -65,7 +65,7 @@ export const BottomTabNavigator = () => {
     >
       <Tab.Screen
         name="homeBottom"
-        component={StackHomeNavigator}
+        component={ClientStackHomeNavigator}
         options={{
           tabBarIcon: ({ focused }) => (
             <View>

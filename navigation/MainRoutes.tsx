@@ -3,14 +3,14 @@ import { useContext } from "react";
 import { AuthContext, IAuthContext } from "../contexts/Auth/AuthContext";
 import { AuthStackNavigator, AuthStackParams } from "./Auth/AuthStackNavigator";
 import {
-  BottomParamsList,
-  BottomTabNavigator,
-} from "./Bottom/BottomTabNavigator";
-import { StackParamsList } from "./Stack/StackTabNavigation";
+  ClientBottomParamsList,
+  ClientBottomTabNavigator,
+} from "./Bottom/Client/ClientBottomTabNavigator";
+import { ClientStackParamsList } from "./Stack/ClientStackTabNavigation";
 
 export type MainStackParams = AuthStackParams &
-  StackParamsList &
-  BottomParamsList & {
+  ClientStackParamsList &
+  ClientBottomParamsList & {
     mainBottomStacks: undefined;
     mainStacks: undefined;
     mainAuthStack: undefined;
@@ -20,7 +20,6 @@ const Tab = createNativeStackNavigator<MainStackParams>();
 
 export const MainStack = () => {
   const { token } = useContext(AuthContext) as IAuthContext;
-  console.log(token, 'aaaaaaaaaaaa')
 
   return (
     <Tab.Navigator
@@ -29,7 +28,7 @@ export const MainStack = () => {
     >
       {token ? (
         <Tab.Group>
-          <Tab.Screen name="mainBottomStacks" component={BottomTabNavigator} />
+          <Tab.Screen name="mainBottomStacks" component={ClientBottomTabNavigator} />
         </Tab.Group>
       ) : (
         <Tab.Group>
