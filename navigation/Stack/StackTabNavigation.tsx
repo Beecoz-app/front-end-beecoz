@@ -120,9 +120,9 @@ export const StackProfileNavigator = () => {
         options={{ headerTitle: (props) => <Header title="Perfil" /> }}
       />
       <Tab.Group>
-        <Tab.Screen name="editProfile" component={EditProfileScreen} />
+        <Tab.Screen name="editProfile" component={EditProfileScreen} options={{headerTitle: (props) => <Header title="Minha Conta" backable={true}/>, headerBackVisible: false}}/>
 
-        <Tab.Screen name="securityProfile" component={SecurityProfileScreen} />
+        <Tab.Screen name="securityProfile" component={SecurityProfileScreen}/>
         <Tab.Screen name="logoutProfile" component={LogoutProfileScreen} />
         <Tab.Screen name="supportProfile" component={SupportProfileScreen} />
         <Tab.Screen name="aboutProfile" component={AboutProfileScreen} />
