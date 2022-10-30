@@ -142,7 +142,7 @@ export const StackSettingsNavigator = () => {
       <Tab.Screen
         name="settings"
         component={SettingsScreen}
-        options={{headerTitle: (props) => <Header title="Configurações" backable={true}/>, headerBackVisible: false}}
+        options={{headerTitle: (props) => <Header title="Configurações"/>, headerBackVisible: false}}
       />
     </Tab.Navigator>
   );

@@ -1,7 +1,6 @@
 import { TextInput } from "react-native-gesture-handler";
 import styled from "../../styles/styledComponents";
 import {TouchableOpacity, View} from 'react-native'
-import { theme } from "../../styles/theme";
 
 export const Container = styled.View`
     flex: 1;
