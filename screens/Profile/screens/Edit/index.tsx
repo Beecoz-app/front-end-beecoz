@@ -14,7 +14,8 @@ export const EditProfileScreen = () => {
 
             <InputsContainer>
                 <AppGeneticInput type="text" placeholder={user?.name as string}/>
-                <AppGeneticEditInput type="text" placeholder={user?.name as string}/>
+                <AppGeneticEditInput type="email" placeholder={user?.lastName as string } handlePress={() => console.log('vazio')}/>
+                <AppGeneticEditInput type="email" placeholder={user?.profile.biography ?user?.profile.biography as string : 'edite uma biografia para vocẽ' } handlePress={() => console.log('vazio')}/>
             </InputsContainer>
             </Content>
         </Container>

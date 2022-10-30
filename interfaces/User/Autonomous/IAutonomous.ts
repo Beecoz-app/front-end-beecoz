@@ -9,7 +9,7 @@ export interface IAutonomous {
     login: string;
     typeId: ITypeUser['id'];
     name: string;
-    lasName: string;
+    lastName: string;
     sex: 'Male' | 'Female';
     birthDate: string;
     CPF: string;
