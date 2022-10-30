@@ -3,6 +3,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useTheme } from "styled-components";
 import { Header } from "../../../components/AppComponents/Header";
 
+import {TopTabHomeNavigator} from './Top/TopTabNavigation'
+
 import { ChatScreen } from "../../../screens/Autonomous/Chat";
 import { ProfileScreen } from "../../../screens/Autonomous/Profile/";
 import { SettingsScreen } from "../../../screens/Autonomous/Settings";
