@@ -12,7 +12,7 @@ export const ConcludedPublication = () => {
   return (
     <Container>
       <Content>
-        {publications.length > 0 ? (
+        {/* {publications.length > 0 ? (
           <Flat
             data={publications}
             keyExtractor={(item) => String(item.id)}
@@ -24,7 +24,7 @@ export const ConcludedPublication = () => {
               Não há pedidos em andamento
             </NoPublicationsMessage>
           </View>
-        )}
+        )} */}
       </Content>
     </Container>
   );
