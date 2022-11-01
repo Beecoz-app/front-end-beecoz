@@ -201,6 +201,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
           cpf: newAutonomous?.cpf,
           cnpj: newAutonomous?.cnpj,
           biography: "",
+          servTypeId: newAutonomous?.serviceTypeId
         }
       );
 

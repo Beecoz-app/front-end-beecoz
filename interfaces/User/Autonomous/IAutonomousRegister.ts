@@ -9,6 +9,7 @@ export interface IAutonomousRegister {
     biography?: string | undefined;
     bornDate?: string | undefined;
     country?: string | undefined
-    city?: string | undefined
+    city?: string | undefined,
+    serviceTypeId?: string;
   }
   
