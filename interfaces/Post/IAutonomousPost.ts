@@ -1,4 +1,5 @@
 export interface IAutonomousPost {
+    id: number;
     title: string;
     description: string;
     region: string;

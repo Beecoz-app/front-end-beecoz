@@ -7,26 +7,32 @@ import {
   IPublicationContext,
   PublicationContext,
 } from "../../../../../contexts/Publication/PublicationContext";
+import { IAutonomousPost } from "../../../../../interfaces/Post/IAutonomousPost";
 
 export const ProgressPosts = () => {
   const { publications } = useContext(
     PublicationContext
   ) as IPublicationContext;
 
+  const MOCK_AUTONOMOS_POST: IAutonomousPost[] = [
+    {
+      id: 1,
+      title: 'teste',
+      region: 'Santana de Parnaiba',
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente, veniam aut itaque exercitationem numquam voluptatum!',
+      serviceTypeId: 1,
+      createDate: new Date()
+    }
+  ]
+
   return (
     <Container>
       <Content>
-        {publications.length > 0 ? (
-          <Flat
-            data={publications}
-            keyExtractor={(item) => String(item.id)}
-            renderItem={({ item }) => <PostCard data={item} />}
-          />
-        ) : (
-          <View style={{width: '90%', height: '100%', marginTop: 40}}>
-            <NoPublicationsMessage>Não há pedidos em andamento</NoPublicationsMessage>
-          </View>
-        )}
+        <Flat
+          data={MOCK_AUTONOMOS_POST}
+          keyExtractor={(item) => String(item.id)}
+          renderItem={({ item }) => <PostCard data={item} />}
+        />
       </Content>
     </Container>
   );
