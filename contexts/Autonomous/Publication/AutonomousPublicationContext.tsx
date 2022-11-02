@@ -1,6 +1,7 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
 import { IAutonomousPost } from "../../../interfaces/Post/IAutonomousPost";
 import { privateApi } from "../../../services/privateApi";
+import * as SecureStore from 'expo-secure-store'
 
 export interface IAutonomousPublicationContext {
   publications: IAutonomousPost[];
@@ -21,17 +22,17 @@ export const AutonomousPublicationProvider = ({ children }: AutonomousPublicatio
   useEffect(() => {
     const fetch = async () => {
       const {
-        data: { publications },
-      } = await privateApi.get<{ publications: Array<IAutonomousPost> }>(
+        data,
+      } = await privateApi.get<IAutonomousPost[]>(
         "/autonomous/publications",
         {
             headers: {
-                'Authorization': localStorage.getItem('token') as string
+                'authorization': await SecureStore.getItemAsync('token') as string
             }
         }
       );
 
-      setPublications(publications);
+      setPublications(data);
     };
 
     fetch();
