@@ -19,7 +19,7 @@ import {useTheme} from 'styled-components'
 import moment from "moment";
 import { AppSelectInput } from "../../../components/AppComponents/Inputs/Select";
 import { ClientStackParamsList } from "../../../navigation/Stack/Client/ClientStackTabNavigation";
-import { IPublicationContext, PublicationContext } from "../../../contexts/Publication/PublicationContext";
+import { IClientPublicationContext, ClientPublicationContext } from "../../../contexts/Client/Publication/ClientPublicationContext";
 
 export type PublicationType = NativeStackScreenProps<
   ClientStackParamsList,
@@ -28,8 +28,8 @@ export type PublicationType = NativeStackScreenProps<
 
 export const PublicationScreen = ({ navigation }: PublicationType) => {
   const { setPublications, onAddPublication } = useContext(
-    PublicationContext
-  ) as IPublicationContext;
+    ClientPublicationContext
+  ) as IClientPublicationContext;
   const [titleText, setTitleText] = useState("");
   const [descriptionText, setDescriptionText] = useState("");
   const [serviceTypeValue, setServiceTypeValue] = useState("");

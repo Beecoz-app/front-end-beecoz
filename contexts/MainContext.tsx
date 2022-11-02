@@ -1,13 +1,13 @@
 import { AuthProvider } from "./Auth/AuthContext";
-import { PublicationProvider } from "./Publication/PublicationContext";
-import { ServiceProvider } from "./serviceContext/ServiceContext";
+import { ClientPublicationProvider } from "./Client/Publication/ClientPublicationContext";
+import { ServiceProvider } from "./Service/ServiceContext";
 
 export const MainContextProvider = ({ children }: any) => {
   return (
     <AuthProvider>
-      <PublicationProvider>
+      <ClientPublicationProvider>
         <ServiceProvider>{children}</ServiceProvider>
-      </PublicationProvider>
+      </ClientPublicationProvider>
     </AuthProvider>
   );
 };

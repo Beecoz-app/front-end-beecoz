@@ -7,7 +7,7 @@ import { IAutonomous } from "../../../../../interfaces/User/Autonomous/IAutonomo
 import {
   IServiceContext,
   ServiceContext,
-} from "../../../../../contexts/serviceContext/ServiceContext";
+} from "../../../../../contexts/Service/ServiceContext";
 
 export const PostCard = ({ data }: { data: IPost }) => {
   const { serviceTypes } = useContext(ServiceContext) as IServiceContext;

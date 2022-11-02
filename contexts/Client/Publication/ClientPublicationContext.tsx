@@ -1,8 +1,8 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
-import { IPost } from "../../interfaces/Post/IPost";
-import { privateApi } from "../../services/privateApi";
+import { IPost } from "../../../interfaces/Post/IPost";
+import { privateApi } from "../../../services/privateApi";
 
-export interface IPublicationContext {
+export interface IClientPublicationContext {
   publications: IPost[];
   setPublications: React.Dispatch<React.SetStateAction<IPost[]>>;
   onAddPublication: (publication: {
@@ -14,15 +14,15 @@ export interface IPublicationContext {
   }) => void;
 }
 
-interface PublicationProviderProps {
+interface ClientPublicationProviderProps {
   children: ReactNode;
 }
 
-export const PublicationContext = createContext<IPublicationContext | null>(
+export const ClientPublicationContext = createContext<IClientPublicationContext | null>(
   null
 );
 
-export const PublicationProvider = ({ children }: PublicationProviderProps) => {
+export const ClientPublicationProvider = ({ children }: ClientPublicationProviderProps) => {
   const [publications, setPublications] = useState<IPost[]>([]);
 
   useEffect(() => {
@@ -68,10 +68,10 @@ export const PublicationProvider = ({ children }: PublicationProviderProps) => {
   };
 
   return (
-    <PublicationContext.Provider
+    <ClientPublicationContext.Provider
       value={{ publications, setPublications, onAddPublication }}
     >
       {children}
-    </PublicationContext.Provider>
+    </ClientPublicationContext.Provider>
   );
 };

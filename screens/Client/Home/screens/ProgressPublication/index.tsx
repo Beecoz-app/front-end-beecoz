@@ -3,15 +3,12 @@ import { Text, View } from "react-native";
 import { Container, Content, Flat, NoPublicationsMessage } from "./styles";
 import { PostCard } from "../../components/PostCard";
 
-import {
-  IPublicationContext,
-  PublicationContext,
-} from "../../../../../contexts/Publication/PublicationContext";
+import { IClientPublicationContext, ClientPublicationContext } from "../../../../../contexts/Client/Publication/ClientPublicationContext";
 
 export const ProgressPosts = () => {
   const { publications } = useContext(
-    PublicationContext
-  ) as IPublicationContext;
+    ClientPublicationContext
+  ) as IClientPublicationContext;
 
   return (
     <Container>

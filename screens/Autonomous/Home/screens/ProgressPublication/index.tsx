@@ -1,18 +1,9 @@
 import React, { useContext } from "react";
-import { Text, View } from "react-native";
-import { Container, Content, Flat, NoPublicationsMessage } from "./styles";
+import { Container, Content, Flat } from "./styles";
 import { AutonomousPostCard } from "../../components/AutonomousPostCard/";
-
-import {
-  IPublicationContext,
-  PublicationContext,
-} from "../../../../../contexts/Publication/PublicationContext";
 import { IAutonomousPost } from "../../../../../interfaces/Post/IAutonomousPost";
 
 export const ProgressPosts = () => {
-  const { publications } = useContext(
-    PublicationContext
-  ) as IPublicationContext;
 
   const MOCK_AUTONOMOS_POST: IAutonomousPost[] = [
     {
