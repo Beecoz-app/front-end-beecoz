@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { View} from "react-native";
+import { View, TouchableOpacity } from "react-native";
 import {
   Container,
   DateText,
@@ -14,14 +14,18 @@ import { IAutonomousPost } from "../../../../../interfaces/Post/IAutonomousPost"
 import { useTheme } from "styled-components";
 import moment from "moment";
 import Icon from "react-native-vector-icons/AntDesign";
-import { TouchableOpacity } from "react-native-gesture-handler";
 
 export const AutonomousPostCard = ({ data }: { data: IAutonomousPost }) => {
-  const [seeInterested, setSeeInterested] = useState(false);
+  const [inInterest, setInInterest] = useState(false);
   const theme = useTheme();
 
+  const handleEnterOrExitToInterest = () => {
+
+    setInInterest((prev: any) => !prev);
+  };
+
   return (
-    <Container seeInterested={seeInterested}>
+    <Container>
       <TitleContainer>
         <View>
           <Title style={{ fontSize: 26, color: theme.colors.white }}>
@@ -41,11 +45,18 @@ export const AutonomousPostCard = ({ data }: { data: IAutonomousPost }) => {
         <DescriptionContainerText>{data.description}</DescriptionContainerText>
       </DescriptionContainer>
       <JoinInterestContainer>
-        <TouchableOpacity>
-          <Icon
-            name="like2"
-            style={{ fontSize: 16, color: theme.colors.white }}
-          />
+        <TouchableOpacity onPress={handleEnterOrExitToInterest}>
+          {inInterest ? (
+            <Icon
+              name="like1"
+              style={{ fontSize: 16, color: theme.colors.white }}
+            />
+          ) : (
+            <Icon
+              name="like2"
+              style={{ fontSize: 16, color: theme.colors.white }}
+            />
+          )}
         </TouchableOpacity>
       </JoinInterestContainer>
     </Container>
