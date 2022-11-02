@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Text, View } from "react-native";
 import { Container, Content, Flat, NoPublicationsMessage } from "./styles";
-import { PostCard } from "../../components/PostCard";
+import { AutonomousPostCard } from "../../components/AutonomousPostCard/";
 
 import {
   IPublicationContext,
@@ -31,7 +31,7 @@ export const ProgressPosts = () => {
         <Flat
           data={MOCK_AUTONOMOS_POST}
           keyExtractor={(item) => String(item.id)}
-          renderItem={({ item }) => <PostCard data={item} />}
+          renderItem={({ item }) => <AutonomousPostCard data={item} />}
         />
       </Content>
     </Container>

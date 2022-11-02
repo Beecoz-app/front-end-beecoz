@@ -1,61 +1,104 @@
 import { useContext, useState } from "react";
 import { Text, View, Image, ListRenderItem, FlatList } from "react-native";
 import { InterestedCard } from "../InterestedCard";
-import {
-  Container,
-  DateText,
-  DescriptionContainer,
-  DescriptionContainerText,
-  JoinInterestContainer,
-  RegionText,
-  Title,
-  TitleContainer,
-} from "./styles";
+import { Container, InteresedView, ResumeView, ListInterested } from "./styles";
 import { IPost } from "../../../../../interfaces/Post/IPost";
 import { IAutonomous } from "../../../../../interfaces/User/Autonomous/IAutonomous";
 import {
   IServiceContext,
   ServiceContext,
 } from "../../../../../contexts/serviceContext/ServiceContext";
-import { IAutonomousPost } from "../../../../../interfaces/Post/IAutonomousPost";
-import { useTheme } from "styled-components";
-import moment from "moment";
-import Icon from "react-native-vector-icons/AntDesign";
-import { TouchableOpacity } from "react-native-gesture-handler";
 
-export const PostCard = ({ data }: { data: IAutonomousPost }) => {
+export const PostCard = ({ data }: { data: IPost }) => {
   const { serviceTypes } = useContext(ServiceContext) as IServiceContext;
   const [seeInterested, setSeeInterested] = useState(false);
-  const theme = useTheme();
 
   return (
     <Container seeInterested={seeInterested}>
-      <TitleContainer>
-        <View>
-          <Title style={{ fontSize: 26, color: theme.colors.white }}>
-            {data.title}
-          </Title>
-          <RegionText style={{ color: theme.colors.blue_p }}>
-            {data.region}
-          </RegionText>
-        </View>
-        <View>
-          <DateText>
-            {moment(`${data.createDate}`).format("D[/]MM[/]YY")}
-          </DateText>
-        </View>
-      </TitleContainer>
-      <DescriptionContainer>
-        <DescriptionContainerText>{data.description}</DescriptionContainerText>
-      </DescriptionContainer>
-      <JoinInterestContainer>
-        <TouchableOpacity>
-          <Icon
-            name="like2"
-            style={{ fontSize: 16, color: theme.colors.white }}
-          />
-        </TouchableOpacity>
-      </JoinInterestContainer>
+      {!seeInterested ? (
+        <>
+          <ResumeView>
+            <Image
+              source={{ uri: data.photo }}
+              resizeMode={"contain"}
+              style={{
+                width: 50,
+                height: 50,
+                borderRadius: 50,
+                marginRight: 30,
+              }}
+            />
+            <View
+              style={{ width: 200, height: 60, justifyContent: "space-around" }}
+            >
+              <Text style={{ color: "#fff", fontSize: 24, fontWeight: "bold" }}>
+                {data.title}
+              </Text>
+              <View style={{ flexDirection: "row" }}>
+                {serviceTypes.map((serviceType) =>
+                  serviceType.id === data.tags ? (
+                    <Text
+                      style={{ fontSize: 14, color: "#9FE4F4" }}
+                      key={serviceType.id}
+                    >
+                      {serviceType.service}, {""}
+                    </Text>
+                  ) : (
+                    <></>
+                  )
+                )}
+              </View>
+            </View>
+          </ResumeView>
+          <InteresedView onPress={() => setSeeInterested(true)}>
+            <Text style={{ fontWeight: "bold", color: "#9FE4F4" }}>
+              {data.interest.length}{" "}
+              <Text>
+                {data.interest.length < 2 ? "interessado" : "interessados"}
+              </Text>
+            </Text>
+          </InteresedView>
+        </>
+      ) : (
+        <>
+          <ResumeView>
+            <Image
+              source={{ uri: data.photo }}
+              resizeMode={"contain"}
+              style={{
+                width: 50,
+                height: 50,
+                borderRadius: 50,
+                marginRight: 30,
+              }}
+            />
+            <View
+              style={{ width: 200, height: 60, justifyContent: "space-around" }}
+            >
+              <Text style={{ color: "#fff", fontSize: 24, fontWeight: "bold" }}>
+                {data.title}
+              </Text>
+              <View style={{ flexDirection: "row" }}></View>
+            </View>
+          </ResumeView>
+          <InteresedView onPress={() => setSeeInterested(false)}>
+            <Text style={{ fontWeight: "bold", color: "#9FE4F4" }}>
+              {data.interest.length}{" "}
+              <Text>
+                {data.interest.length < 2 ? "interessado" : "interessados"}
+              </Text>
+            </Text>
+          </InteresedView>
+          <ListInterested>
+            <FlatList<IAutonomous>
+              data={data.interest}
+              renderItem={({ item }) => (
+                <InterestedCard key={item.id} data={item} />
+              )}
+            />
+          </ListInterested>
+        </>
+      )}
     </Container>
   );
 };
