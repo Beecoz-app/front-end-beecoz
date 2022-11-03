@@ -9,6 +9,7 @@ export interface IAutonomousPublicationContext {
   interest: { id: number; publicationId: number; autonomousId: number } | null;
   setInterest: React.Dispatch<React.SetStateAction<{ id: number; publicationId: number; autonomousId: number } | null>>
   joinInterest: (idAutonomous: number, idPublication: number) => void;
+  exitInterest: (idAutonomous: number, idPublication: number, idInterest: number) => void
 }
 
 interface AutonomousPublicationProviderProps {
@@ -33,6 +34,15 @@ export const AutonomousPublicationProvider = ({
 
     setInterest(interest)
   };
+  const exitInterest = async (idAutonomous: number, idPublication: number, idInterest: number) => {
+    await privateApi.post(`/interest/exit/${idAutonomous}/${idPublication}/${idInterest}`, {
+      headers: {
+        authorization: (await SecureStore.getItemAsync("token")) as string,
+      },
+    });
+
+    setInterest(null)
+  }
 
   useEffect(() => {
     const fetch = async () => {
@@ -55,7 +65,7 @@ export const AutonomousPublicationProvider = ({
 
   return (
     <AutonomousPublicationContext.Provider
-      value={{ publications, setPublications, joinInterest, interest, setInterest }}
+      value={{ publications, setPublications, joinInterest, interest, setInterest, exitInterest }}
     >
       {children}
     </AutonomousPublicationContext.Provider>

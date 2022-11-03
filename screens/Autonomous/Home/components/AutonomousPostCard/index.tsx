@@ -18,7 +18,7 @@ import { AutonomousPublicationContext, IAutonomousPublicationContext } from "../
 import { AuthContext, IAuthContext } from "../../../../../contexts/Auth/AuthContext";
 
 export const AutonomousPostCard = ({ data }: { data: IAutonomousPost }) => {
-  const {joinInterest, interest} = useContext(AutonomousPublicationContext) as IAutonomousPublicationContext
+  const {joinInterest, interest, exitInterest} = useContext(AutonomousPublicationContext) as IAutonomousPublicationContext
   const {user} = useContext(AuthContext) as IAuthContext
   const [inInterest, setInInterest] = useState(false);
   const theme = useTheme();
@@ -29,7 +29,7 @@ export const AutonomousPostCard = ({ data }: { data: IAutonomousPost }) => {
     if (inInterest) {
       joinInterest(Number(user?.id), data.id)
     } else {
-      
+      exitInterest(Number(user?.id), data.id, Number(interest?.id))
     }
   };
 
