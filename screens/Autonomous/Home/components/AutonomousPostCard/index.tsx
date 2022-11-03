@@ -20,15 +20,19 @@ import { AuthContext, IAuthContext } from "../../../../../contexts/Auth/AuthCont
 export const AutonomousPostCard = ({ data }: { data: IAutonomousPost }) => {
   const {joinInterest, interest, exitInterest} = useContext(AutonomousPublicationContext) as IAutonomousPublicationContext
   const {user} = useContext(AuthContext) as IAuthContext
-  const [inInterest, setInInterest] = useState(false);
+  const [inInterest, setInInterest] = useState(data.interest.find(interest => interest.autonomousId === Number(user?.id)) ? true : false);
   const theme = useTheme();
 
   const handleEnterOrExitToInterest = () => {
     setInInterest((prev: any) => !prev);
 
     if (!inInterest) {
+      console.log('joinn')
+
       joinInterest(Number(user?.id), data.id)
     } else {
+      console.log('exitt')
+
       exitInterest(Number(user?.id), data.id, Number(interest?.id))
     }
   };

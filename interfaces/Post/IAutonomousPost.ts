@@ -5,4 +5,9 @@ export interface IAutonomousPost {
     region: string;
     createDate: Date;
     serviceTypeId: number;
+    interest: [
+        {
+            autonomousId: number,
+        }
+    ]
 }
