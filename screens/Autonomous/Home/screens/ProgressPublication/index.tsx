@@ -5,6 +5,8 @@ import { AutonomousPublicationContext, IAutonomousPublicationContext } from "../
 
 export const ProgressPosts = () => {
   const {publications} = useContext(AutonomousPublicationContext) as IAutonomousPublicationContext
+
+  console.log(publications)
   
   return (
     <Container>

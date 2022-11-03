@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { View, TouchableOpacity } from "react-native";
 import {
   Container,
@@ -14,14 +14,21 @@ import { IAutonomousPost } from "../../../../../interfaces/Post/IAutonomousPost"
 import { useTheme } from "styled-components";
 import moment from "moment";
 import Icon from "react-native-vector-icons/AntDesign";
+import { AutonomousPublicationContext, IAutonomousPublicationContext } from "../../../../../contexts/Autonomous/Publication/AutonomousPublicationContext";
+import { AuthContext, IAuthContext } from "../../../../../contexts/Auth/AuthContext";
 
 export const AutonomousPostCard = ({ data }: { data: IAutonomousPost }) => {
+  const {joinInterest} = useContext(AutonomousPublicationContext) as IAutonomousPublicationContext
+  const {user} = useContext(AuthContext) as IAuthContext
   const [inInterest, setInInterest] = useState(false);
   const theme = useTheme();
 
   const handleEnterOrExitToInterest = () => {
-
     setInInterest((prev: any) => !prev);
+
+    if (inInterest) {
+      joinInterest(Number(user?.id), data.id)
+    }
   };
 
   return (
