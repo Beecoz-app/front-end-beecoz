@@ -26,7 +26,7 @@ export const AutonomousPostCard = ({ data }: { data: IAutonomousPost }) => {
   const handleEnterOrExitToInterest = () => {
     setInInterest((prev: any) => !prev);
 
-    if (inInterest) {
+    if (!inInterest) {
       joinInterest(Number(user?.id), data.id)
     } else {
       exitInterest(Number(user?.id), data.id, Number(interest?.id))
