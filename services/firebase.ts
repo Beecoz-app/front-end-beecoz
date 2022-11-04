@@ -10,7 +10,9 @@ import {
   serverTimestamp,
   setDoc,
   where,
-  addDoc
+  addDoc,
+  updateDoc,
+  arrayUnion
 } from "firebase/firestore";
 import React, { SetStateAction } from "react";
 
@@ -36,6 +38,37 @@ export const addUser = async (sender: {
     name: sender.name,
     type: sender.type,
     avatar: sender.avatar,
+  });
+};
+
+export const addNewChat = async (
+  sender: { id: string; name: string; avatar: string } | null,
+  receiver: { id: string; name: string; avatar: string }
+) => {
+  const senderUserRef = doc(db, "users", String(sender?.id));
+  const receiverUserRef = doc(db, "users", receiver.id);
+
+  const chat = await addDoc(collection(db, "chats"), {
+    messages: [],
+    users: [String(sender?.id), receiver.id],
+  });
+
+  await updateDoc(senderUserRef, {
+    chats: arrayUnion({
+      chatId: chat.id,
+      title: receiver.name,
+      avatar: receiver.avatar,
+      with: receiver.id,
+    }),
+  });
+
+  await updateDoc(receiverUserRef, {
+    chats: arrayUnion({
+      chatId: chat.id,
+      title: String(sender?.name),
+      avatar: String(sender?.avatar),
+      with: String(sender?.id),
+    }),
   });
 };
 
