@@ -43,7 +43,8 @@ export const addUser = async (sender: {
 
 export const addNewChat = async (
   sender: { id: string; name: string; login: string;avatar: string } | null,
-  receiver: { id: string; name: string; login: string; avatar: string }
+  receiver: { id: string; name: string; login: string; avatar: string },
+  setChatIdContext: React.Dispatch<SetStateAction<number | null>>
 ) => {
   const senderUserRef = doc(db, "users", String(sender?.login));
   const receiverUserRef = doc(db, "users", receiver.login);
@@ -55,21 +56,24 @@ export const addNewChat = async (
 
   await updateDoc(senderUserRef, {
     chats: arrayUnion({
-      chatId: 1,
+      chatId: chat.id,
       title: receiver.name,
       avatar: receiver.avatar,
-      with: receiver.id,
+      with: receiver.login,
     }),
   });
 
   await updateDoc(receiverUserRef, {
     chats: arrayUnion({
-      chatId: 1,
+      chatId: chat.id,
       title: String(sender?.name),
       avatar: String(sender?.avatar),
-      with: String(sender?.id),
+      with: String(sender?.login),
     }),
   });
+
+
+  setChatIdContext(Number(chat.id))
 };
 
 export const getAllOpenedChats = (userEmail: string, setChat: any) => {

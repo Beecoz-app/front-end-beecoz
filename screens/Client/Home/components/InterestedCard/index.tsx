@@ -9,12 +9,21 @@ import {
   AuthContext,
   IAuthContext,
 } from "../../../../../contexts/Auth/AuthContext";
+import {
+  ChatContext,
+  IChatContext,
+} from "../../../../../contexts/Chat/ChatContext";
 
 export const InterestedCard = ({ data }: { data: IAutonomous }) => {
   const { user } = useContext(AuthContext) as IAuthContext;
+  const { chatId, setChatId } = useContext(ChatContext) as IChatContext;
   const theme = useTheme();
 
   const handleAddChat = () => {
+    if (chatId) {
+      return;
+    }
+
     addNewChat(
       {
         id: String(user?.id),
@@ -24,36 +33,43 @@ export const InterestedCard = ({ data }: { data: IAutonomous }) => {
       },
       {
         id: String(data.id),
-        login: String(user?.login),
+        login: String(data.login),
         name: String(data.name),
         avatar: "",
-      }
+      },
+      setChatId
     );
+
+    data.inChat = true;
   };
 
   return (
     <Container>
-      <InfoInterested>
-        <Image
-          style={{ width: 40, height: 40, borderRadius: 50 }}
-          resizeMode="contain"
-          source={{ uri: data.profileImage }}
-        />
-        <TextInfo>
-          <Text style={{ color: theme.colors.white, fontWeight: "bold" }}>
-            {data.name}
-          </Text>
-          <Text>ranking</Text>
-        </TextInfo>
-      </InfoInterested>
-      <View>
-        <GoToChatButton onPress={handleAddChat}>
-          <Icon
-            name="arrowright"
-            style={{ fontSize: 16, color: theme.colors.white }}
-          />
-        </GoToChatButton>
-      </View>
+      {!data.inChat && (
+        <>
+          <InfoInterested>
+            <Image
+              style={{ width: 40, height: 40, borderRadius: 50 }}
+              resizeMode="contain"
+              source={{ uri: data.profileImage }}
+            />
+            <TextInfo>
+              <Text style={{ color: theme.colors.white, fontWeight: "bold" }}>
+                {data.name}
+              </Text>
+              <Text>ranking</Text>
+            </TextInfo>
+          </InfoInterested>
+          <View>
+            <GoToChatButton onPress={handleAddChat}>
+              <Icon
+                name="arrowright"
+                style={{ fontSize: 16, color: theme.colors.white }}
+              />
+            </GoToChatButton>
+          </View>
+        </>
+      )}
     </Container>
   );
 };
