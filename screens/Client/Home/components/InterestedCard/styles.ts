@@ -1,3 +1,4 @@
+import { TouchableOpacity } from "react-native-gesture-handler";
 import styled from "../../../../../styles/styledComponents";
 
 export const Container = styled.View`
@@ -24,7 +25,7 @@ export const TextInfo = styled.View`
     justify-content: space-evenly;
 `
 
-export const GoToChatButton = styled.TouchableOpacity`
+export const GoToChatButton = (styled.TouchableOpacity`
     width: 30px;
     height: 30px;
 
@@ -33,5 +34,5 @@ export const GoToChatButton = styled.TouchableOpacity`
 
     border-radius: 50px;
 
-    background-color: ${({theme}) => theme.colors.second};
-`
+    background-color: ${({theme}) => theme.colors.second}
+` as unknown) as typeof TouchableOpacity

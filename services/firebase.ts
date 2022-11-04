@@ -42,20 +42,20 @@ export const addUser = async (sender: {
 };
 
 export const addNewChat = async (
-  sender: { id: string; name: string; avatar: string } | null,
-  receiver: { id: string; name: string; avatar: string }
+  sender: { id: string; name: string; login: string;avatar: string } | null,
+  receiver: { id: string; name: string; login: string; avatar: string }
 ) => {
-  const senderUserRef = doc(db, "users", String(sender?.id));
-  const receiverUserRef = doc(db, "users", receiver.id);
+  const senderUserRef = doc(db, "users", String(sender?.login));
+  const receiverUserRef = doc(db, "users", receiver.login);
 
-  const chat = await addDoc(collection(db, "chats"), {
-    messages: [],
-    users: [String(sender?.id), receiver.id],
-  });
+  // const chat = await addDoc(collection(db, "chats"), {
+  //   messages: [],
+  //   users: [String(sender?.id), receiver.id],
+  // });
 
   await updateDoc(senderUserRef, {
     chats: arrayUnion({
-      chatId: chat.id,
+      chatId: 1,
       title: receiver.name,
       avatar: receiver.avatar,
       with: receiver.id,
@@ -64,7 +64,7 @@ export const addNewChat = async (
 
   await updateDoc(receiverUserRef, {
     chats: arrayUnion({
-      chatId: chat.id,
+      chatId: 1,
       title: String(sender?.name),
       avatar: String(sender?.avatar),
       with: String(sender?.id),
