@@ -51,12 +51,16 @@ export const PostCard = ({ data }: { data: IPost }) => {
             </View>
           </ResumeView>
           <InteresedView onPress={() => setSeeInterested(true)}>
-            <Text style={{ fontWeight: "bold", color: "#9FE4F4" }}>
-              {data.interest.length}{" "}
-              <Text>
-                {data.interest.length < 2 ? "interessado" : "interessados"}
+            {data.interest.filter(
+              (interest) => interest.autonomous.inChat === false
+            ) && (
+              <Text style={{ fontWeight: "bold", color: "#9FE4F4" }}>
+                {data.interest.filter(interest => interest.autonomous.inChat === false).length}{" "}
+                <Text>
+                  {data.interest.filter(interest => interest.autonomous.inChat === false).length > 1 ? "interessados" : "interessado"}
+                </Text>
               </Text>
-            </Text>
+            )}
           </InteresedView>
         </>
       ) : (
@@ -90,8 +94,20 @@ export const PostCard = ({ data }: { data: IPost }) => {
             </Text>
           </InteresedView>
           <ListInterested>
-            <FlatList<IAutonomous>
-              data={data.interest}
+            <FlatList<{
+              id: number;
+              publicationId: number;
+              autonomousId: number;
+              autonomous: {
+                id: number;
+                name: string;
+                login: string;
+                inChat: boolean;
+              };
+            }>
+              data={data.interest.filter(
+                (interest) => interest.autonomous.inChat === false
+              )}
               renderItem={({ item }) => (
                 <InterestedCard key={item.id} data={item} />
               )}

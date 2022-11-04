@@ -14,7 +14,21 @@ import {
   IChatContext,
 } from "../../../../../contexts/Chat/ChatContext";
 
-export const InterestedCard = ({ data }: { data: IAutonomous }) => {
+export const InterestedCard = ({
+  data,
+}: {
+  data: {
+    id: number;
+    publicationId: number;
+    autonomousId: number;
+    autonomous: {
+      id: number;
+      name: string;
+      login: string;
+      inChat: boolean;
+    };
+  };
+}) => {
   const { user } = useContext(AuthContext) as IAuthContext;
   const { chatId, setChatId } = useContext(ChatContext) as IChatContext;
   const theme = useTheme();
@@ -32,30 +46,30 @@ export const InterestedCard = ({ data }: { data: IAutonomous }) => {
         avatar: "",
       },
       {
-        id: String(data.id),
-        login: String(data.login),
-        name: String(data.name),
+        id: String(data.autonomous.id),
+        login: String(data.autonomous.login),
+        name: String(data.autonomous.name),
         avatar: "",
       },
       setChatId
     );
 
-    data.inChat = true;
+    data.autonomous.inChat = true;
   };
+
+  console.log(data)
 
   return (
     <Container>
-      {!data.inChat && (
-        <>
           <InfoInterested>
             <Image
               style={{ width: 40, height: 40, borderRadius: 50 }}
               resizeMode="contain"
-              source={{ uri: data.profileImage }}
+              source={{ uri:'' }}
             />
             <TextInfo>
               <Text style={{ color: theme.colors.white, fontWeight: "bold" }}>
-                {data.name}
+                {data.autonomous.name}
               </Text>
               <Text>ranking</Text>
             </TextInfo>
@@ -68,8 +82,6 @@ export const InterestedCard = ({ data }: { data: IAutonomous }) => {
               />
             </GoToChatButton>
           </View>
-        </>
-      )}
     </Container>
   );
 };

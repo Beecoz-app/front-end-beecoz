@@ -16,5 +16,4 @@ export interface IAutonomous {
     CNPJ?: string;
     profileImage: string;
     clientType: 'Client' | 'Autonomous'
-    inChat: boolean;
 }

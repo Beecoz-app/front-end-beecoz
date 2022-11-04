@@ -33,6 +33,8 @@ export const ClientPublicationProvider = ({ children }: ClientPublicationProvide
         "/publication/read"
       );
 
+      console.log(publications)
+
       setPublications(publications);
     };
 
