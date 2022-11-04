@@ -48,10 +48,10 @@ export const addNewChat = async (
   const senderUserRef = doc(db, "users", String(sender?.login));
   const receiverUserRef = doc(db, "users", receiver.login);
 
-  // const chat = await addDoc(collection(db, "chats"), {
-  //   messages: [],
-  //   users: [String(sender?.id), receiver.id],
-  // });
+  const chat = await addDoc(collection(db, "chats"), {
+     messages: [],
+     users: [String(sender?.id), receiver.id],
+  });
 
   await updateDoc(senderUserRef, {
     chats: arrayUnion({
