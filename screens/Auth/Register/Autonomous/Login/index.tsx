@@ -84,7 +84,7 @@ export const AutonomousRegisterLoginScreen = ({
             marginTop: 5,
           }}
         >
-          <AppCheckBox onCheck={() => setCheck(!check)} />
+          <AppCheckBox/>
           <Text style={{ color: theme.colors.white, fontWeight: "100" }}>
             Registrar com número
           </Text>
