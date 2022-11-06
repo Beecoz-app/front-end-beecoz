@@ -70,85 +70,159 @@ export const AuthStackNavigator = () => {
       <Tab.Screen
         name="register"
         component={RegisterScreen}
-        options={{ headerTitle: (props) => <Header title="Perfil" /> }}
+        options={{
+          headerTitle: (props) => <Header title="Registro" backable={true} />,
+          headerBackVisible: false,
+        }}
       />
 
       <Tab.Group>
         <Tab.Screen
           name="registerClientName"
           component={ClientRegisterNameScreen}
+          options={{
+            headerTitle: (props) => <Header title="Seu Nome" backable={true} />,
+            headerBackVisible: false,
+          }}
         />
         <Tab.Screen
           name="registerClientLogin"
           component={ClientRegisterLoginScreen}
+          options={{
+            headerTitle: (props) => <Header title="Seu Login" backable={true} />,
+            headerBackVisible: false,
+          }}
         />
         <Tab.Screen
           name="registerClientPassword"
           component={ClientRegisterPasswordScreen}
+          options={{
+            headerTitle: (props) => <Header title="Sua Senha" backable={true} />,
+            headerBackVisible: false,
+          }}
         />
         <Tab.Screen
           name="registerClientState"
           component={ClientRegisterStateScreen}
+          options={{
+            headerTitle: (props) => <Header title="Região" backable={true} />,
+            headerBackVisible: false,
+          }}
         />
         <Tab.Screen
           name="registerClientCPF"
           component={ClientRegisterCPFScreen}
+          options={{
+            headerTitle: (props) => <Header title="Seu CPF" backable={true} />,
+            headerBackVisible: false,
+          }}
         />
 
         <Tab.Screen
           name="insertCLientRGPhoto"
           component={InsertClientRGPhotoScreen}
+          options={{
+            headerTitle: (props) => <Header title="Seu RG" backable={true} />,
+            headerBackVisible: false,
+          }}
         />
         <Tab.Screen
           name="insertCLientProofPhoto"
           component={InsertClientProofPhotoScreen}
+          options={{
+            headerTitle: (props) => <Header title="Comprovante" backable={true} />,
+            headerBackVisible: false,
+          }}
         />
         <Tab.Screen
           name="insertCLientPersonalPhoto"
           component={InsertClientPersonalPhotoScreen}
+          options={{
+          headerTitle: (props) => <Header title="Foto de Perfil" backable={true} />,
+          headerBackVisible: false,
+        }}
         />
       </Tab.Group>
       <Tab.Group>
         <Tab.Screen
           name="registerAutonomousName"
-          component={AutonomousRegisterNameScreen}
+          component={AutonomousRegisterNameScreen}options={{
+            headerTitle: (props) => <Header title="Seu Nome" backable={true} />,
+            headerBackVisible: false,
+          }}
         />
         <Tab.Screen
           name="registerAutonomousLogin"
           component={AutonomousRegisterLoginScreen}
+          options={{
+            headerTitle: (props) => <Header title="Seu Login" backable={true} />,
+            headerBackVisible: false,
+          }}
         />
         <Tab.Screen
           name="registerAutonomousPassword"
           component={AutonomousRegisterPasswordScreen}
+          options={{
+            headerTitle: (props) => <Header title="Sua Senha" backable={true} />,
+            headerBackVisible: false,
+          }}
         />
         <Tab.Screen
           name="registerAutonomousCPF"
           component={AutonomousRegisterCPFScreen}
+          options={{
+          headerTitle: (props) => <Header title="Seu CPF" backable={true} />,
+          headerBackVisible: false,
+        }}
         />
         <Tab.Screen
           name="registerAutonomousCNPJ"
           component={AutonomousRegisterCNPJScreen}
+          options={{
+            headerTitle: (props) => <Header title="Seu CNPJ" backable={true} />,
+            headerBackVisible: false,
+          }}
         />
         <Tab.Screen
           name="registerAutonomousState"
           component={AutonomousRegisterStateScreen}
+          options={{
+            headerTitle: (props) => <Header title="Região" backable={true} />,
+            headerBackVisible: false,
+          }}
         />
         <Tab.Screen
           name="registerAutonomousChooseServices"
           component={AutonomousRegisterChooseServicesScreen}
+          options={{
+          headerTitle: (props) => <Header title="Sua Área de Serviço" backable={true} />,
+          headerBackVisible: false,
+        }}
         />
 
         <Tab.Screen
           name="insertAutonomousRGPhoto"
           component={InsertAutonomousRGPhotoScreen}
+          options={{
+            headerTitle: (props) => <Header title="Seu RG" backable={true} />,
+            headerBackVisible: false,
+          }}
         />
         <Tab.Screen
           name="insertAutonomousProofPhoto"
           component={InsertAutonomousProofPhotoScreen}
+          options={{
+            headerTitle: (props) => <Header title="Comprovante" backable={true} />,
+            headerBackVisible: false,
+          }}
         />
         <Tab.Screen
           name="insertAutonomousPersonalPhoto"
           component={InsertAutonomousPersonalPhotoScreen}
+          options={{
+            headerTitle: (props) => <Header title="Foto de Perfil" backable={true} />,
+            headerBackVisible: false,
+          }}
         />
       </Tab.Group>
     </Tab.Navigator>
