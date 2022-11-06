@@ -86,12 +86,16 @@ export const PostCard = ({ data }: { data: IPost }) => {
             </View>
           </ResumeView>
           <InteresedView onPress={() => setSeeInterested(false)}>
-            <Text style={{ fontWeight: "bold", color: "#9FE4F4" }}>
-              {data.interest.length}{" "}
-              <Text>
-                {data.interest.length < 2 ? "interessado" : "interessados"}
+            {data.interest.filter(
+              (interest) => interest.autonomous.inChat === false
+            ) && (
+              <Text style={{ fontWeight: "bold", color: "#9FE4F4" }}>
+                {data.interest.filter(interest => interest.autonomous.inChat === false).length}{" "}
+                <Text>
+                  {data.interest.filter(interest => interest.autonomous.inChat === false).length > 1 ? "interessados" : "interessado"}
+                </Text>
               </Text>
-            </Text>
+            )}
           </InteresedView>
           <ListInterested>
             <FlatList<{
