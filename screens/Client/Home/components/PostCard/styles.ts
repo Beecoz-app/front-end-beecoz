@@ -35,9 +35,9 @@ export const ResumeView = styled.TouchableOpacity`
 
 export const InteresedView = styled.TouchableOpacity`
   width: 100%;
-  height: 20px;
+  height: 30px;
 
-  padding: 0px 20px;
+  padding: 2px 20px;
 `;
 
 

@@ -2,7 +2,7 @@ import { Text, View, Image } from "react-native";
 import { useTheme } from "styled-components";
 import { IAutonomous } from "../../../../../interfaces/User/Autonomous/IAutonomous";
 import { Container, InfoInterested, TextInfo, GoToChatButton } from "./styles";
-import Icon from "react-native-vector-icons/AntDesign";
+import Icon from "react-native-vector-icons/Feather";
 import { addNewChat } from "../../../../../services/firebase";
 import { useContext } from "react";
 import {
@@ -26,6 +26,9 @@ export const InterestedCard = ({
       name: string;
       login: string;
       inChat: boolean;
+      type: {
+        level: string
+      }
     };
   };
 }) => {
@@ -68,18 +71,21 @@ export const InterestedCard = ({
               source={{ uri:'' }}
             />
             <TextInfo>
-              <Text style={{ color: theme.colors.white, fontWeight: "bold" }}>
+              <Text style={{ color: theme.colors.white, fontWeight: "bold", fontSize: 18 }}>
                 {data.autonomous.name}
               </Text>
-              <Text>ranking</Text>
+              <Text style={{color: theme.colors.gray_100, fontSize: 14}}>{data.autonomous.type.level === 'Beginner' ? 'Autônomo Bee' : 'Autônomo Queen'}</Text>
             </TextInfo>
           </InfoInterested>
           <View>
             <GoToChatButton onPress={handleAddChat}>
               <Icon
-                name="arrowright"
+                name="message-circle"
                 style={{ fontSize: 16, color: theme.colors.white }}
               />
+              <Text style={{ color: theme.colors.gray_100, fontSize: 14 }}>
+                conversar
+              </Text>
             </GoToChatButton>
           </View>
     </Container>

@@ -15,6 +15,7 @@ export const InfoInterested = styled.View`
     flex: 1;
     align-items: center;
     flex-direction: row;
+
 `
 
 export const TextInfo = styled.View`
@@ -26,7 +27,7 @@ export const TextInfo = styled.View`
 `
 
 export const GoToChatButton = (styled.TouchableOpacity`
-    width: 30px;
+    width: 60px;
     height: 30px;
 
     justify-content: center;
@@ -34,5 +35,4 @@ export const GoToChatButton = (styled.TouchableOpacity`
 
     border-radius: 50px;
 
-    background-color: ${({theme}) => theme.colors.second}
 ` as unknown) as typeof TouchableOpacity
