@@ -36,16 +36,20 @@ export const ClientPublicationProvider = ({ children }: ClientPublicationProvide
           headers: {
             authorization: (await SecureStore.getItemAsync("token")) as string,
           },
-        }
-      );
 
-      
-      console.log(publications)
+
+
+        }
+        
+      );
 
       setPublications(publications);
     };
 
+
+    
     fetch();
+    
   }, []);
 
   const onAddPublication = async (publication: {

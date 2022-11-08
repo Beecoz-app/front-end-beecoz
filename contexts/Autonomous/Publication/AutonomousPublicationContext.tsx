@@ -40,6 +40,7 @@ export const AutonomousPublicationProvider = ({
         authorization: (await SecureStore.getItemAsync("token")) as string,
       },
     });
+    
 
     setInterest(null)
   }
@@ -53,10 +54,13 @@ export const AutonomousPublicationProvider = ({
             authorization: (await SecureStore.getItemAsync("token")) as string,
           },
         
+          
         }
       );
 
+
       console.log(data);
+
 
       setPublications(data);
     };
