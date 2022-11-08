@@ -28,6 +28,7 @@ export const AppSpecificInput = ({
         onFocus={() => setFocusInput(true)}
         onBlur={() => setFocusInput(false)}
         style={focusInput ? styles.inputFocus : styles.input}
+        secureTextEntry={type === "password" ? true : false}
         {...rest}
       />
     </View>

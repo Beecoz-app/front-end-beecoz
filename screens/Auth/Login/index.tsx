@@ -130,16 +130,6 @@ export const LoginScreen = ({ navigation }: LoginType) => {
         </MissPasswordContent>
       </InputContainer>
       <AppSpecificButton disabled={false} title={"Entrar"} onClick={onLogin} />
-      <AuthenticationContainer>
-        <AuthButton>
-          <IconFontisto name="facebook" style={{ color: theme.colors.white }} />
-          <Text style={{ color: theme.colors.white }}>Facebook</Text>
-        </AuthButton>
-        <AuthButton>
-          <IconAnt name="google" style={{ color: theme.colors.white }} />
-          <Text style={{ color: theme.colors.white }}>Google</Text>
-        </AuthButton>
-      </AuthenticationContainer>
       <RegisterContainer>
         <Text
           style={{
