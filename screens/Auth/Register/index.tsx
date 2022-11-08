@@ -16,7 +16,7 @@ export const RegisterScreen = ({navigation: {navigate}}: RegisterType) => {
         <AppSpecificButton disabled={false} title={'Cliente'} onClick={() => navigate('registerClientName')} special={true}/>
         <AppSpecificButton disabled={false} title={'Prestador de serviços'} onClick={() => navigate('registerAutonomousName')}/>
       </ButtonsContainer>
-      <BackToLoginPageContainer>Já tem uma conta? <Text style={{color: theme.colors.blue_p, fontWeight: 'bold'}}>Faça login!</Text></BackToLoginPageContainer>
+      <BackToLoginPageContainer>Já tem uma conta? <Text style={{color: theme.colors.blue_p, fontWeight: 'bold'}} onPress={() => navigate('login')}>Faça login!</Text></BackToLoginPageContainer>
     </Container>
   );
 };
