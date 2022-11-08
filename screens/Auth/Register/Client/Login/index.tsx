@@ -20,7 +20,7 @@ type ClientRegisterLoginType = NativeStackScreenProps<
 export const ClientRegisterLoginScreen = ({
   navigation: { navigate },
 }: ClientRegisterLoginType) => {
-  const { setNewClient } = useContext(
+  const { setNewClient, newClient } = useContext(
     ClientAuthRegisterContext
   ) as IClientAuthRegister;
   const [email, setEmail] = useState("");
@@ -39,7 +39,7 @@ export const ClientRegisterLoginScreen = ({
     <Container>
       <DataContainer>
         <Title>
-          Muito bem, Thiago! Agora, informe seu melhor email, ou se preferir,
+          Muito bem, {newClient?.name}! Agora, informe seu melhor email, ou se preferir,
           seu número de telefone-celular
         </Title>
         <Text
@@ -88,7 +88,7 @@ export const ClientRegisterLoginScreen = ({
             marginTop: 5,
           }}
         >
-          <AppCheckBox onCheck={() => setCheck(!check)} />
+          <AppCheckBox />
           <Text style={{ color: theme.colors.white, fontWeight: "100" }}>
             Registrar com número
           </Text>

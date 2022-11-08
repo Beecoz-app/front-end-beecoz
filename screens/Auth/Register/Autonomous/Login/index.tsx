@@ -21,7 +21,7 @@ type ClientRegisterLoginType = NativeStackScreenProps<
 export const AutonomousRegisterLoginScreen = ({
   navigation: { navigate },
 }: ClientRegisterLoginType) => {
-  const { setNewAutonomous } = useContext(
+  const { setNewAutonomous, newAutonomous } = useContext(
     AutonomousAuthRegisterContext
   ) as IAutonomousAuthRegister;
   const [email, setEmail] = useState("");
@@ -40,7 +40,7 @@ export const AutonomousRegisterLoginScreen = ({
     <Container>
       <DataContainer>
         <Title>
-          Muito bem, Thiago! Agora, informe seu melhor email, ou se preferir,
+          Muito bem, {newAutonomous?.name}! Agora, informe seu melhor email, ou se preferir,
           seu número de telefone-celular
         </Title>
         <Text
