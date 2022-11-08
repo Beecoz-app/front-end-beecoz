@@ -15,19 +15,11 @@ export const OpenedPublication = () => {
   return (
     <Container>
       <Content>
-        {publications.length > 0 ? (
-          <Flat
-            data={publications}
-            keyExtractor={(item) => String(item.id)}
-            renderItem={({ item }) => <PostCard data={item} />}
-          />
-        ) : (
           <View style={{ width: "90%", height: "100%", marginTop: 40 }}>
             <NoPublicationsMessage>
-              Não há pedidos em andamento
+              Não deu tempo de fazer :)
             </NoPublicationsMessage>
           </View>
-        )}
       </Content>
     </Container>
   );

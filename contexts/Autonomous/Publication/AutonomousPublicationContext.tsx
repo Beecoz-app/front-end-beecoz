@@ -52,6 +52,7 @@ export const AutonomousPublicationProvider = ({
           headers: {
             authorization: (await SecureStore.getItemAsync("token")) as string,
           },
+        
         }
       );
 

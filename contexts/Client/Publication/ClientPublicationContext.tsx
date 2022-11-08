@@ -1,6 +1,7 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
 import { IPost } from "../../../interfaces/Post/IPost";
 import { privateApi } from "../../../services/privateApi";
+import * as SecureStore from 'expo-secure-store'
 
 export interface IClientPublicationContext {
   publications: IPost[];
@@ -30,7 +31,12 @@ export const ClientPublicationProvider = ({ children }: ClientPublicationProvide
       const {
         data: { publications },
       } = await privateApi.get<{ publications: Array<IPost> }>(
-        "/publication/read"
+        "/publication/read",
+        {
+          headers: {
+            authorization: (await SecureStore.getItemAsync("token")) as string,
+          },
+        }
       );
 
       
@@ -57,6 +63,12 @@ export const ClientPublicationProvider = ({ children }: ClientPublicationProvide
         servTypeId: publication.servTypeId,
         data: publication.data,
         region: publication.region,
+        
+      },
+      {
+        headers: {
+          authorization: (await SecureStore.getItemAsync("token")) as string,
+        }
       }
     );
 
