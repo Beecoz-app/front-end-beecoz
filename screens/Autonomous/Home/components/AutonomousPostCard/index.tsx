@@ -37,7 +37,7 @@ export const AutonomousPostCard = ({ data }: { data: IAutonomousPost }) => {
     }
   };
 
-  console.log('interezt, ', interest)
+  console.log(data.data)
 
   return (
     <Container>
@@ -52,7 +52,7 @@ export const AutonomousPostCard = ({ data }: { data: IAutonomousPost }) => {
         </View>
         <View>
           <DateText>
-            {moment(`${data.createDate}`).format("D[/]MM[/]YY")}
+            {moment(`${data.data}`).format("D[/]MM[/]YY")}
           </DateText>
         </View>
       </TitleContainer>

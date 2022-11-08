@@ -3,7 +3,7 @@ export interface IAutonomousPost {
     title: string;
     description: string;
     region: string;
-    createDate: Date;
+    data: Date;
     serviceTypeId: number;
     interest: [
         {
