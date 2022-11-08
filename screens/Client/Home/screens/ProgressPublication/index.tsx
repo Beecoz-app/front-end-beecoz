@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Text, View } from "react-native";
+import { Text, View, ActivityIndicator } from "react-native";
 import { Container, Content, Flat, NoPublicationsMessage } from "./styles";
 import { PostCard } from "../../components/PostCard";
 import * as SecureStore from "expo-secure-store";
@@ -10,6 +10,7 @@ import {
 } from "../../../../../contexts/Client/Publication/ClientPublicationContext";
 import { privateApi } from "../../../../../services/privateApi";
 import { IPost } from "../../../../../interfaces/Post/IPost";
+import { theme } from "../../../../../styles/theme";
 
 export const ProgressPosts = () => {
   const { publications, setPublications } = useContext(
@@ -39,8 +40,8 @@ export const ProgressPosts = () => {
     <Container>
       <Content>
         {isLoading ? (
-          <View>
-            <Text>Loading...</Text>
+          <View style={{marginTop: 300}}>
+            <ActivityIndicator size="large" color={theme.colors.yellow_p} />
           </View>
         ) : (
           <>

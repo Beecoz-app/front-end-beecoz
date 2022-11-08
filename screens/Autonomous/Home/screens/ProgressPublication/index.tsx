@@ -8,7 +8,8 @@ import {
 import { privateApi } from "../../../../../services/privateApi";
 import { IAutonomousPost } from "../../../../../interfaces/Post/IAutonomousPost";
 import * as SecureStore from "expo-secure-store";
-import { Text, View } from "react-native";
+import { Text, View, ActivityIndicator } from "react-native";
+import { theme } from "../../../../../styles/theme";
 
 export const ProgressPosts = () => {
   const { publications, setPublications } = useContext(
@@ -36,9 +37,9 @@ export const ProgressPosts = () => {
     <Container>
       <Content>
         {isLoading ? (
-          <View>
-            <Text>Loading...</Text>
-          </View>
+          <View style={{marginTop: 300}}>
+          <ActivityIndicator size="large" color={theme.colors.yellow_p} />
+        </View>
         ) : (
           <>
             <Flat
