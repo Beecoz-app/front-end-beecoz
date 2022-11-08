@@ -1,4 +1,4 @@
-import { Image, Text, View } from "react-native";
+import { Image, Switch, Text, View } from "react-native";
 import { useTheme } from "styled-components";
 import IconAnt from "react-native-vector-icons/AntDesign";
 import IconFontisto from "react-native-vector-icons/Fontisto";
@@ -23,7 +23,10 @@ import {
   LoginWithNumberContainer__Text,
 } from "./styles";
 import { AppCheckBox } from "../../../components/AppComponents/Inputs/CheckBoxInput";
-import { AutonomousAuthRegisterContext, IAutonomousAuthRegister } from "../../../contexts/Auth/Register/Autonomous/AutonomousRegisterAuthContext";
+import {
+  AutonomousAuthRegisterContext,
+  IAutonomousAuthRegister,
+} from "../../../contexts/Auth/Register/Autonomous/AutonomousRegisterAuthContext";
 
 export type LoginType = NativeStackScreenProps<
   MainStackParams,
@@ -32,7 +35,9 @@ export type LoginType = NativeStackScreenProps<
 
 export const LoginScreen = ({ navigation }: LoginType) => {
   const { handleLogin } = useContext(AuthContext) as IAuthContext;
-  const {newAutonomous} = useContext(AutonomousAuthRegisterContext) as IAutonomousAuthRegister
+  const { newAutonomous } = useContext(
+    AutonomousAuthRegisterContext
+  ) as IAutonomousAuthRegister;
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const [values, setvalues] = useState([
@@ -41,14 +46,14 @@ export const LoginScreen = ({ navigation }: LoginType) => {
   ]);
   const [type, setType] = useState("");
   const [numberIsLogin, setNumberIsLogin] = useState(false);
+  const [isSwitched, setIsSwitched] = useState(false);
   const theme = useTheme();
 
-  console.log(newAutonomous)
+  console.log(newAutonomous);
 
   const onLogin = async () => {
     try {
       await handleLogin({ login, password, type });
-
     } catch (error) {
       console.log(error);
     }
@@ -81,7 +86,7 @@ export const LoginScreen = ({ navigation }: LoginType) => {
           )}
         </InputContent>
         <LoginWithNumberContainer>
-          <AppCheckBox/>
+          <AppCheckBox />
           <LoginWithNumberContainer__Text>
             Entrar com número
           </LoginWithNumberContainer__Text>
@@ -105,8 +110,17 @@ export const LoginScreen = ({ navigation }: LoginType) => {
           />
         </RadioButtonContainer>
         <MissPasswordContent>
-          <View>
-            <Text>Lembre de mim</Text>
+          <View style={{width: 140, alignItems: "center", flexDirection: "row"}}>
+            <Switch
+              trackColor={{ false: theme.colors.main, true: theme.colors.yellow_p }}
+              thumbColor={isSwitched ? theme.colors.second : "#f4f3f4"}
+              ios_backgroundColor="#3e3e3e"
+              onValueChange={() => setIsSwitched(!isSwitched)}
+              value={isSwitched}
+              />
+              <Text style={{marginLeft: 4, color: theme.colors.white}}>
+                Lembre de mim
+              </Text>
           </View>
           <View>
             <Text style={{ color: theme.colors.blue_p, fontWeight: "bold" }}>
