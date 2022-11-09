@@ -79,10 +79,10 @@ export const ClientPublicationProvider = ({ children }: ClientPublicationProvide
     console.log(data);
 
     setPublications((prev: any) => [
-      ...prev,
       {
         ...data.publication,
       },
+      ...prev,
     ]);
   };
 
