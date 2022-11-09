@@ -28,6 +28,7 @@ export type AuthStackParams = {
 
   register: undefined;
 
+  registerClientSex: undefined;
   registerClientName: undefined;
   registerClientLogin: undefined;
   registerClientPassword: undefined;
@@ -79,6 +80,14 @@ export const AuthStackNavigator = () => {
       <Tab.Group>
         <Tab.Screen
           name="registerClientName"
+          component={ClientRegisterNameScreen}
+          options={{
+            headerTitle: (props) => <Header title="Seu Nome" backable={true} />,
+            headerBackVisible: false,
+          }}
+        />
+        <Tab.Screen
+          name="registerClientSex"
           component={ClientRegisterNameScreen}
           options={{
             headerTitle: (props) => <Header title="Seu Nome" backable={true} />,

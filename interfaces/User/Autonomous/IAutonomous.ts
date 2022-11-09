@@ -15,5 +15,5 @@ export interface IAutonomous {
     CPF: string;
     CNPJ?: string;
     profileImage: string;
-    clientType: 'Client' | 'Autonomous'
+    clientType: 'Autonomous'
 }

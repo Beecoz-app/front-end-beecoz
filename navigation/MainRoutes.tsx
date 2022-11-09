@@ -22,7 +22,7 @@ const Tab = createNativeStackNavigator<MainStackParams>();
 export const MainStack = () => {
   const { token, user } = useContext(AuthContext) as IAuthContext;
 
-  console.log('allllllllllllll', user?.clientType)
+  console.log('allllllllllllll', String(user?.clientType))
 
   return (
     <Tab.Navigator
@@ -31,7 +31,7 @@ export const MainStack = () => {
     >
       {token ? (
         <>
-          {user?.clientType === "Client" ? (
+          {String(user?.clientType) === "Client" ? (
             <Tab.Group>
               <Tab.Screen
                 name="mainBottomStacks"

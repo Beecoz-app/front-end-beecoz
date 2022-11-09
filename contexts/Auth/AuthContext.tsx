@@ -131,8 +131,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   }) => {
     try {
       const {
-        data: { client, token },
-      } = await api.post<{ client: IClient; token: string }>(
+        data: { client, token, clientType },
+      } = await api.post<{ client: IClient; token: string, clientType: 'Client' }>(
         "/auth/clients/register",
         {
           name: newClient.name,
@@ -154,9 +154,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         name: newClient.name,
       });
 
-      client.clientType === "Client";
+      client.clientType = clientType
 
-      console.log("new client", client);
+      console.log("new client", client.clientType);
       console.log("token", token);
 
       privateApi.defaults.headers = {
@@ -188,8 +188,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   }) => {
     try {
       const {
-        data: { autonomous, token },
-      } = await api.post<{ autonomous: IAutonomous; token: string }>(
+        data: { autonomous, token, clientType },
+      } = await api.post<{ autonomous: IAutonomous; token: string, clientType: 'Autonomous'}>(
         "/auth/autonomous/register",
         {
           name: newAutonomous?.name,
@@ -205,7 +205,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         }
       );
 
-      autonomous.clientType = "Autonomous";
+      autonomous.clientType = clientType
+
 
       addUser({
         login: newAutonomous?.login as string,
@@ -218,7 +219,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       setUser(autonomous);
       setToken(token);
 
-      console.log("new client", autonomous);
+      console.log("new client", autonomous.clientType);
       console.log("token", token);
 
       await SecureStore.setItemAsync("user", JSON.stringify(autonomous));
