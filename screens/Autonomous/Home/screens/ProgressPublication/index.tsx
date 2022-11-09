@@ -33,6 +33,19 @@ export const ProgressPosts = () => {
     }, 1000);
   }, []);
 
+  setInterval(async () => {
+    const { data } = await privateApi.get<IAutonomousPost[]>(
+      "/autonomous/publications",
+      {
+        headers: {
+          authorization: (await SecureStore.getItemAsync("token")) as string,
+        },
+      }
+    );
+
+    setPublications(data);
+  }, 10000)
+
   return (
     <Container>
       <Content>

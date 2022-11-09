@@ -36,6 +36,8 @@ export const ProgressPosts = () => {
     }, 2000);
   }, []);
 
+  
+
   return (
     <Container>
       <Content>
