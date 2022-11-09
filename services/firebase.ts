@@ -111,6 +111,7 @@ export const getAllMessagesOfCurrentChating = (
         userId: string;
         message: string;
         timestamp: string;
+        typeUser: 'Client' | 'Autonomous'
       }>
     >
   >
@@ -130,6 +131,7 @@ export const getAllMessagesOfCurrentChating = (
           userId: data.userId,
           message: data.message,
           timestamp: data.timestamp,
+          typeUser: data.typeUser
         });
       }
 
@@ -140,12 +142,13 @@ export const getAllMessagesOfCurrentChating = (
   });
 };
 
-export const sendNewMessage = async (chatId: string, userId: string, message: string) => {
+export const sendNewMessage = async (chatId: string, userId: string, message: string, typeUser: 'Client' | 'Autonomous') => {
   await addDoc(collection(db, 'messages'), {
     chatId: chatId,
     userId: userId,
     message: message,
-    timestamp: serverTimestamp()
+    timestamp: serverTimestamp(),
+    typeUser: typeUser
   })
 }
 

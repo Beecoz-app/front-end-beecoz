@@ -41,6 +41,7 @@ export const ChatingScreen = () => {
       userId: string;
       message: string;
       timestamp: string;
+      typeUser: 'Client' | 'Autonomous'
     }>
   >([]);
   const [messageText, setMessageText] = useState('');
@@ -60,7 +61,7 @@ export const ChatingScreen = () => {
 
 
   const handleSendNewMessage = async () => {
-    await sendNewMessage(route.params.chatId, String(user?.id), messageText)
+    await sendNewMessage(route.params.chatId, String(user?.id), messageText, 'Client')
 
     clearMessageTextInput()
   }
@@ -74,7 +75,7 @@ export const ChatingScreen = () => {
       <Content>
         <MessagesContainer>
           {messages.map((message) =>
-            message.userId === String(user?.id) ? (
+            message.typeUser === 'Client' && message.userId === String(user?.id) ? (
               <SenderMessage>
                 <SenderMessageText>
                   {message.message}
