@@ -54,6 +54,7 @@ export const AddPublicationInputText = (styled.TextInput.attrs((props) => ({
     font-size: 16px;
 
     background-color: ${({theme}) => theme.colors.main};
+    color: ${({theme}) => theme.colors.white}
 
 ` as unknown) as typeof TextInput
 
