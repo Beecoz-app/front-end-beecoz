@@ -24,7 +24,7 @@ export const ProfileScreen = ({ navigation }: ProfileType) => {
         <Image
           style={{ width: 60, height: 60, borderRadius: 50 }}
           resizeMode="contain"
-          source={{ uri: user?.profileImage }}
+          source={require('../../../assets/user.png')}
         />
         <ProfileContent>
           <Text

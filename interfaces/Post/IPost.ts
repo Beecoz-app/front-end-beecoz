@@ -20,7 +20,8 @@ export interface IPost {
       id: number;
       name: string;
       login: string;
-      inChat: boolean
+      inChat: boolean;
+      type: { level: string; }
     };
   }[];
 }

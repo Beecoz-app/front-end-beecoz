@@ -68,7 +68,7 @@ export const InterestedCard = ({
             <Image
               style={{ width: 40, height: 40, borderRadius: 50 }}
               resizeMode="contain"
-              source={{ uri:'' }}
+              source={require('../../../../../assets/user.png')}
             />
             <TextInfo>
               <Text style={{ color: theme.colors.white, fontWeight: "bold", fontSize: 18 }}>

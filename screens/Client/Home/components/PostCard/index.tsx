@@ -21,7 +21,7 @@ export const PostCard = ({ data }: { data: IPost }) => {
         <>
           <ResumeView>
             <Image
-              source={{ uri: data.photo }}
+              source={require('../../../../../assets/user.png')}
               resizeMode={"contain"}
               style={{
                 width: 50,
@@ -65,7 +65,7 @@ export const PostCard = ({ data }: { data: IPost }) => {
         <>
           <ResumeView>
             <Image
-              source={{ uri: data.photo }}
+              source={require('../../../../../assets/user.png')}
               resizeMode={"contain"}
               style={{
                 width: 50,
@@ -101,6 +101,7 @@ export const PostCard = ({ data }: { data: IPost }) => {
                 name: string;
                 login: string;
                 inChat: boolean;
+                type: { level: string; }
               };
             }>
               data={data.interest}
