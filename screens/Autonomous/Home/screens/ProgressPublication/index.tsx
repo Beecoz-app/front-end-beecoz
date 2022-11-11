@@ -44,7 +44,7 @@ export const ProgressPosts = () => {
     );
 
     setPublications(data);
-  }, 10000)
+  }, 5000)
 
   return (
     <Container>

@@ -1,4 +1,4 @@
-import { TouchableOpacity } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import { useRoute, RouteProp } from "@react-navigation/native";
 import {
   Container,
@@ -11,13 +11,21 @@ import {
   SenderMessage,
   SenderMessageText,
   ReceiverMessageText,
+  OpenWorkButtonContainer,
 } from "./styles";
 import Icon from "react-native-vector-icons/Ionicons";
 import IconAwesome from "react-native-vector-icons/FontAwesome";
 import { useTheme } from "styled-components";
 import { useContext, useEffect, useState } from "react";
-import { getAllMessagesOfCurrentChating, sendNewMessage } from "../../../../services/firebase";
-import { AuthContext, IAuthContext } from "../../../../contexts/Auth/AuthContext";
+import {
+  getAllMessagesOfCurrentChating,
+  sendNewMessage,
+} from "../../../../services/firebase";
+import {
+  AuthContext,
+  IAuthContext,
+} from "../../../../contexts/Auth/AuthContext";
+import MateIcon from "react-native-vector-icons/MaterialIcons";
 
 type ChatingScreenParamsList = {
   Receiver: {
@@ -41,10 +49,10 @@ export const ChatingScreen = () => {
       userId: string;
       message: string;
       timestamp: string;
-      typeUser: 'Client' | 'Autonomous'
+      typeUser: "Client" | "Autonomous";
     }>
   >([]);
-  const [messageText, setMessageText] = useState('');
+  const [messageText, setMessageText] = useState("");
   const theme = useTheme();
 
   useEffect(() => {
@@ -59,27 +67,30 @@ export const ChatingScreen = () => {
     fetch();
   }, []);
 
-
   const handleSendNewMessage = async () => {
-    await sendNewMessage(route.params.chatId, String(user?.id), messageText, 'Client')
+    await sendNewMessage(
+      route.params.chatId,
+      String(user?.id),
+      messageText,
+      "Client"
+    );
 
-    clearMessageTextInput()
-  }
+    clearMessageTextInput();
+  };
 
   const clearMessageTextInput = () => {
-    setMessageText('')
-  }
+    setMessageText("");
+  };
 
   return (
     <Container>
       <Content>
         <MessagesContainer>
           {messages.map((message) =>
-            message.typeUser === 'Client' && message.userId === String(user?.id) ? (
+            message.typeUser === "Client" &&
+            message.userId === String(user?.id) ? (
               <SenderMessage>
-                <SenderMessageText>
-                  {message.message}
-                </SenderMessageText>
+                <SenderMessageText>{message.message}</SenderMessageText>
               </SenderMessage>
             ) : (
               <ReceiverMessage>
@@ -89,30 +100,52 @@ export const ChatingScreen = () => {
           )}
         </MessagesContainer>
 
-        <SendMessageContainer>
-          <SendMessageInput placeholder="Digite..." value={messageText} onChangeText={(text) => setMessageText(text)} />
-          <SendMessageIcons>
-            <TouchableOpacity>
-              <Icon
-                name="camera"
-                style={{ fontSize: 24, color: theme.colors.gray_100 }}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity>
-              <IconAwesome
-                name="microphone"
-                style={{ fontSize: 24, color: theme.colors.gray_100 }}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity>
-              <Icon
-                name="send"
-                style={{ fontSize: 22, color: theme.colors.gray_100 }}
-                onPress={handleSendNewMessage}
-              />
-            </TouchableOpacity>
-          </SendMessageIcons>
-        </SendMessageContainer>
+        <View
+          style={{
+            width: "90%",
+            height: 70,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            flexDirection: "row",
+            marginBottom: 20,
+          }}
+        >
+          <SendMessageContainer>
+            <SendMessageInput
+              placeholder="Digite..."
+              value={messageText}
+              onChangeText={(text) => setMessageText(text)}
+            />
+            <SendMessageIcons>
+              <TouchableOpacity>
+                <Icon
+                  name="camera"
+                  style={{ fontSize: 24, color: theme.colors.gray_100 }}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <IconAwesome
+                  name="microphone"
+                  style={{ fontSize: 24, color: theme.colors.gray_100 }}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <Icon
+                  name="send"
+                  style={{ fontSize: 22, color: theme.colors.gray_100 }}
+                  onPress={handleSendNewMessage}
+                />
+              </TouchableOpacity>
+            </SendMessageIcons>
+          </SendMessageContainer>
+          <OpenWorkButtonContainer>
+            <MateIcon
+              name="work"
+              style={{ fontSize: 20, color: theme.colors.gray_100 }}
+            />
+          </OpenWorkButtonContainer>
+        </View>
       </Content>
     </Container>
   );

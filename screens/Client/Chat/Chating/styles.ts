@@ -81,10 +81,9 @@ export const ReceiverMessageText = styled.Text`
 `;
 
 export const SendMessageContainer = styled.View`
-  width: 90%;
-  height: 70px;
+  flex: 1;
+  height: 100%;
 
-  margin-bottom: 24px;
   padding: 20px;
 
   display: flex;
@@ -105,6 +104,20 @@ export const SendMessageIcons = styled.View`
   flex-direction: row;
 `;
 
+export const OpenWorkButtonContainer = styled.TouchableOpacity`
+  width: 60px;
+  height: 60px;
+
+  margin-left: 10px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 50px;
+
+  background-color: ${({ theme }) => theme.colors.main};
+`
 export const SendMessageInput = styled.TextInput.attrs((props) => ({
   placeholderTextColor: props.theme.colors.gray_100,
 }))`
