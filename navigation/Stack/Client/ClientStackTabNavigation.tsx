@@ -21,7 +21,7 @@ export type ClientStackParamsList = {
 
   chat: undefined;
   chating: {
-    receiver: {id: string, title: string, with: string, avatar: string};
+    receiver: {id: string, title: string, with: string, avatar: string, interestId: string};
     chatId: string
   };
 

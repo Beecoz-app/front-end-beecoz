@@ -4,7 +4,7 @@ import { ChatType } from "../..";
 import { Container } from "./styles";
 
 interface ChatCardProps {
-    data: {id: string, title: string, with: string, avatar: string, chatId: string},
+    data: {id: string, title: string, with: string, avatar: string, chatId: string, interestId: string},
     navigation: ChatType['navigation']
 }
 
@@ -16,7 +16,8 @@ export const ChatCard = ({data, navigation}: ChatCardProps) => {
       id: data.id,
       avatar: data.avatar,
       title: data.title,
-      with: data.with
+      with: data.with,
+      interestId: data.interestId,
     }, chatId: data.chatId})}>
       <Image
         style={{ width: 50, height: 50, borderRadius: 50 }}

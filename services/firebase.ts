@@ -44,6 +44,7 @@ export const addUser = async (sender: {
 export const addNewChat = async (
   sender: { id: string; name: string; login: string;avatar: string } | null,
   receiver: { id: string; name: string; login: string; avatar: string },
+  interestId: string,
   setChatIdContext: React.Dispatch<SetStateAction<number | null>>
 ) => {
   const senderUserRef = doc(db, "users", String(sender?.login));
@@ -52,6 +53,7 @@ export const addNewChat = async (
   const chat = await addDoc(collection(db, "chats"), {
      messages: [],
      users: [String(sender?.id), receiver.id],
+     interestId: interestId
   });
 
   await updateDoc(senderUserRef, {
@@ -60,6 +62,7 @@ export const addNewChat = async (
       title: receiver.name,
       avatar: receiver.avatar,
       with: receiver.login,
+      interestId: interestId
     }),
   });
 
@@ -69,6 +72,7 @@ export const addNewChat = async (
       title: String(sender?.name),
       avatar: String(sender?.avatar),
       with: String(sender?.login),
+      interestId: interestId
     }),
   });
 

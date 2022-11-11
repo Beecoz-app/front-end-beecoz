@@ -61,6 +61,7 @@ export const InterestedCard = ({
         name: String(data.autonomous.name),
         avatar: "",
       },
+      String(data.id),
       setChatId
     );
 
@@ -70,7 +71,8 @@ export const InterestedCard = ({
       id: String(data.id),
       avatar: '',
       title: data.autonomous.name,
-      with: data.autonomous.login
+      with: data.autonomous.login,
+      interestId: String(data.id),
     }, chatId: String(chatId)})
   };
 
