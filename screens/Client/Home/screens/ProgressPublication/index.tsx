@@ -12,6 +12,8 @@ import { privateApi } from "../../../../../services/privateApi";
 import { IPost } from "../../../../../interfaces/Post/IPost";
 import { theme } from "../../../../../styles/theme";
 
+
+
 export const ProgressPosts = () => {
   const { publications, setPublications } = useContext(
     ClientPublicationContext
@@ -36,7 +38,7 @@ export const ProgressPosts = () => {
     }, 2000);
   }, []);
 
-  
+
 
   return (
     <Container>

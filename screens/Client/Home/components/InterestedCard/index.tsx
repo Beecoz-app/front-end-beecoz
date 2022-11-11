@@ -13,6 +13,12 @@ import {
   ChatContext,
   IChatContext,
 } from "../../../../../contexts/Chat/ChatContext";
+import { ClientStackParamsList } from "../../../../../navigation/Stack/Client/ClientStackTabNavigation";
+import {NativeStackNavigationProp, NativeStackScreenProps} from '@react-navigation/native-stack'
+import {useNavigation} from '@react-navigation/native'
+
+
+type ClientInterestCardNavigationProps = NativeStackNavigationProp<ClientStackParamsList>;
 
 export const InterestedCard = ({
   data,
@@ -34,6 +40,7 @@ export const InterestedCard = ({
 }) => {
   const { user } = useContext(AuthContext) as IAuthContext;
   const { chatId, setChatId } = useContext(ChatContext) as IChatContext;
+  const {navigate} = useNavigation<ClientInterestCardNavigationProps>()
   const theme = useTheme();
 
   const handleAddChat = () => {
@@ -58,9 +65,15 @@ export const InterestedCard = ({
     );
 
     data.autonomous.inChat = true;
+
+    navigate('chating', {receiver: {
+      id: String(data.id),
+      avatar: '',
+      title: data.autonomous.name,
+      with: data.autonomous.login
+    }, chatId: String(chatId)})
   };
 
-  console.log(data)
 
   return (
     <Container>
