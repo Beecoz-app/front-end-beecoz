@@ -12,6 +12,7 @@ export interface IPost {
   region: string;
   tags: IServiceType["id"];
   type: string;
+  status: 'Progress' | 'Open' | 'Completed';
   interest: {
     id: number;
     publicationId: number;
@@ -21,7 +22,7 @@ export interface IPost {
       name: string;
       login: string;
       inChat: boolean;
-      type: { level: string; }
+      type: { level: string };
     };
   }[];
 }
