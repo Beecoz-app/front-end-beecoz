@@ -51,7 +51,7 @@ export const ProgressPosts = () => {
           <>
             {publications.length > 0 ? (
               <Flat
-                data={publications}
+                data={publications.filter(publication => publication.status === 'Progress')}
                 keyExtractor={(item) => String(item.id)}
                 renderItem={({ item }) => <PostCard data={item} />}
               />

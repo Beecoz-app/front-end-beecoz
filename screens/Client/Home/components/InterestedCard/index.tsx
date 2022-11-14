@@ -68,13 +68,7 @@ export const InterestedCard = ({
     data.autonomous.inChat = true;
     
 
-    navigate('chating', {receiver: {
-      id: String(data.id),
-      avatar: '',
-      title: data.autonomous.name,
-      with: data.autonomous.login,
-      interestId: String(data.id),
-    }, chatId: String(chatId)})
+    navigate('chat')
   };
 
 

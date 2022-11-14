@@ -27,6 +27,7 @@ import {
 } from "../../../../contexts/Auth/AuthContext";
 import MateIcon from "react-native-vector-icons/MaterialIcons";
 import { privateApi } from "../../../../services/privateApi";
+import * as SecureStore from "expo-secure-store";
 
 type ChatingScreenParamsList = {
   Receiver: {
@@ -56,6 +57,11 @@ export const ChatingScreen = () => {
   >([]);
   const [messageText, setMessageText] = useState("");
   const [isOpenedWork, setIsOpenedWork] = useState(false);
+  const [work, setWork] = useState<{
+    id: number;
+    status: "Progress" | "Open" | "Completed";
+    interestId: number;
+  } | null>(null);
   const theme = useTheme();
 
   useEffect(() => {
@@ -65,6 +71,20 @@ export const ChatingScreen = () => {
         String(user?.id),
         setMessages
       );
+
+      const { data: {work} } = await privateApi.get<{
+        work: {
+          id: number;
+          status: "Progress" | "Open" | "Completed";
+          interestId: number;
+        };
+      }>(`/work/interest/${route.params.receiver.interestId}`, {
+        headers: {
+          authorization: (await SecureStore.getItemAsync("token")) as string,
+        },
+      });
+
+      setWork(work);
     };
 
     fetch();
@@ -94,6 +114,8 @@ export const ChatingScreen = () => {
 
     setIsOpenedWork(true);
   };
+
+  console.log(work);
 
   return (
     <Container>
@@ -152,7 +174,16 @@ export const ChatingScreen = () => {
               </TouchableOpacity>
             </SendMessageIcons>
           </SendMessageContainer>
-          {!isOpenedWork && (
+          {!isOpenedWork ||
+            (work?.status === "Progress" && (
+              <OpenWorkButtonContainer onPress={handleOpenWork}>
+                <MateIcon
+                  name="work"
+                  style={{ fontSize: 20, color: theme.colors.gray_100 }}
+                />
+              </OpenWorkButtonContainer>
+            ))}
+          {work === null && (
             <OpenWorkButtonContainer onPress={handleOpenWork}>
               <MateIcon
                 name="work"
