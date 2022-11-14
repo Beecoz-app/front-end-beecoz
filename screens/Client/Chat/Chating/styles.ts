@@ -1,3 +1,4 @@
+import { TouchableOpacity } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 import styled from "../../../../styles/styledComponents";
 
@@ -104,7 +105,7 @@ export const SendMessageIcons = styled.View`
   flex-direction: row;
 `;
 
-export const OpenWorkButtonContainer = styled.TouchableOpacity`
+export const OpenWorkButtonContainer = (styled.TouchableOpacity`
   width: 60px;
   height: 60px;
 
@@ -116,8 +117,8 @@ export const OpenWorkButtonContainer = styled.TouchableOpacity`
 
   border-radius: 50px;
 
-  background-color: ${({ theme }) => theme.colors.main};
-`
+  background-color: ${({ theme }) => theme.colors.main}
+` as unknown) as typeof TouchableOpacity
 export const SendMessageInput = styled.TextInput.attrs((props) => ({
   placeholderTextColor: props.theme.colors.gray_100,
 }))`

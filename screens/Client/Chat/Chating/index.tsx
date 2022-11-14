@@ -26,6 +26,7 @@ import {
   IAuthContext,
 } from "../../../../contexts/Auth/AuthContext";
 import MateIcon from "react-native-vector-icons/MaterialIcons";
+import { privateApi } from "../../../../services/privateApi";
 
 type ChatingScreenParamsList = {
   Receiver: {
@@ -34,6 +35,7 @@ type ChatingScreenParamsList = {
       title: string;
       with: string;
       avatar: string;
+      interestId: string;
     };
     chatId: string;
   };
@@ -53,6 +55,7 @@ export const ChatingScreen = () => {
     }>
   >([]);
   const [messageText, setMessageText] = useState("");
+  const [isOpenedWork, setIsOpenedWork] = useState(false);
   const theme = useTheme();
 
   useEffect(() => {
@@ -80,6 +83,16 @@ export const ChatingScreen = () => {
 
   const clearMessageTextInput = () => {
     setMessageText("");
+  };
+
+  const handleOpenWork = async () => {
+    const { data } = await privateApi.post(
+      `/work/open/${route.params.receiver.interestId}`
+    );
+
+    console.log(data);
+
+    setIsOpenedWork(true);
   };
 
   return (
@@ -139,12 +152,14 @@ export const ChatingScreen = () => {
               </TouchableOpacity>
             </SendMessageIcons>
           </SendMessageContainer>
-          <OpenWorkButtonContainer>
-            <MateIcon
-              name="work"
-              style={{ fontSize: 20, color: theme.colors.gray_100 }}
-            />
-          </OpenWorkButtonContainer>
+          {!isOpenedWork && (
+            <OpenWorkButtonContainer onPress={handleOpenWork}>
+              <MateIcon
+                name="work"
+                style={{ fontSize: 20, color: theme.colors.gray_100 }}
+              />
+            </OpenWorkButtonContainer>
+          )}
         </View>
       </Content>
     </Container>

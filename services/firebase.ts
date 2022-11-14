@@ -45,7 +45,7 @@ export const addNewChat = async (
   sender: { id: string; name: string; login: string;avatar: string } | null,
   receiver: { id: string; name: string; login: string; avatar: string },
   interestId: string,
-  setChatIdContext: React.Dispatch<SetStateAction<number | null>>
+  setChatIdContext: React.Dispatch<SetStateAction<string | null>>
 ) => {
   const senderUserRef = doc(db, "users", String(sender?.login));
   const receiverUserRef = doc(db, "users", receiver.login);
@@ -77,7 +77,8 @@ export const addNewChat = async (
   });
 
 
-  setChatIdContext(Number(chat.id))
+  setChatIdContext(chat.id)
+  
 };
 
 export const getAllOpenedChats = (userEmail: string, setChat: any) => {

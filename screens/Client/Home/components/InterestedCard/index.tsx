@@ -43,12 +43,12 @@ export const InterestedCard = ({
   const {navigate} = useNavigation<ClientInterestCardNavigationProps>()
   const theme = useTheme();
 
-  const handleAddChat = () => {
+  const handleAddChat = async () => {
     if (chatId) {
       return;
     }
 
-    addNewChat(
+    await addNewChat(
       {
         id: String(user?.id),
         login: String(user?.login),
@@ -66,6 +66,7 @@ export const InterestedCard = ({
     );
 
     data.autonomous.inChat = true;
+    
 
     navigate('chating', {receiver: {
       id: String(data.id),

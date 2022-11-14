@@ -1,8 +1,8 @@
 import { createContext, ReactNode, SetStateAction, useState } from "react";
 
 export interface IChatContext {
-    chatId: number | null,
-    setChatId: React.Dispatch<SetStateAction<number | null>>
+    chatId: string | null,
+    setChatId: React.Dispatch<SetStateAction<string | null>>
 }
 interface ChatProviderProps {
     children: ReactNode
@@ -11,7 +11,7 @@ interface ChatProviderProps {
 export const ChatContext = createContext<IChatContext | null>(null)
 
 export const ChatProvider = ({children}: ChatProviderProps) => {
-    const [chatId, setChatId] = useState<number | null>(null);
+    const [chatId, setChatId] = useState<string | null>(null);
 
     return (
         <ChatContext.Provider value={{chatId, setChatId}}>
