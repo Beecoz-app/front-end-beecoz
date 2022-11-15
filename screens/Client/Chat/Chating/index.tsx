@@ -30,6 +30,7 @@ import { privateApi } from "../../../../services/privateApi";
 import * as SecureStore from "expo-secure-store";
 import { IPost } from "../../../../interfaces/Post/IPost";
 import { ClientPublicationContext, IClientPublicationContext } from "../../../../contexts/Client/Publication/ClientPublicationContext";
+import { IWorkContext, Work, WorkContext } from "../../../../contexts/Work/WorkContext";
 
 type ChatingScreenParamsList = {
   Receiver: {
@@ -48,6 +49,7 @@ export const ChatingScreen = () => {
   const route = useRoute<RouteProp<ChatingScreenParamsList, "Receiver">>();
   const { user } = useContext(AuthContext) as IAuthContext;
   const {setPublications} = useContext(ClientPublicationContext) as IClientPublicationContext
+  const {setWorks} = useContext(WorkContext) as IWorkContext
   const [messages, setMessages] = useState<
     Array<{
       id: string;
@@ -138,6 +140,14 @@ export const ChatingScreen = () => {
     );
 
     setPublications(publications)
+
+    const { data: {works} } = await privateApi.get<{works: Work[]}>("/work/works", {
+      headers: {
+        authorization: (await SecureStore.getItemAsync("token")) as string,
+      },
+    });
+
+    setWorks(works)
   };
 
   console.log(work);
