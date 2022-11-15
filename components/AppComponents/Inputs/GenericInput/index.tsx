@@ -6,7 +6,7 @@ import { setKeyboardType } from "../../../../utils/setKeyboardType";
 interface InputProps extends React.ComponentProps<typeof TextInput> {
   type: "email" | "phone" | "password" | "CPF" | "CNPJ" | "text";
   placeholder: string;
-  masked: true;
+  masked: boolean;
   mask?: TextInputMaskTypeProp;
 }
 
@@ -29,6 +29,7 @@ export const AppGeneticInput = ({
           onFocus={() => setFocusInput(true)}
           onBlur={() => setFocusInput(false)}
           style={focusInput ? styles.inputFocusStyle : styles.inputStyle}
+          secureTextEntry={type === "password" ? true : false}
           {...rest}
         />
       ) : (

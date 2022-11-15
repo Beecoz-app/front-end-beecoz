@@ -38,6 +38,8 @@ export const AutonomousRegisterCNPJScreen = ({
         <AppGeneticInput
           type="CPF"
           placeholder="000.000.000-00"
+          masked={true}
+          mask={"cnpj"}
           value={cnpj}
           onChangeText={(text) => {
             if (cnpj !== "") setDisabled(false);

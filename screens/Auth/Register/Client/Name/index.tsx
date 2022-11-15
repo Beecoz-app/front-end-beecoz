@@ -54,6 +54,7 @@ export const ClientRegisterNameScreen = ({
         <AppGeneticInput
           type="text"
           placeholder="Seu nome"
+          masked={false}
           value={name}
           onChangeText={(text) => {
             if (name !== "") setDisabled(false);
@@ -64,6 +65,7 @@ export const ClientRegisterNameScreen = ({
         <AppGeneticInput
           type="text"
           placeholder="Seu sobrenome"
+          masked={false}
           value={lastName}
           onChangeText={(text) => {
             if (lastName !== "") setDisabled(false);

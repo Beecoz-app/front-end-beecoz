@@ -44,12 +44,6 @@ export const ClientRegisterCPFScreen = ({
             setCpf(text);
           }}
         />
-        {/* <TextInputMask
-          type={'cpf'}
-          value={cpf}
-          onChangeText={text => setCpf(text)}
-          style={{width: '100%', height: 100, backgroundColor: 'red'}}
-        /> */}
       </DataContainer>
       <ButtonContainer>
         <AppGenericButton

@@ -57,6 +57,7 @@ export const ClientRegisterLoginScreen = ({
             type="email"
             placeholder="nome@dominio.com"
             value={email}
+            masked={false}
             onChangeText={(text) => {
               if (email !== "") setDisabled(false);
 
@@ -68,6 +69,8 @@ export const ClientRegisterLoginScreen = ({
             type="phone"
             placeholder="(00) 00000-0000"
             value={cellPhone}
+            masked={true}
+            mask={"cel-phone"}
             onChangeText={(text) => {
               if (cellPhone !== "") setDisabled(false);
 

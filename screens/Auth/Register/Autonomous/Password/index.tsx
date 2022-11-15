@@ -52,6 +52,7 @@ export const AutonomousRegisterPasswordScreen = ({
           type="password"
           placeholder="********"
           value={password}
+          masked={false}
           onChangeText={(text) => {
             if (password !== "") setDisabled(false);
 

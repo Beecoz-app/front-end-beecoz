@@ -36,6 +36,8 @@ export const AutonomousRegisterCPFScreen = ({
         <AppGeneticInput
           type="CPF"
           placeholder="000.000.000-00"
+          masked={true}
+          mask={"cpf"}
           value={cpf}
           onChangeText={(text) => {
             if (cpf !== "") setDisabled(false);

@@ -50,6 +50,7 @@ export const ClientRegisterPasswordScreen = ({
         <AppGeneticInput
           type="password"
           placeholder="********"
+          masked={false}
           onChangeText={(text) => {
             if (password !== "") setDisabled(false);
 

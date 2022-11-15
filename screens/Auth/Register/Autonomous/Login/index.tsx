@@ -57,6 +57,7 @@ export const AutonomousRegisterLoginScreen = ({
           <AppGeneticInput
             type="email"
             placeholder="nome@dominio.com"
+            masked={false}
             value={email}
             onChangeText={(text) => {
               if (email !== "") setDisabled(false);
@@ -68,6 +69,8 @@ export const AutonomousRegisterLoginScreen = ({
           <AppGeneticInput
             type="phone"
             placeholder="(00) 00000-0000"
+            masked={true}
+            mask={"cel-phone"}
             value={cellPhone}
             onChangeText={(text) => {
               if (cellPhone !== "") setDisabled(false);
