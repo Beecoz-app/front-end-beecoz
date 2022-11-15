@@ -1,6 +1,6 @@
 import React, { createContext, ReactNode, useState } from "react";
 
-interface Work {
+export interface Work {
     id: number;
     status: "Progress" | "Open" | "Completed";
     interest: {

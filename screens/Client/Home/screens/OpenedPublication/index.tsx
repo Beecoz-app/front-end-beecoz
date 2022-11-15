@@ -1,39 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { privateApi } from "../../../../../services/privateApi";
 import { OpenPublicationCard } from "../../components/OpenPublicationCard";
 import { Container, Content, Flat } from "./styles";
 import * as SecureStore from "expo-secure-store";
+import { IWorkContext, Work, WorkContext } from "../../../../../contexts/Work/WorkContext";
 
 export const OpenedPublication = () => {
-  const [works, setWorks] = useState<
-    {
-      id: number;
-      status: "Progress" | "Open" | "Completed";
-      interest: {
-        id: number;
-        publicationId: number;
-        autonomousId: number;
-        autonomous: {
-          id: number;
-          login: string;
-        };
-        publication: {
-          id: number;
-          title: string;
-          description: string;
-          region: string;
-          data: string;
-          servTypeId: 1;
-          clientId: 1;
-          status: "Open" | "Progress" | "Completed";
-          client: {
-            id: number;
-            login: string;
-          };
-        };
-      };
-    }[]
-  >([]);
+  const {setWorks, works} = useContext(WorkContext) as IWorkContext
 
   useEffect(() => {
     const getAllWorks = async () => {

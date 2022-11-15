@@ -3,30 +3,13 @@ import {
   View,
   Image,
 } from "react-native";
+import { Work } from "../../../../../contexts/Work/WorkContext";
 import { Container, ResumeView } from "./styles";
 
 export const CompletedPublicationCard = ({
   data,
 }: {
-  data: {
-    id: 1;
-    status: "Progress" | "Open" | "Completed";
-    interest: {
-      id: number;
-      publicationId: number;
-      autonomousId: number;
-      publication: {
-        id: number,
-      title: string,
-      description: string,
-      region: string,
-      data: string,
-      servTypeId: 1,
-      clientId: 1,
-      status: "Open" | "Progress" | 'Completed'
-    }
-  };
-  };
+  data: Work
 }) => {
   return (
     <Container>

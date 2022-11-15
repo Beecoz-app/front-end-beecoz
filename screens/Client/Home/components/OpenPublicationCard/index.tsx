@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Text, View, Image, Modal, TouchableOpacity } from "react-native";
 import { Container, ResumeView } from "./styles";
 import { theme } from "../../../../../styles/theme";
@@ -6,6 +6,7 @@ import { AppTextArea } from "../../../../../components/AppComponents/Inputs/Text
 import Icon from "react-native-vector-icons/AntDesign";
 import { privateApi } from "../../../../../services/privateApi";
 import * as SecureStore from "expo-secure-store";
+import { IWorkContext, Work, WorkContext } from "../../../../../contexts/Work/WorkContext";
 
 const RatingBar = ({
   maxRating,
@@ -42,37 +43,13 @@ const RatingBar = ({
 export const OpenPublicationCard = ({
   data,
 }: {
-  data: {
-    id: number;
-    status: "Progress" | "Open" | "Completed";
-    interest: {
-      id: number;
-      publicationId: number;
-      autonomousId: number;
-      autonomous: {
-        id: number;
-        login: string;
-      };
-      publication: {
-        id: number;
-        title: string;
-        description: string;
-        region: string;
-        data: string;
-        servTypeId: 1;
-        clientId: 1;
-        status: "Open" | "Progress" | "Completed";
-        client: {
-          id: number;
-          login: string;
-        };
-      };
-    };
-  };
+  data: Work;
 }) => {
+  const {setWorks} = useContext(WorkContext) as IWorkContext
   const [isModal, setIsModal] = useState(false);
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
+
 
   const handleClosePublication = async () => {
     await privateApi.post(
@@ -89,6 +66,14 @@ export const OpenPublicationCard = ({
     );
 
     setIsModal(false);
+
+    const { data: {works} } = await privateApi.get<{works: Work[]}>("/work/works", {
+      headers: {
+        authorization: (await SecureStore.getItemAsync("token")) as string,
+      },
+    });
+
+    setWorks(works)
 
     //DeleteManyChatsByPublicationId(String(data.interest.publication.id), data.interest.publication.client.login, data.interest.autonomous.login)
   };
