@@ -62,6 +62,7 @@ export const InterestedCard = ({
         avatar: "",
       },
       String(data.id),
+      String(data.publicationId),
       setChatId
     );
 

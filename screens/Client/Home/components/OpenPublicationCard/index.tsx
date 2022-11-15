@@ -1,26 +1,11 @@
-import { useContext, useState } from "react";
-import {
-  Text,
-  View,
-  Image,
-  ListRenderItem,
-  FlatList,
-  Modal,
-  TouchableOpacity,
-} from "react-native";
-import { InterestedCard } from "../InterestedCard";
+import { useState } from "react";
+import { Text, View, Image, Modal, TouchableOpacity } from "react-native";
 import { Container, ResumeView } from "./styles";
-import { IPost } from "../../../../../interfaces/Post/IPost";
-import { IAutonomous } from "../../../../../interfaces/User/Autonomous/IAutonomous";
-import {
-  IServiceContext,
-  ServiceContext,
-} from "../../../../../contexts/Service/ServiceContext";
 import { theme } from "../../../../../styles/theme";
 import { AppTextArea } from "../../../../../components/AppComponents/Inputs/TextAreaInput";
 import Icon from "react-native-vector-icons/AntDesign";
 import { privateApi } from "../../../../../services/privateApi";
-import * as SecureStore from 'expo-secure-store'
+import * as SecureStore from "expo-secure-store";
 
 const RatingBar = ({
   maxRating,
@@ -58,46 +43,55 @@ export const OpenPublicationCard = ({
   data,
 }: {
   data: {
-    id: 1;
+    id: number;
     status: "Progress" | "Open" | "Completed";
     interest: {
       id: number;
       publicationId: number;
       autonomousId: number;
+      autonomous: {
+        id: number;
+        login: string;
+      };
       publication: {
-        id: number,
-      title: string,
-      description: string,
-      region: string,
-      data: string,
-      servTypeId: 1,
-      clientId: 1,
-      status: "Open" | "Progress" | 'Completed'
-    }
-  };
+        id: number;
+        title: string;
+        description: string;
+        region: string;
+        data: string;
+        servTypeId: 1;
+        clientId: 1;
+        status: "Open" | "Progress" | "Completed";
+        client: {
+          id: number;
+          login: string;
+        };
+      };
+    };
   };
 }) => {
   const [isModal, setIsModal] = useState(false);
   const [rating, setRating] = useState(0);
-  const [comment, setComment] = useState('');
+  const [comment, setComment] = useState("");
 
   const handleClosePublication = async () => {
-    console.log("aaaaaaaaaa");
-
-    const response = await privateApi.post(`/work/finish/${data.id}/${data.interest.autonomousId}`, {
-       stars: rating,
-       comment
-     }, {
-      headers: {
-        authorization: (await SecureStore.getItemAsync("token")) as string,
+    await privateApi.post(
+      `/work/finish/${data.id}/${data.interest.autonomousId}`,
+      {
+        stars: rating,
+        comment,
       },
-     })
-
-     console.log(response)
+      {
+        headers: {
+          authorization: (await SecureStore.getItemAsync("token")) as string,
+        },
+      }
+    );
 
     setIsModal(false);
-  };
 
+    //DeleteManyChatsByPublicationId(String(data.interest.publication.id), data.interest.publication.client.login, data.interest.autonomous.login)
+  };
 
   return (
     <Container>
@@ -178,7 +172,6 @@ export const OpenPublicationCard = ({
             <AppTextArea
               placeholder="envie um comentario"
               onChange={(text) => setComment(text)}
-              
             />
             <TouchableOpacity
               style={{
@@ -198,7 +191,6 @@ export const OpenPublicationCard = ({
                   fontSize: 16,
                   fontWeight: "bold",
                 }}
-                
               >
                 Botao
               </Text>

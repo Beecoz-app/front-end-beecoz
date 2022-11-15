@@ -1,14 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Text, View } from "react-native";
-import {
-  IClientPublicationContext,
-  ClientPublicationContext,
-} from "../../../../../contexts/Client/Publication/ClientPublicationContext";
+import React, { useEffect, useState } from "react";
 import { privateApi } from "../../../../../services/privateApi";
-import { PostCard } from "../../components/PostCard";
 import { Container, Content, Flat, NoPublicationsMessage } from "./styles";
 import * as SecureStore from "expo-secure-store";
-import { OpenPublicationCard } from "../../components/OpenPublicationCard";
 import { CompletedPublicationCard } from "../../components/CompletedPublicationCard";
 
 export const ConcludedPublication = () => {
@@ -41,8 +34,6 @@ export const ConcludedPublication = () => {
           authorization: (await SecureStore.getItemAsync("token")) as string,
         },
       });
-
-      console.log("bbbbbbbbbbbbbbbb", data.works[0].publication);
 
       setWorks(data.works);
     };

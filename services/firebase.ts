@@ -12,7 +12,10 @@ import {
   where,
   addDoc,
   updateDoc,
-  arrayUnion
+  arrayUnion,
+  getDoc,
+  getDocs,
+  DocumentData,
 } from "firebase/firestore";
 import React, { SetStateAction } from "react";
 
@@ -42,7 +45,7 @@ export const addUser = async (sender: {
 };
 
 export const addNewChat = async (
-  sender: { id: string; name: string; login: string;avatar: string } | null,
+  sender: { id: string; name: string; login: string; avatar: string } | null,
   receiver: { id: string; name: string; login: string; avatar: string },
   interestId: string,
   publicationId: string,
@@ -52,10 +55,10 @@ export const addNewChat = async (
   const receiverUserRef = doc(db, "users", receiver.login);
 
   const chat = await addDoc(collection(db, "chats"), {
-     messages: [],
-     users: [String(sender?.id), receiver.id],
-     interestId: interestId,
-     publicationId: publicationId
+    messages: [],
+    users: [String(sender?.id), receiver.id],
+    interestId: interestId,
+    publicationId: publicationId,
   });
 
   await updateDoc(senderUserRef, {
@@ -65,7 +68,7 @@ export const addNewChat = async (
       avatar: receiver.avatar,
       with: receiver.login,
       interestId: interestId,
-      publicationId: publicationId
+      publicationId: publicationId,
     }),
   });
 
@@ -76,13 +79,11 @@ export const addNewChat = async (
       avatar: String(sender?.avatar),
       with: String(sender?.login),
       interestId: interestId,
-      publicationId: publicationId
+      publicationId: publicationId,
     }),
   });
 
-
-  setChatIdContext(chat.id)
-  
+  setChatIdContext(chat.id);
 };
 
 export const getAllOpenedChats = (userEmail: string, setChat: any) => {
@@ -120,7 +121,7 @@ export const getAllMessagesOfCurrentChating = (
         userId: string;
         message: string;
         timestamp: string;
-        typeUser: 'Client' | 'Autonomous'
+        typeUser: "Client" | "Autonomous";
       }>
     >
   >
@@ -140,7 +141,7 @@ export const getAllMessagesOfCurrentChating = (
           userId: data.userId,
           message: data.message,
           timestamp: data.timestamp,
-          typeUser: data.typeUser
+          typeUser: data.typeUser,
         });
       }
 
@@ -151,30 +152,61 @@ export const getAllMessagesOfCurrentChating = (
   });
 };
 
-export const sendNewMessage = async (chatId: string, userId: string, message: string, typeUser: 'Client' | 'Autonomous') => {
-  await addDoc(collection(db, 'messages'), {
+export const sendNewMessage = async (
+  chatId: string,
+  userId: string,
+  message: string,
+  typeUser: "Client" | "Autonomous"
+) => {
+  await addDoc(collection(db, "messages"), {
     chatId: chatId,
     userId: userId,
     message: message,
     timestamp: serverTimestamp(),
-    typeUser: typeUser
-  })
-}
-
-export const DeleteManyChatsByPublicationId = (publicationId: string, clientLogin: string, autonomousLogin: string) => {
-  const clientQuery = query(collection(db, 'users', clientLogin, 'chats'))
-  const autonomousQuery = query(collection(db, 'users', autonomousLogin, 'chats'))
-
-  onSnapshot(clientQuery, (querySnapshot) => {
-    console.log(" listAllMessagesOfCurrentChat snapshot", querySnapshot.docs);
-
-    querySnapshot.forEach((doc) => {
-      const data = doc.data();
-
-      console.log("data", ...<[]>data);
-    });
+    typeUser: typeUser,
   });
-}
+};
+
+
+
+// export const DeleteManyChatsByPublicationId = async (
+//   publicationId: string,
+//   clientLogin: string,
+//   autonomousLogin: string
+// ) => {  
+//   const clientDocReference = doc(db, 'users', clientLogin)
+  
+//   // const docClientSnap = await getDoc(clientDocReference)
+
+//   // if (docClientSnap.exists()) {
+//   //   onSnapshot(docClientSnap, (querySnapshot) => {
+
+//   //   })
+//   // }
+
+//   // const clientQuery = doc(db, "users", clientLogin);
+//   // const autonomousQuery = query(
+//   //   collection(db, "users", autonomousLogin, "chats")
+//   // );
+
+//   // const querySnapshot = await getDocs(collection(db, "users"));
+
+//   // querySnapshot.forEach((doc) => {
+//   //   if (doc.id === clientLogin) {
+//   //     console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", doc.id);
+
+//   //     const data = doc.data();
+
+//   //     data.chats.map((doc:  DocumentData) => {
+//   //       if (doc.publicationId === publicationId) {
+//   //         console.log("aloooo");
+
+//   //         console.log(doc.);
+//   //       }
+//   //     });
+//   //   }
+//   // });
+// };
 
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
