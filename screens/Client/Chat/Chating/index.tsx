@@ -28,6 +28,8 @@ import {
 import MateIcon from "react-native-vector-icons/MaterialIcons";
 import { privateApi } from "../../../../services/privateApi";
 import * as SecureStore from "expo-secure-store";
+import { IPost } from "../../../../interfaces/Post/IPost";
+import { ClientPublicationContext, IClientPublicationContext } from "../../../../contexts/Client/Publication/ClientPublicationContext";
 
 type ChatingScreenParamsList = {
   Receiver: {
@@ -45,6 +47,7 @@ type ChatingScreenParamsList = {
 export const ChatingScreen = () => {
   const route = useRoute<RouteProp<ChatingScreenParamsList, "Receiver">>();
   const { user } = useContext(AuthContext) as IAuthContext;
+  const {setPublications} = useContext(ClientPublicationContext) as IClientPublicationContext
   const [messages, setMessages] = useState<
     Array<{
       id: string;
@@ -122,6 +125,19 @@ export const ChatingScreen = () => {
     setIsOpenedWork(true);
 
     setIsModal(false)
+
+    const {
+      data: { publications },
+    } = await privateApi.get<{ publications: Array<IPost> }>(
+      "/publication/read",
+      {
+        headers: {
+          authorization: (await SecureStore.getItemAsync("token")) as string,
+        },
+      }
+    );
+
+    setPublications(publications)
   };
 
   console.log(work);
