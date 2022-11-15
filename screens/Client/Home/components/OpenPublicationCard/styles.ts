@@ -1,10 +1,6 @@
 import styled from "../../../../../styles/styledComponents";
 
-interface ContainerProps {
-  seeInterested: boolean
-}
-
-export const Container = styled.View<ContainerProps>`
+export const Container = styled.View`
   width: 100%;
 
 

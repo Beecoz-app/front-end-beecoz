@@ -19,6 +19,8 @@ import {
 import { theme } from "../../../../../styles/theme";
 import { AppTextArea } from "../../../../../components/AppComponents/Inputs/TextAreaInput";
 import Icon from "react-native-vector-icons/AntDesign";
+import { privateApi } from "../../../../../services/privateApi";
+import * as SecureStore from 'expo-secure-store'
 
 const RatingBar = ({
   maxRating,
@@ -75,20 +77,30 @@ export const OpenPublicationCard = ({
   };
   };
 }) => {
-  const { serviceTypes } = useContext(ServiceContext) as IServiceContext;
-  const [seeInterested, setSeeInterested] = useState(false);
   const [isModal, setIsModal] = useState(false);
   const [rating, setRating] = useState(0);
+  const [comment, setComment] = useState('');
 
-  const handleClosePublication = () => {
+  const handleClosePublication = async () => {
     console.log("aaaaaaaaaa");
 
-    setIsModal(true);
+    const response = await privateApi.post(`/work/finish/${data.id}/${data.interest.autonomousId}`, {
+       stars: rating,
+       comment
+     }, {
+      headers: {
+        authorization: (await SecureStore.getItemAsync("token")) as string,
+      },
+     })
+
+     console.log(response)
+
+    setIsModal(false);
   };
 
 
   return (
-    <Container seeInterested={seeInterested}>
+    <Container>
       <Modal transparent={false} visible={isModal} animationType="fade">
         <View
           style={{
@@ -165,7 +177,8 @@ export const OpenPublicationCard = ({
             </View>
             <AppTextArea
               placeholder="envie um comentario"
-              onChange={() => null}
+              onChange={(text) => setComment(text)}
+              
             />
             <TouchableOpacity
               style={{
@@ -177,6 +190,7 @@ export const OpenPublicationCard = ({
                 justifyContent: "center",
                 alignItems: "center",
               }}
+              onPress={handleClosePublication}
             >
               <Text
                 style={{
@@ -184,6 +198,7 @@ export const OpenPublicationCard = ({
                   fontSize: 16,
                   fontWeight: "bold",
                 }}
+                
               >
                 Botao
               </Text>
@@ -230,7 +245,7 @@ export const OpenPublicationCard = ({
             alignItems: "center",
             alignSelf: "flex-end",
           }}
-          onPress={handleClosePublication}
+          onPress={() => setIsModal(true)}
         >
           <Text style={{ color: theme.colors.yellow_p }}>Concluir Pedido</Text>
         </TouchableOpacity>
