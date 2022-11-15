@@ -8,6 +8,7 @@ import {
   ClientAuthRegisterContext,
   IClientAuthRegister,
 } from "../../../../../contexts/Auth/Register/Client/ClientRegisterAuthContext";
+import {TextInputMask} from 'react-native-masked-text'
 
 type ClientRegisterCPFScreenType = NativeStackScreenProps<
   AuthStackParams,
@@ -35,12 +36,20 @@ export const ClientRegisterCPFScreen = ({
         <AppGeneticInput
           type="CPF"
           placeholder="000.000.000-00"
+          masked={true}
+          mask={'cpf'}
           onChangeText={(text) => {
             if (cpf !== "") setDisabled(false);
 
             setCpf(text);
           }}
         />
+        {/* <TextInputMask
+          type={'cpf'}
+          value={cpf}
+          onChangeText={text => setCpf(text)}
+          style={{width: '100%', height: 100, backgroundColor: 'red'}}
+        /> */}
       </DataContainer>
       <ButtonContainer>
         <AppGenericButton

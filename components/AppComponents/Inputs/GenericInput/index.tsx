@@ -1,25 +1,48 @@
 import { useState } from "react";
 import { StyleSheet, TextInput } from "react-native";
+import { TextInputMask, TextInputMaskTypeProp } from "react-native-masked-text";
 import { setKeyboardType } from "../../../../utils/setKeyboardType";
 
-interface InputProps extends  React.ComponentProps<typeof TextInput>{
-  type: "email" | "phone" | "password" | "CPF" | "CNPJ" | 'text';
+interface InputProps extends React.ComponentProps<typeof TextInput> {
+  type: "email" | "phone" | "password" | "CPF" | "CNPJ" | "text";
   placeholder: string;
+  masked: true;
+  mask?: TextInputMaskTypeProp;
 }
 
-export const AppGeneticInput = ({ type, placeholder, ...rest }: InputProps) => {
+export const AppGeneticInput = ({
+  type,
+  placeholder,
+  masked,
+  mask,
+  ...rest
+}: InputProps) => {
   const [focusInput, setFocusInput] = useState(false);
 
   return (
-    <TextInput
-      keyboardType={setKeyboardType(type)}
-      placeholder={placeholder}
-      placeholderTextColor={focusInput ? "#fff" : "#ccc"}
-      onFocus={() => setFocusInput(true)}
-      onBlur={() => setFocusInput(false)}
-      style={focusInput ? styles.inputFocusStyle : styles.inputStyle}
-      {...rest}
-    />
+    <>
+      {!masked ? (
+        <TextInput
+          keyboardType={setKeyboardType(type)}
+          placeholder={placeholder}
+          placeholderTextColor={focusInput ? "#fff" : "#ccc"}
+          onFocus={() => setFocusInput(true)}
+          onBlur={() => setFocusInput(false)}
+          style={focusInput ? styles.inputFocusStyle : styles.inputStyle}
+          {...rest}
+        />
+      ) : (
+        <TextInputMask 
+        type={mask as TextInputMaskTypeProp}
+        keyboardType={setKeyboardType(type)}
+        placeholder={placeholder}
+        placeholderTextColor={focusInput ? "#fff" : "#ccc"}
+        onFocus={() => setFocusInput(true)}
+        onBlur={() => setFocusInput(false)}
+        style={focusInput ? styles.inputFocusStyle : styles.inputStyle}
+        {...rest}/>
+      )}
+    </>
   );
 };
 
