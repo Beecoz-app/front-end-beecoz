@@ -52,7 +52,29 @@ const RatingBar = ({
   );
 };
 
-export const OpenPublicationCard = ({ data }: { data: IPost }) => {
+export const OpenPublicationCard = ({
+  data,
+}: {
+  data: {
+    id: 1;
+    status: "Progress" | "Open" | "Completed";
+    interest: {
+      id: number;
+      publicationId: number;
+      autonomousId: number;
+      publication: {
+        id: number,
+      title: string,
+      description: string,
+      region: string,
+      data: string,
+      servTypeId: 1,
+      clientId: 1,
+      status: "Open" | "Progress" | 'Completed'
+    }
+  };
+  };
+}) => {
   const { serviceTypes } = useContext(ServiceContext) as IServiceContext;
   const [seeInterested, setSeeInterested] = useState(false);
   const [isModal, setIsModal] = useState(false);
@@ -63,6 +85,7 @@ export const OpenPublicationCard = ({ data }: { data: IPost }) => {
 
     setIsModal(true);
   };
+
 
   return (
     <Container seeInterested={seeInterested}>
@@ -86,14 +109,14 @@ export const OpenPublicationCard = ({ data }: { data: IPost }) => {
               justifyContent: "space-between",
               flexDirection: "column",
               borderRadius: 10,
-              position: 'relative'
+              position: "relative",
             }}
           >
             <TouchableOpacity
               style={{
-                position: 'absolute',
+                position: "absolute",
                 padding: 10,
-                alignSelf: 'flex-end',
+                alignSelf: "flex-end",
                 display: "flex",
                 alignContent: "center",
                 alignItems: "center",
@@ -183,22 +206,8 @@ export const OpenPublicationCard = ({ data }: { data: IPost }) => {
           style={{ width: 200, height: 60, justifyContent: "space-around" }}
         >
           <Text style={{ color: "#fff", fontSize: 24, fontWeight: "bold" }}>
-            {data.title}
+            {data.interest.publication.title}
           </Text>
-          <View style={{ flexDirection: "row" }}>
-            {serviceTypes.map((serviceType) =>
-              serviceType.id === data.tags ? (
-                <Text
-                  style={{ fontSize: 14, color: "#9FE4F4" }}
-                  key={serviceType.id}
-                >
-                  {serviceType.service}, {""}
-                </Text>
-              ) : (
-                <></>
-              )
-            )}
-          </View>
         </View>
       </ResumeView>
       <View
