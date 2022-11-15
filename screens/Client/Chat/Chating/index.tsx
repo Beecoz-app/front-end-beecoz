@@ -107,7 +107,14 @@ export const ChatingScreen = () => {
 
   const handleOpenWork = async () => {
     const { data } = await privateApi.post(
-      `/work/open/${route.params.receiver.interestId}`
+      `/work/open/${route.params.receiver.interestId}`, {
+
+      },
+      {
+        headers: {
+          authorization: (await SecureStore.getItemAsync("token")) as string,
+        },
+      }
     );
 
     console.log(data);
