@@ -91,7 +91,7 @@ export const ClientRegisterLoginScreen = ({
             marginTop: 5,
           }}
         >
-          <AppCheckBox />
+          <AppCheckBox onChangeValue={() => setCheck(!check)}/>
           <Text style={{ color: theme.colors.white, fontWeight: "100" }}>
             Registrar com número
           </Text>
