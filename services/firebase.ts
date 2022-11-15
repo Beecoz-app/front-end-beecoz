@@ -45,6 +45,7 @@ export const addNewChat = async (
   sender: { id: string; name: string; login: string;avatar: string } | null,
   receiver: { id: string; name: string; login: string; avatar: string },
   interestId: string,
+  publicationId: string,
   setChatIdContext: React.Dispatch<SetStateAction<string | null>>
 ) => {
   const senderUserRef = doc(db, "users", String(sender?.login));
@@ -53,7 +54,8 @@ export const addNewChat = async (
   const chat = await addDoc(collection(db, "chats"), {
      messages: [],
      users: [String(sender?.id), receiver.id],
-     interestId: interestId
+     interestId: interestId,
+     publicationId: publicationId
   });
 
   await updateDoc(senderUserRef, {
@@ -62,7 +64,8 @@ export const addNewChat = async (
       title: receiver.name,
       avatar: receiver.avatar,
       with: receiver.login,
-      interestId: interestId
+      interestId: interestId,
+      publicationId: publicationId
     }),
   });
 
@@ -72,7 +75,8 @@ export const addNewChat = async (
       title: String(sender?.name),
       avatar: String(sender?.avatar),
       with: String(sender?.login),
-      interestId: interestId
+      interestId: interestId,
+      publicationId: publicationId
     }),
   });
 
@@ -155,6 +159,21 @@ export const sendNewMessage = async (chatId: string, userId: string, message: st
     timestamp: serverTimestamp(),
     typeUser: typeUser
   })
+}
+
+export const DeleteManyChatsByPublicationId = (publicationId: string, clientLogin: string, autonomousLogin: string) => {
+  const clientQuery = query(collection(db, 'users', clientLogin, 'chats'))
+  const autonomousQuery = query(collection(db, 'users', autonomousLogin, 'chats'))
+
+  onSnapshot(clientQuery, (querySnapshot) => {
+    console.log(" listAllMessagesOfCurrentChat snapshot", querySnapshot.docs);
+
+    querySnapshot.forEach((doc) => {
+      const data = doc.data();
+
+      console.log("data", ...<[]>data);
+    });
+  });
 }
 
 const app = initializeApp(firebaseConfig);
