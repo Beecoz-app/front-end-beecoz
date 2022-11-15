@@ -70,6 +70,7 @@ export const LoginScreen = ({ navigation }: LoginType) => {
           {!numberIsLogin ? (
             <AppSpecificInput
               type="email"
+              masked={false}
               iconName="user-circle-o"
               placeholder="Seu Login"
               value={login}
@@ -78,6 +79,8 @@ export const LoginScreen = ({ navigation }: LoginType) => {
           ) : (
             <AppSpecificInput
               type="phone"
+              masked={true}
+              mask={"cel-phone"}
               iconName="phone"
               placeholder="Seu Login"
               value={login}
@@ -86,7 +89,7 @@ export const LoginScreen = ({ navigation }: LoginType) => {
           )}
         </InputContent>
         <LoginWithNumberContainer>
-          <AppCheckBox />
+          <AppCheckBox onChangeValue={() => setNumberIsLogin(!numberIsLogin)}/>
           <LoginWithNumberContainer__Text>
             Entrar com número
           </LoginWithNumberContainer__Text>
@@ -95,6 +98,7 @@ export const LoginScreen = ({ navigation }: LoginType) => {
           <AppSpecificInput
             type="password"
             iconName="lock"
+            masked={false}
             placeholder="Sua Senha"
             value={password}
             onChangeText={(text) => setPassword(text)}
