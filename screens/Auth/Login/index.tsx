@@ -1,4 +1,4 @@
-import { Image, Switch, Text, View } from "react-native";
+import { Alert, Image, Switch, Text, View } from "react-native";
 import { useTheme } from "styled-components";
 import IconAnt from "react-native-vector-icons/AntDesign";
 import IconFontisto from "react-native-vector-icons/Fontisto";
@@ -47,13 +47,33 @@ export const LoginScreen = ({ navigation }: LoginType) => {
   const [type, setType] = useState("");
   const [numberIsLogin, setNumberIsLogin] = useState(false);
   const [isSwitched, setIsSwitched] = useState(false);
+  const [isPopUp, setIsPopUp] = useState(false);
   const theme = useTheme();
 
   console.log(newAutonomous);
 
   const onLogin = async () => {
     try {
-      await handleLogin({ login, password, type });
+      const response = await handleLogin({ login, password, type });
+
+      
+      if (response?.error.message) {
+        console.log(response?.error.message);
+        
+        Alert.alert(
+          "Error",
+          response?.error.message,
+          [
+            {
+              text: 'Cancel',
+              style: 'cancel'
+            }
+          ],
+          {
+            cancelable: true,
+          }
+        )
+      }
     } catch (error) {
       console.log(error);
     }
@@ -89,7 +109,7 @@ export const LoginScreen = ({ navigation }: LoginType) => {
           )}
         </InputContent>
         <LoginWithNumberContainer>
-          <AppCheckBox onChangeValue={() => setNumberIsLogin(!numberIsLogin)}/>
+          <AppCheckBox onChangeValue={() => setNumberIsLogin(!numberIsLogin)} />
           <LoginWithNumberContainer__Text>
             Entrar com número
           </LoginWithNumberContainer__Text>
@@ -114,17 +134,22 @@ export const LoginScreen = ({ navigation }: LoginType) => {
           />
         </RadioButtonContainer>
         <MissPasswordContent>
-          <View style={{width: 140, alignItems: "center", flexDirection: "row"}}>
+          <View
+            style={{ width: 140, alignItems: "center", flexDirection: "row" }}
+          >
             <Switch
-              trackColor={{ false: theme.colors.main, true: theme.colors.yellow_p }}
+              trackColor={{
+                false: theme.colors.main,
+                true: theme.colors.yellow_p,
+              }}
               thumbColor={isSwitched ? theme.colors.second : "#f4f3f4"}
               ios_backgroundColor="#3e3e3e"
               onValueChange={() => setIsSwitched(!isSwitched)}
               value={isSwitched}
-              />
-              <Text style={{marginLeft: 4, color: theme.colors.white}}>
-                Lembre de mim
-              </Text>
+            />
+            <Text style={{ marginLeft: 4, color: theme.colors.white }}>
+              Lembre de mim
+            </Text>
           </View>
           <View>
             <Text style={{ color: theme.colors.blue_p, fontWeight: "bold" }}>

@@ -32,7 +32,7 @@ export interface IAuthContext {
     login: string;
     password: string;
     type: string;
-  }) => Promise<void>;
+  }) => Promise<void  | {error: {message: string}}>;
   handleLogout: () => Promise<void>;
   token: string | null;
   setToken: React.Dispatch<React.SetStateAction<string | null>>;
@@ -71,7 +71,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     login: string;
     password: string;
     type: string;
-  }) => {
+  }): Promise<void | {error: {message: string}}> => {
     try {
       const {
         data: { user, token, clientType },
@@ -99,7 +99,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         authorization: `Bearer ${token}`,
       } as CommonHeaderProperties;
     } catch (error: unknown) {
-      if (axios.isAxiosError(error)) console.log(error.response);
+      if (axios.isAxiosError(error)) return {error: error.response?.data as {message: string}};
     }
   };
   const handleLogout = async () => {
