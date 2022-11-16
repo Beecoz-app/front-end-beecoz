@@ -126,7 +126,7 @@ export const StackProfileNavigator = () => {
         <Tab.Screen name="securityProfile" component={SecurityProfileScreen}/>
         <Tab.Screen name="logoutProfile" component={LogoutProfileScreen} />
         <Tab.Screen name="supportProfile" component={SupportProfileScreen} />
-        <Tab.Screen name="aboutProfile" component={AboutProfileScreen} />
+        <Tab.Screen name="aboutProfile" component={AboutProfileScreen} options={{headerTitle: (props) => <Header title="Sobre A Beecoz" backable={true}/>, headerBackVisible: false}}/>
       </Tab.Group>
     </Tab.Navigator>
   );
