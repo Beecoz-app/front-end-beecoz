@@ -53,6 +53,23 @@ export const LoginScreen = ({ navigation }: LoginType) => {
   console.log(newAutonomous);
 
   const onLogin = async () => {
+    if (login === '' || password === '') {
+
+      return Alert.alert(
+        "Error",
+        "Campos login e senha devem ser preenchidos",
+        [
+          {
+            text: 'Cancel',
+            style: 'cancel'
+          }
+        ],
+        {
+          cancelable: true,
+        }
+      )
+    }
+
     try {
       const response = await handleLogin({ login, password, type });
 
@@ -60,7 +77,7 @@ export const LoginScreen = ({ navigation }: LoginType) => {
       if (response?.error.message) {
         console.log(response?.error.message);
         
-        Alert.alert(
+        return Alert.alert(
           "Error",
           response?.error.message,
           [
