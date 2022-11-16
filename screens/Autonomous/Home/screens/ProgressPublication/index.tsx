@@ -30,29 +30,33 @@ export const ProgressPosts = () => {
 
       setPublications(data);
       setIsLoading(false);
+
+      requestPosts()
     }, 1000);
   }, []);
 
-  setInterval(async () => {
-    const { data } = await privateApi.get<IAutonomousPost[]>(
-      "/autonomous/publications",
-      {
-        headers: {
-          authorization: (await SecureStore.getItemAsync("token")) as string,
-        },
-      }
-    );
+  const requestPosts = () => {
+    setInterval(async () => {
+      const { data } = await privateApi.get<IAutonomousPost[]>(
+        "/autonomous/publications",
+        {
+          headers: {
+            authorization: (await SecureStore.getItemAsync("token")) as string,
+          },
+        }
+      );
 
-    setPublications(data);
-  }, 5000)
+      setPublications(data);
+    }, 20000);
+  };
 
   return (
     <Container>
       <Content>
         {isLoading ? (
-          <View style={{marginTop: 300}}>
-          <ActivityIndicator size="large" color={theme.colors.yellow_p} />
-        </View>
+          <View style={{ marginTop: 300 }}>
+            <ActivityIndicator size="large" color={theme.colors.yellow_p} />
+          </View>
         ) : (
           <>
             <Flat
