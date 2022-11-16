@@ -20,10 +20,10 @@ export const AutonomousRegisterChooseServicesScreen = ({
   const { setNewAutonomous } = useContext(
     AutonomousAuthRegisterContext
   ) as IAutonomousAuthRegister;
-  const [serviceTypeValue, setServiceTypeValue] = useState('');
+  const [serviceTypeValue, setServiceTypeValue] = useState(0);
 
   const handleNavigateToNextStep = () => {
-    setNewAutonomous((prev) => ({ ...prev,  serviceTypeId: serviceTypeValue}));
+    setNewAutonomous((prev) => ({ ...prev,  serviceTypeId: String(serviceTypeValue)}));
 
     navigate("insertAutonomousRGPhoto");
   };
