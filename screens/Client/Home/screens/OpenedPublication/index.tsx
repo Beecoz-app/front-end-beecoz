@@ -1,12 +1,17 @@
 import React, { useContext, useEffect, useState } from "react";
 import { privateApi } from "../../../../../services/privateApi";
 import { OpenPublicationCard } from "../../components/OpenPublicationCard";
-import { Container, Content, Flat } from "./styles";
+import { Container, Content, Flat, NoPublicationsMessage } from "./styles";
 import * as SecureStore from "expo-secure-store";
-import { IWorkContext, Work, WorkContext } from "../../../../../contexts/Work/WorkContext";
+import {
+  IWorkContext,
+  Work,
+  WorkContext,
+} from "../../../../../contexts/Work/WorkContext";
+import { View } from "react-native";
 
 export const OpenedPublication = () => {
-  const {setWorks, works} = useContext(WorkContext) as IWorkContext
+  const { setWorks, works } = useContext(WorkContext) as IWorkContext;
 
   useEffect(() => {
     const getAllWorks = async () => {
@@ -25,11 +30,21 @@ export const OpenedPublication = () => {
   return (
     <Container>
       <Content>
-        <Flat
-          data={works.filter((work) => work.status === "Progress")}
-          keyExtractor={(item) => String(item.id)}
-          renderItem={({ item }) => <OpenPublicationCard data={item} />}
-        />
+        {works.filter((work) => work.status === "Progress").length > 0 ? (
+          <>
+            <Flat
+              data={works.filter((work) => work.status === "Progress")}
+              keyExtractor={(item) => String(item.id)}
+              renderItem={({ item }) => <OpenPublicationCard data={item} />}
+            />
+          </>
+        ) : (
+          <View style={{ width: "90%", height: "100%", marginTop: 40 }}>
+            <NoPublicationsMessage>
+              Não há pedidos em progresso
+            </NoPublicationsMessage>
+          </View>
+        )}
       </Content>
     </Container>
   );
