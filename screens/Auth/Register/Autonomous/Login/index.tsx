@@ -1,6 +1,7 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import axios from "axios";
 import React, { useContext, useState } from "react";
-import { Text, View } from "react-native";
+import { Alert, Text, View } from "react-native";
 import { useTheme } from "styled-components";
 import { AppGenericButton } from "../../../../../components/AppComponents/Buttons/Generic";
 import { AppCheckBox } from "../../../../../components/AppComponents/Inputs/CheckBoxInput";
@@ -11,6 +12,7 @@ import {
 } from "../../../../../contexts/Auth/Register/Autonomous/AutonomousRegisterAuthContext";
 import { IAutonomousRegister } from "../../../../../interfaces/User/Autonomous/IAutonomousRegister";
 import { AuthStackParams } from "../../../../../navigation/Auth/AuthStackNavigator";
+import { api } from "../../../../../services/api";
 import { Container, ButtonContainer, DataContainer, Title } from "./styles";
 
 type ClientRegisterLoginType = NativeStackScreenProps<
@@ -30,7 +32,36 @@ export const AutonomousRegisterLoginScreen = ({
   const [check, setCheck] = useState(false);
   const theme = useTheme();
 
-  const handleNavigateToNextStep = () => {
+  const handleNavigateToNextStep = async () => {
+    try {
+      const {data} = await api.post<{message: string}>('/auth/autonomous/login/exists', {
+        login: email ? email : cellPhone
+      })
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) { 
+        const errorMessage = {error: error.response?.data as {message: string}}
+
+        console.log(errorMessage.error.message)
+
+        Alert.alert(
+          "Erro",
+          errorMessage.error.message,
+          [
+            {
+              text: 'Sair',
+              style: 'cancel'
+            }
+          ],
+          {
+            cancelable: true,
+          }
+        )
+
+        return
+      }
+    }
+
+
     setNewAutonomous((prev: any) => ({ ...prev, login: email ? email : cellPhone }));
 
     navigate("registerAutonomousPassword");
