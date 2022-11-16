@@ -1,5 +1,6 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useContext, useState } from "react";
+import { View } from "react-native";
 import { AppGenericButton } from "../../../../../components/AppComponents/Buttons/Generic";
 import { AppGeneticInput } from "../../../../../components/AppComponents/Inputs/GenericInput";
 import { AppSelectInput } from "../../../../../components/AppComponents/Inputs/Select";
@@ -23,7 +24,9 @@ export const ClientRegisterNameScreen = ({
   ) as IClientAuthRegister;
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [gender, setGender] = useState<'Male' | 'Female' | undefined>(undefined);
+  const [gender, setGender] = useState<"Male" | "Female" | undefined>(
+    undefined
+  );
   const [disabled, setDisabled] = useState(true);
 
   const DATA = [
@@ -39,9 +42,9 @@ export const ClientRegisterNameScreen = ({
   };
 
   const getValueGender = (value: string) => {
-    if (value === 'Masculino') setGender('Male')
+    if (value === "Masculino") setGender("Male");
     else {
-      setGender('Female');
+      setGender("Female");
     }
   };
 
@@ -49,31 +52,39 @@ export const ClientRegisterNameScreen = ({
     <Container>
       <DataContainer>
         <Title>
-          Bem-vindo á Beecoz! Para começar, qual seu nome (completo)?
+          Bem-vindo á Beecoz! Para começar, qual seu nome? e gênero?
         </Title>
-        <AppGeneticInput
-          type="text"
-          placeholder="Seu nome"
-          masked={false}
-          value={name}
-          onChangeText={(text) => {
-            if (name !== "") setDisabled(false);
+        <View style={{ width: "100%", marginBottom: 20 }}>
+          <AppGeneticInput
+            type="text"
+            placeholder="Seu nome"
+            masked={false}
+            value={name}
+            onChangeText={(text) => {
+              if (name !== "") setDisabled(false);
 
-            setName(text);
-          }}
-        />
-        <AppGeneticInput
-          type="text"
-          placeholder="Seu sobrenome"
-          masked={false}
-          value={lastName}
-          onChangeText={(text) => {
-            if (lastName !== "") setDisabled(false);
+              setName(text);
+            }}
+          />
+        </View>
+        <View style={{ width: "100%", marginBottom: 40 }}>
+          <AppGeneticInput
+            type="text"
+            placeholder="Seu sobrenome"
+            masked={false}
+            value={lastName}
+            onChangeText={(text) => {
+              if (lastName !== "") setDisabled(false);
 
-            setLastName(text);
-          }}
+              setLastName(text);
+            }}
+          />
+        </View>
+        <AppSelectInput
+          data={DATA}
+          placeholder="Com o oque vc se identifica"
+          getValue={(value) => getValueGender(value)}
         />
-        <AppSelectInput data={DATA} placeholder='Com o oque vc se identifica' getValue={(value) => getValueGender(value)}/>
       </DataContainer>
       <ButtonContainer>
         <AppGenericButton

@@ -55,34 +55,42 @@ export const AutonomousRegisterNameScreen = ({
   return (
     <Container>
       <DataContainer>
-        <Title>Bem-vindo á Beecoz! Para começar, qual seu nome?</Title>
-        <AppGeneticInput
-          type="text"
-          placeholder="Seu nome"
-          masked={false}
-          value={name}
-          onChangeText={(text) => {
-            if (name !== "") setDisabled(false);
+        <Title>
+          Bem-vindo á Beecoz! Para começar, qual seu nome? e gênero?
+        </Title>
+        <View style={{ width: "100%", marginBottom: 20 }}>
+          <AppGeneticInput
+            type="text"
+            placeholder="Seu nome"
+            masked={false}
+            value={name}
+            onChangeText={(text) => {
+              if (name !== "") setDisabled(false);
 
-            setName(text);
-          }}
-        />
-        <AppGeneticInput
-          type="text"
-          placeholder="Seu sobrenome"
-          masked={false}
-          value={lastName}
-          onChangeText={(text) => {
-            if (lastName !== "") setDisabled(false);
+              setName(text);
+            }}
+          />
+        </View>
+        <View style={{ width: "100%", marginBottom: 40 }}>
+          <AppGeneticInput
+            type="text"
+            placeholder="Seu sobrenome"
+            masked={false}
+            value={lastName}
+            onChangeText={(text) => {
+              if (lastName !== "") setDisabled(false);
 
-            setLastName(text);
-          }}
-        />
-        <AppSelectInput
-          data={DATA}
-          placeholder="Com o oque vc se identifica"
-          getValue={(value) => getValueGender(value)}
-        />
+              setLastName(text);
+            }}
+          />
+        </View>
+        <View style={{ width: "100%", marginBottom: 20 }}>
+          <AppSelectInput
+            data={DATA}
+            placeholder="Gênero que vocẽ se identifica"
+            getValue={(value) => getValueGender(value)}
+          />
+        </View>
       </DataContainer>
       <ButtonContainer>
         <AppGenericButton

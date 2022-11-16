@@ -37,7 +37,7 @@ export const AutonomousRegisterCNPJScreen = ({
         <Title>Falta pouco!{"\n"}Informe seu CNPJ.</Title>
         <AppGeneticInput
           type="CPF"
-          placeholder="000.000.000-00"
+          placeholder="00.000.000/0000-00"
           masked={true}
           mask={"cnpj"}
           value={cnpj}
