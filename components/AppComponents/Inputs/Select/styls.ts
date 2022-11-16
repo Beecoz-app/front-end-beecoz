@@ -3,7 +3,7 @@ import styled from "../../../../styles/styledComponents";
 
 export const Container = (styled.TouchableOpacity`
     width: 100%;
-    max-height: 120px;
+    max-height: 180px;
 
     border-radius: 10px;
     

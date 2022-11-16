@@ -32,10 +32,43 @@ export const ClientRegisterStateScreen = ({
   const [city, setCity] = useState("");
   const theme = useTheme();
   const DATA = [
-    { name: "São Paulo", code: "SP" },
-    { name: "Ceara", code: "CE" },
-    { name: "Ro grande do Sul", code: "RS" },
-    { name: "Bahia", code: "BA" },
+    { name: "São Paulo", code: "1" },
+    { name: "Arujá", code: "2" },
+    { name: "Barueri", code: "3" },
+    { name: "Biritiba Mirim", code: "4" },
+    { name: "Caieiras", code: "5" },
+    { name: "Cajamar", code: "6" },
+    { name: "Carapicuíba", code: "7" },
+    { name: "Cotia", code: "8" },
+    { name: "Diadema", code: "9" },
+    { name: "Embu", code: "10" },
+    { name: "Embu-Guaçu", code: "11" },
+    { name: "Ferraz de Vasconcelos", code: "12" },
+    { name: "Francisco Morato", code: "13" },
+    { name: "Franco da Rocha", code: "14" },
+    { name: "Guararema", code: "15" },
+    { name: "Guarulhos", code: "16" },
+    { name: "Itapecerica da Serra", code: "40" },
+    { name: "Itapevi", code: "17" },
+    { name: "Itaquaquecetuba", code: "18" },
+    { name: "Jandira", code: "19" },
+    { name: "Juquitiba", code: "20" },
+    { name: "Mairiporã", code: "21" },
+    { name: "Osasco", code: "22" },
+    { name: "Pirapora do Bom Jesus", code: "23" },
+    { name: "Poá", code: "24" },
+    { name: "Ribeirão Pires", code: "25" },
+    { name: "Rio Grande da Serra", code: "26" },
+    { name: "Salesópolis", code: "27" },
+    { name: "Santa Isabel", code: "28" },
+    { name: "Santana de Parnaíba", code: "29" },
+    { name: "Santo André", code: "30" },
+    { name: "São Bernardo do Campo", code: "31" },
+    { name: "São Caetano do Sul", code: "32" },
+    { name: "São Lourenço da Serra Suzano", code: "33" },
+    { name: "Suzano", code: "34" },
+    { name: "Taboão da Serra", code: "35" },
+    { name: "Vargem Grande Paulista", code: "36" },
   ];
 
   const handleNavigateToNextStep = () => {
@@ -56,23 +89,6 @@ export const ClientRegisterStateScreen = ({
       <DataContainer>
         <Title>Agora, informe onde você mora, por gentileza!</Title>
         <View style={{ width: "100%", marginTop: 40 }}>
-          <SelectContainer>
-            <Text
-              style={{
-                color: theme.colors.white,
-                fontWeight: "bold",
-                fontSize: 20,
-                marginBottom: 20,
-              }}
-            >
-              Seu estado
-            </Text>
-            <AppSelectInput
-              placeholder="Estado"
-              data={DATA}
-              getValue={(value) => getValueCountry(value)}
-            />
-          </SelectContainer>
           <SelectContainer>
             <Text
               style={{
