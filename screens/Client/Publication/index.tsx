@@ -32,11 +32,50 @@ export const PublicationScreen = ({ navigation }: PublicationType) => {
   ) as IClientPublicationContext;
   const [titleText, setTitleText] = useState("");
   const [descriptionText, setDescriptionText] = useState("");
-  const [serviceTypeValue, setServiceTypeValue] = useState("");
+  const [serviceTypeValue, setServiceTypeValue] = useState(0);
   const [dateText, setDateText] = useState(new Date());
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
   const [localText, setLocalText] = useState('');
   const theme = useTheme()
+  const DATA = [
+    { name: "São Paulo", code: "1" },
+    { name: "Arujá", code: "2" },
+    { name: "Barueri", code: "3" },
+    { name: "Biritiba Mirim", code: "4" },
+    { name: "Caieiras", code: "5" },
+    { name: "Cajamar", code: "6" },
+    { name: "Carapicuíba", code: "7" },
+    { name: "Cotia", code: "8" },
+    { name: "Diadema", code: "9" },
+    { name: "Embu", code: "10" },
+    { name: "Embu-Guaçu", code: "11" },
+    { name: "Ferraz de Vasconcelos", code: "12" },
+    { name: "Francisco Morato", code: "13" },
+    { name: "Franco da Rocha", code: "14" },
+    { name: "Guararema", code: "15" },
+    { name: "Guarulhos", code: "16" },
+    { name: "Itapecerica da Serra", code: "40" },
+    { name: "Itapevi", code: "17" },
+    { name: "Itaquaquecetuba", code: "18" },
+    { name: "Jandira", code: "19" },
+    { name: "Juquitiba", code: "20" },
+    { name: "Mairiporã", code: "21" },
+    { name: "Osasco", code: "22" },
+    { name: "Pirapora do Bom Jesus", code: "23" },
+    { name: "Poá", code: "24" },
+    { name: "Ribeirão Pires", code: "25" },
+    { name: "Rio Grande da Serra", code: "26" },
+    { name: "Salesópolis", code: "27" },
+    { name: "Santa Isabel", code: "28" },
+    { name: "Santana de Parnaíba", code: "29" },
+    { name: "Santo André", code: "30" },
+    { name: "São Bernardo do Campo", code: "31" },
+    { name: "São Caetano do Sul", code: "32" },
+    { name: "São Lourenço da Serra Suzano", code: "33" },
+    { name: "Suzano", code: "34" },
+    { name: "Taboão da Serra", code: "35" },
+    { name: "Vargem Grande Paulista", code: "36" },
+  ];
 
     const handleChangeDate = (event: any, date: any) => {
       const selectedDate = date || dateText
@@ -50,7 +89,7 @@ export const PublicationScreen = ({ navigation }: PublicationType) => {
     await onAddPublication({
       title: titleText,
       description: descriptionText,
-      servTypeId: serviceTypeValue,
+      servTypeId: String(serviceTypeValue),
       data: String(dateText),
       region: localText
     });
@@ -113,13 +152,13 @@ export const PublicationScreen = ({ navigation }: PublicationType) => {
 
         {/* LOCAL */}
         <View style={{width: "100%"}}>
-          <AppSelectInput placeholder="Local do serviço" data={[{name: "Barueri", code: "a"}]} getValue={(local) => setLocalText(local)}/>
+          <AppSelectInput placeholder="Local do serviço" data={DATA} getValue={(local) => setLocalText(local)}/>
         </View>
 
         {/* JOBS LIST */}
         <View style={{ width: "100%" }}>
           <AppJobsList
-            getValue={(value: string) => setServiceTypeValue(value)}
+            getValue={(value: number) => setServiceTypeValue(value)}
           />
         </View>
 
